@@ -1,8 +1,8 @@
-import MainMisReservas from "../mis_reservas/MainMisReservas"
+import MainReservar from "./MainReservar"
 
 const Reservar = () => {
   return (
-    <MainMisReservas/>
+    <MainReservar/>
   )
 }
 
