@@ -1,9 +1,20 @@
-import MainProveedores from "./MainProveedores"
+import { Col, Row } from "react-bootstrap";
+import MainProveedores from "./MainProveedores";
+import NavAdmin from "../NavAdmin";
 
 const Proveedores = () => {
   return (
-    <MainProveedores/>
-  )
-}
+    <>
+      <Row>
+        <Col>
+          <NavAdmin />
+        </Col>
+        <Col>
+          <MainProveedores />
+        </Col>
+      </Row>
+    </>
+  );
+};
 
-export default Proveedores
+export default Proveedores;

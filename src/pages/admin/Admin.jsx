@@ -1,8 +1,11 @@
-import MainAdmin from "./MainAdmin"
+import { useState } from "react"
+import NavAdmin from "./NavAdmin"
 
 const Admin = () => {
+
   return (
-    <MainAdmin/>
+    <NavAdmin/>
+    
   )
 }
 

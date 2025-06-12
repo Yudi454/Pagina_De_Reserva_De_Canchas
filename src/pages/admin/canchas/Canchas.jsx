@@ -1,8 +1,8 @@
 import { Col, Row } from "react-bootstrap";
-import MainVentas from "./MainVentas";
+import MainCanchas from "./MainCanchas";
 import NavAdmin from "../NavAdmin";
 
-const Ventas = () => {
+const Canchas = () => {
   return (
     <>
       <Row>
@@ -10,11 +10,11 @@ const Ventas = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <MainVentas />
+          <MainCanchas />
         </Col>
       </Row>
     </>
   );
 };
 
-export default Ventas;
+export default Canchas;

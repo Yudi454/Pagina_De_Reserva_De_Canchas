@@ -1,8 +1,25 @@
+import { Table } from "react-bootstrap";
 
-const MainClientes = () => {
+const MainClientes = ({ clientes }) => {
   return (
-    <div>MainClientes</div>
-  )
-}
+    <>
+      <h3>Clientes</h3>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </Table>
+    </>
+  );
+};
 
-export default MainClientes
+export default MainClientes;

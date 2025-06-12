@@ -1,9 +1,20 @@
-import MainCaja from "./MainCaja"
+import MainCaja from "./MainCaja";
+import NavAdmin from "../NavAdmin";
+import { Col, Row } from "react-bootstrap";
 
 const Caja = () => {
   return (
-    <MainCaja/>
-  )
-}
+    <>
+      <Row>
+        <Col>
+          <NavAdmin />
+        </Col>
+        <Col>
+          <MainCaja />
+        </Col>
+      </Row>
+    </>
+  );
+};
 
-export default Caja
+export default Caja;

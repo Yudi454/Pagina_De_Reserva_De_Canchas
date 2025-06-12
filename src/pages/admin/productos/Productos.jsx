@@ -1,9 +1,20 @@
-import MainProductos from "./MainProductos"
+import { Col, Row } from "react-bootstrap";
+import MainProductos from "./MainProductos";
+import NavAdmin from "../NavAdmin";
 
 const Productos = () => {
   return (
-    <MainProductos/>
-  )
-}
+    <>
+      <Row>
+        <Col>
+          <NavAdmin />
+        </Col>
+        <Col>
+          <MainProductos />
+        </Col>
+      </Row>
+    </>
+  );
+};
 
-export default Productos
+export default Productos;

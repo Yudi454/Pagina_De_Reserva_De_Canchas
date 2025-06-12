@@ -1,9 +1,20 @@
-import MainHorarios from "./MainHorarios"
+import { Col, Row } from "react-bootstrap";
+import MainHorarios from "./MainHorarios";
+import NavAdmin from "../NavAdmin";
 
 const Horarios = () => {
   return (
-    <MainHorarios/>
-  )
-}
+    <>
+      <Row>
+        <Col>
+          <NavAdmin />
+        </Col>
+        <Col>
+          <MainHorarios />
+        </Col>
+      </Row>
+    </>
+  );
+};
 
-export default Horarios
+export default Horarios;

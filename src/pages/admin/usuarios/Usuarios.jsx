@@ -1,9 +1,20 @@
-import MainUsuarios from "./MainUsuarios"
+import { Col, Row } from "react-bootstrap";
+import MainUsuarios from "./MainUsuarios";
+import NavAdmin from "../NavAdmin";
 
 const Usuarios = () => {
   return (
-    <MainUsuarios/>
-  )
-}
+    <>
+      <Row>
+        <Col>
+          <NavAdmin />
+        </Col>
+        <Col>
+          <MainUsuarios />
+        </Col>
+      </Row>
+    </>
+  );
+};
 
-export default Usuarios
+export default Usuarios;

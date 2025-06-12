@@ -17,6 +17,7 @@ import Reservas from "./pages/admin/reservas/Reservas";
 import Usuarios from "./pages/admin/usuarios/Usuarios";
 import Ventas from "./pages/admin/ventas/Ventas";
 import Admin from "./pages/admin/Admin";
+import Canchas from "./pages/admin/canchas/Canchas"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/admin/reservas" element={<Reservas />} />
           <Route path="/admin/usuarios" element={<Usuarios />} />
           <Route path="/admin/ventas" element={<Ventas />} />
+          <Route path="/admin/canchas" element={<Canchas/>} />
         </Routes>
       </BrowserRouter>
       <Footer />
