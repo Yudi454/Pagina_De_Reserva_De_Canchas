@@ -23,22 +23,34 @@ const MainInfoCancha = () => {
           <Card style={{ backgroundColor: "#E5EAF0" }}>
             <Card.Body className="d-flex flex-column align-items-center text-center">
               <Card.Title className="mb-3">Tipo de Cancha</Card.Title>
-              <Card.Title className="mb-3">Precio: $$$$</Card.Title>
-              <Card.Title className="mb-3">Horario</Card.Title>
+              <Card.Text className="mb-3">Precio: $$$$</Card.Text>
+              <Card.Text className="mb-3">Reserva tu Turno</Card.Text>
               <Calendario />
               <Form.Group className="mt-3">
                 <Form.Label>Desde:</Form.Label>
-                <Form.Control
-                  className="rounded-pill"
-                  type="text"
-                  placeholder="Horario"
-                />
+                <Form.Select className="rounded-pill">
+                  <option value="">Selecciona hora de Comienzo</option>
+                  <option value="08:00">14:00</option>
+                  <option value="09:00">15:00</option>
+                  <option value="10:00">16:00</option>
+                  <option value="10:00">17:00</option>
+                  <option value="10:00">18:00</option>
+                  <option value="10:00">19:00</option>
+                  <option value="10:00">20:00</option>
+                  <option value="10:00">21:00</option>
+                </Form.Select>
                 <Form.Label className="mt-3">Hasta:</Form.Label>
-                <Form.Control
-                  className="rounded-pill"
-                  type="text"
-                  placeholder="Horario"
-                />
+                <Form.Select className="rounded-pill">
+                  <option value="">Selecciona hora de Fin</option>
+                  <option value="09:00">15:00</option>
+                  <option value="10:00">16:00</option>
+                  <option value="10:00">17:00</option>
+                  <option value="10:00">18:00</option>
+                  <option value="10:00">19:00</option>
+                  <option value="10:00">20:00</option>
+                  <option value="10:00">21:00</option>
+                  <option value="10:00">22:00</option>
+                </Form.Select>
               </Form.Group>
               <Button
                 className="mt-3"
