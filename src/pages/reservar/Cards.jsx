@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const Cards = () => {
   return (
@@ -8,9 +9,11 @@ const Cards = () => {
       <Card.Body className="d-flex flex-column align-items-center text-center">
         <Card.Title>Cancha de Tenis</Card.Title>
         <Card.Text>
-          Precio: 4000 la Hora
+          Precio: $4000 x Hora
         </Card.Text>
-        <Button style={{ backgroundColor: "#45BF55", borderColor: "#FFC04D" }}>Go somewhere</Button>
+        <Link to="/reservar-Cancha/InfoCancha">
+        <Button style={{ backgroundColor: "#45BF55", borderColor: "#FFC04D" }}>Reservar</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
