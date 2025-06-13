@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 
-const MainClientes = ({ clientes, handleVer, url, setMostrar, setValor }) => {
+const MainClientes = ({ clientes, handleVer, handleEditar, url, setMostrarVer, setValor,setMostrarEditar }) => {
   return (
     <>
       <h3>Clientes</h3>
@@ -22,8 +22,8 @@ const MainClientes = ({ clientes, handleVer, url, setMostrar, setValor }) => {
             <td>{cliente.email}</td>
             <td>{cliente.telefono}</td>
             <td>
-              <Button onClick={() => handleVer(setMostrar,url,cliente.id,setValor)}>Ver</Button>
-              <Button>Editar</Button>
+              <Button onClick={() => handleVer(setMostrarVer,url,cliente.id,setValor,setMostrarEditar)}>Ver</Button>
+              <Button onClick={() => handleEditar(setMostrarEditar,url,cliente.id,setValor,setMostrarVer)} >Editar</Button>
               <Button>Eliminar</Button>
             </td>
           </tr>
