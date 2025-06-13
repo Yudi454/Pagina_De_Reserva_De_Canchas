@@ -9,7 +9,7 @@ const VerDatoAdmin = ({ cliente }) => {
         Object.keys(cliente).map((atributo, i) => (
           <Form.Group key={i} className="mb-3" controlId="formBasicEmail">
             <Form.Label>{atributo}</Form.Label>
-            <Form.Control type="email" placeholder={cliente[atributo]} />
+            <Form.Control value={cliente[atributo]} disabled />
           </Form.Group>
         ))}
     </>

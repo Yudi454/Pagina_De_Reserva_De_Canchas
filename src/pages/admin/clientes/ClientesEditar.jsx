@@ -1,13 +1,11 @@
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
-const ClientesEditar = ({ cliente, setCliente }) => {
-  console.log(cliente);
-
+const ClientesEditar = ({ cliente, setCliente, handleSubmit }) => {
   return (
     <>
       <h3>Editar</h3>
       {cliente && (
-        <Form>
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group>
             <Form.Label>Usuario</Form.Label>
             <Form.Control
@@ -19,12 +17,25 @@ const ClientesEditar = ({ cliente, setCliente }) => {
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>
-            <Form.Control />
+            <Form.Control
+              value={cliente.email}
+              onChange={(e) =>
+                setCliente({ ...cliente, email: e.target.value })
+              }
+            />
           </Form.Group>
           <Form.Group>
             <Form.Label>Telefono</Form.Label>
-            <Form.Control />
+            <Form.Control
+              value={cliente.telefono}
+              onChange={(e) =>
+                setCliente({ ...cliente, telefono: e.target.value })
+              }
+            />
           </Form.Group>
+          <Button type="submit">
+            Editar
+          </Button>
         </Form>
       )}
     </>

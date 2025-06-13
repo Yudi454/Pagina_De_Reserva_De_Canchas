@@ -1,11 +1,9 @@
 import { Col, Row } from "react-bootstrap";
 import MainClientes from "./MainClientes";
 import NavAdmin from "../NavAdmin";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { getDato, getDatos } from "../../../customHooks/UseApi";
+import { getDato, getDatos, updateDato } from "../../../customHooks/UseApi";
 import { URLCLIENTES } from "../../../routes/Rutas";
-import { handleEditar, handleVer } from "../../../customHooks/UseCrud";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ClientesEditar from "./ClientesEditar";
 
@@ -21,6 +19,25 @@ const Clientes = () => {
   useEffect(() => {
     getDatos(URLCLIENTES, setClientes);
   }, []);
+
+  const handleVer = (id) => {
+    setMostrarVer(true);
+    setMostrarEditar(false);
+    getDato(URLCLIENTES, id, setCliente);
+  };
+
+  const handleEditar = (id) => {
+    setMostrarVer(false);
+    setMostrarEditar(true);
+    getDato(URLCLIENTES, id, setCliente);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateDato(URLCLIENTES, cliente.id, cliente, setClientes);
+
+    console.log("Funciona submit");
+  };
 
   return (
     <>
@@ -50,7 +67,11 @@ const Clientes = () => {
         )}
         {mostrarEditar && (
           <Col>
-            <ClientesEditar cliente={cliente} setCliente={setCliente} />
+            <ClientesEditar
+              cliente={cliente}
+              setCliente={setCliente}
+              handleSubmit={handleSubmit}
+            />
           </Col>
         )}
       </Row>

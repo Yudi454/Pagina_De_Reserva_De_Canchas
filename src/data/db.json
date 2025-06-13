@@ -1,19 +1,19 @@
 {
   "Clientes": [
     {
-      "id": 1,
-      "usuario": "lucas123",
+      "id": "1",
+      "usuario": "lucas",
       "email": "lucas@gmail.com",
       "telefono": "3811234567"
     },
     {
-      "id": 2,
+      "id": "2",
       "usuario": "martina456",
       "email": "martina@example.com",
       "telefono": "3817654321"
     },
     {
-      "id": 3,
+      "id": "3",
       "usuario": "juan789",
       "email": "juanito@correo.com",
       "telefono": "3811122334"
