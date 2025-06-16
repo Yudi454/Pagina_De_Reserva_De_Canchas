@@ -1,0 +1,20 @@
+.modo-claro {
+  background-color: #ffffff ;
+  color:#121212 ;             
+  
+}
+
+.modo-claro .main1-overlay {
+   
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgb(31, 161, 53);
+  background-color: #73ad7b3a;
+}
+
+
+.modo-claro .boton-reservar{
+  background-color: #45bf55;
+  color: #ffffff;
+}
+
+

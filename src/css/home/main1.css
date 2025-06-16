@@ -1,0 +1,121 @@
+.main1-fondo {
+  background-image: url("/public/canchas.png"); /* Reemplazá con el path correcto */
+  background-size: cover;
+  background-position: center;
+  background-attachment:scroll; /* esto hace que quede estática al hacer scroll */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.main1-overlay {
+  
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.maquina-escribir {
+  display: inline-block;
+  font-size: 3.5rem;
+  font-family: "Michroma", sans-serif;
+  font-weight: 1000;
+  text-align: center;
+  margin-top: 90px;
+  margin-bottom: 90px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #ffffff;
+  width: 0;
+  animation: escribir 5s steps(60, end) forwards, parpadeo 0.7s step-end infinite;
+  text-align: center;
+  padding: 20px;
+
+}
+
+.boton-reservar {
+  
+  display: inline-block; /* Permite aplicar padding y margin como un bloque, pero se comporta en línea */
+  padding: 19px 30px; /* Espacio interno (arriba/abajo, izquierda/derecha) */
+  font-family: "Michroma", sans-serif; /* Puedes cambiar esto a tu fuente de Google Font */
+  font-size: 0.9rem; /* Tamaño del texto */
+  font-weight: bold; /* Negrita */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 1px; /* Espaciado entre letras */
+  text-decoration: none; 
+  border: none; /* Sin borde por defecto */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor a una mano */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ 
+}
+
+.contenedor-boton-reservar{
+  margin-top: 90px;
+  text-align: center;
+  padding: 30px 50px;
+  height: 200px;
+}
+
+
+.boton-reservar:hover {
+  
+  transform: translateY(-5px); /* Pequeño levantamiento */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+
+
+@keyframes escribir {
+  from {
+    width: 0;
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes parpadeo {
+  0%, 100% { border-color: #ffffff; }
+  50% { border-color: transparent; }
+}
+
+@media (max-width: 768px) {
+  .maquina-escribir {
+    font-size: 1.4rem;
+  }
+}
+
+
+
+
+/* --- MEDIA QUERIES (se mantienen o mejoran un poco) --- */
+@media (max-width: 992px) {
+  .maquina-escribir {
+    font-size: 2.8rem; /* Ajuste para tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .maquina-escribir {
+    font-size: 2rem; /* Ajuste para móviles grandes */
+  }
+}
+
+@media (max-width: 576px) {
+  .maquina-escribir {
+    font-size: 1.5rem; 
+    
+  }
+}

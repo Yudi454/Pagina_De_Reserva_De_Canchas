@@ -1,0 +1,18 @@
+
+.modo-oscuro {
+  background-color: #121212; 
+  color: #ffffff ;             
+ 
+}
+
+.modo-oscuro .main1-overlay {
+   
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgb(0, 139, 30);
+  background-color: #154b205d;
+}
+
+.modo-oscuro .boton-reservar{
+  background-color: #36a54c;
+  color: #ffffff;
+}
