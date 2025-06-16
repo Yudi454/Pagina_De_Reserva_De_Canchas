@@ -1,8 +1,8 @@
 .main1-fondo {
-  background-image: url("/public/canchas.png"); /* Reemplazá con el path correcto */
+  background-image: url("/public/canchas.png"); 
   background-size: cover;
   background-position: center;
-  background-attachment:scroll; /* esto hace que quede estática al hacer scroll */
+  background-attachment:scroll; 
   height: 100vh;
   display: flex;
   align-items: center;

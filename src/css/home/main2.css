@@ -1,0 +1,94 @@
+.main2-fondo {
+  
+}
+
+.main2-overlay {
+  
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+.titulo-canchas{
+    
+
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 46px;
+    margin-top: 4px;
+    font-family: "Michroma", sans-serif;
+    
+}
+
+.canchas-title {
+  
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 35px;
+  font-family: "Michroma", sans-serif;
+  text-align: center;
+}
+
+.card-grid {
+  display: flex;
+  grid-template-columns: repeat(3,1fr);
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 3rem;
+  justify-content: center;
+}
+
+.canchas-card {
+
+  position: relative;
+  width: 260px;
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.canchas-card:hover {
+
+  transform: scale(1.03);
+  box-shadow: 0 8px 29px rgba(245, 255, 245, 0.856);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 10, 0, 0.356);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.699);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.card-overlay h3 {
+  margin: 0;
+}
+
+.card-overlay p {
+
+  font-weight: 200;
+  margin: 0.1rem 0;
+  font-size: 0.8rem;
+  font-family: "Michroma", sans-serif;
+}
+
+
+.canchas-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

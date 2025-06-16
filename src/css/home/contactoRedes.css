@@ -1,0 +1,44 @@
+.contacto-redes {
+  width: 100vw; 
+  padding: 40px 20px;
+  border-radius: 0; 
+  text-align: center;
+}
+
+
+.contacto-redes h2 {
+  font-family: "Michroma", sans-serif;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.redes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 20px;
+  justify-items: center;
+}
+
+.icon {
+  
+  border-radius: 12px;
+  padding: 20px 10px;
+  width: 100%;
+  max-width: 160px;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.icon:hover {
+  border-color: #028802;
+  transform: translateY(-5px);
+}
+
+.icon p {
+  margin-top: 10px;
+  font-weight: 600;
+  font-family: "Lato", sans-serif;
+  margin: 6px 0;
+}
+
+
