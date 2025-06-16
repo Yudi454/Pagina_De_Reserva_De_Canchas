@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <div className={color === 'Claro' ? 'modo-claro' : 'modo-oscuro'}>
       <MainHome />
-
     </div>
   )
 }

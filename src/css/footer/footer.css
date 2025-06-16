@@ -1,0 +1,21 @@
+.footer {
+  padding: 8px 0;
+  text-align: center;
+  margin-top: 0;
+}
+
+.footer-icons {
+  margin-top: 15px;
+}
+
+.footer-icons a {
+    
+  margin: 0 10px;
+  font-size: 1.9rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-icons a:hover {
+  color: #00acee;
+}

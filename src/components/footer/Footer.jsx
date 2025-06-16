@@ -1,9 +1,11 @@
-import MainFooter from "./MainFooter"
+import MainFooter from "./MainFooter";
 
 const Footer = () => {
-  return (
-    <MainFooter/>
-  )
-}
+  
 
-export default Footer
+  return (
+      <MainFooter />
+  );
+};
+
+export default Footer;

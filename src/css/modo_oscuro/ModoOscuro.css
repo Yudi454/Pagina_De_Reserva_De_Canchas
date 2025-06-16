@@ -59,3 +59,12 @@
 .modo-oscuro .navbar-container {
    background-color: rgba(9, 75, 21, 0.486);
 }
+
+.modo-oscuro .footer{
+  background-color: #36a54c;
+  color: #eaffed;
+}
+
+.modo-oscuro .footer-icons a {
+ color: #2904fc;
+}

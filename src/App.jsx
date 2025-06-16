@@ -44,7 +44,6 @@ function App() {
           <Route path="/admin/ventas" element={<Ventas />} />
         </Routes>
       </BrowserRouter>
-      <Footer />
     </>
   );
 }
