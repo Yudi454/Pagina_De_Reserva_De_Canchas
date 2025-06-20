@@ -8,8 +8,40 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/esm/Col";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const MainInfoCancha = () => {
+  const [cancha, setCancha] = useState([]);
+  const [turnos, setTurnos] = useState([]);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/canchas/InfoCancha/${id}`)
+      .then((response) => {
+        setCancha(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("error al traer la cancha:", error);
+      });
+  }, [id]);
+
+  const handleFecha = (fecha) => {
+    axios;
+    axios
+      .get(`http://localhost:8000/canchas/InfoCancha/${id}/turnos`, {
+        params: { fecha },
+      })
+      .then((res) => {
+        setTurnos(res.data);
+      })
+      .catch((err) => console.error("Error al traer turnos:", err));
+  };
+
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -33,34 +65,30 @@ const MainInfoCancha = () => {
           <Col md={8}>
             <Card style={{ backgroundColor: "#E5EAF0" }}>
               <Card.Body className="d-flex flex-column align-items-center text-center">
-                <Card.Title className="mb-3">Tipo de Cancha</Card.Title>
-                <Card.Text className="mb-3">Precio: $$$$</Card.Text>
+                <Card.Title className="mb-3">
+                  Cancha:{cancha.tipo_cancha}
+                </Card.Title>
+                <Card.Text className="mb-3">
+                  Precio: ${cancha.precio_cancha}
+                </Card.Text>
                 <Card.Text className="mb-3">Reserva tu Turno</Card.Text>
-                <Calendario />
+                <Calendario handleFecha={handleFecha} />
                 <Form.Group className="mt-3">
                   <Form.Label>Desde:</Form.Label>
                   <Form.Select className="rounded-pill">
-                    <option value="">Selecciona hora de Comienzo</option>
-                    <option value="08:00">14:00</option>
-                    <option value="09:00">15:00</option>
-                    <option value="10:00">16:00</option>
-                    <option value="10:00">17:00</option>
-                    <option value="10:00">18:00</option>
-                    <option value="10:00">19:00</option>
-                    <option value="10:00">20:00</option>
-                    <option value="10:00">21:00</option>
+                    {turnos.map((turno) => (
+                      <option key={turno.id_horario} value={turno.id_horario}>
+                        {turno.hora_inicio} - {turno.hora_fin}
+                      </option>
+                    ))}
                   </Form.Select>
                   <Form.Label className="mt-3">Hasta:</Form.Label>
                   <Form.Select className="rounded-pill">
-                    <option value="">Selecciona hora de Fin</option>
-                    <option value="09:00">15:00</option>
-                    <option value="10:00">16:00</option>
-                    <option value="10:00">17:00</option>
-                    <option value="10:00">18:00</option>
-                    <option value="10:00">19:00</option>
-                    <option value="10:00">20:00</option>
-                    <option value="10:00">21:00</option>
-                    <option value="10:00">22:00</option>
+                    {turnos.map((turno) => (
+                      <option key={turno.id_horario} value={turno.id_horario}>
+                        {turno.hora_inicio} - {turno.hora_fin}
+                      </option>
+                    ))}
                   </Form.Select>
                 </Form.Group>
                 <Button

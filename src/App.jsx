@@ -29,10 +29,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
-          <Route path="/login" element={Login} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/reservar-Cancha" element={<Reservar />} />
-          <Route path="/reservar-Cancha/InfoCancha" element={<InfoCancha />} />
+          <Route path="/reservar-Cancha/InfoCancha/:id" element={<InfoCancha />} />
           <Route path="/mis-reservas" element={<MisReservas />} />
           <Route path="/info-usuario" element={<InfoUsuario />} />
           <Route path="/admin" element={<Admin />} />

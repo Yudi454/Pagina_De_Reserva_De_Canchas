@@ -1,8 +1,12 @@
 import MainInfoCancha from './MainInfoCancha'
+import { useParams } from "react-router-dom";
 
 const InfoCancha = () => {
+
+const {id} = useParams()
+
   return (
-    <MainInfoCancha/>
+    <MainInfoCancha id_cancha={id}/>
   )
 }
 
