@@ -1,3 +1,27 @@
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-height: 100px; /
+}
+
+.logo-img {
+  height: 100px;
+  width: auto;
+  cursor: pointer;
+  max-height: none;
+}
+
+
+.title-principal {
+  font-family: "Michroma", sans-serif;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+
 .navbar-container {
   width: 100%;
   background-color: rgba(36, 255, 76, 0.678); 
@@ -13,12 +37,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo-img {
-  height: 50px;
-  width: auto;
-  cursor: pointer;
 }
 
 .nav-links {

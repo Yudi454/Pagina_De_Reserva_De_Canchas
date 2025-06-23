@@ -43,6 +43,7 @@ function App() {
           <Route path="/admin/usuarios" element={<Usuarios />} />
           <Route path="/admin/ventas" element={<Ventas />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
   );

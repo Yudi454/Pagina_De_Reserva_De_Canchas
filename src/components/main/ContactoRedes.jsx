@@ -10,7 +10,7 @@ import "../../css/home/contactoRedes.css";
 
 const ContactoRedes = () => {
   return (
-    <div className="contacto-redes text-center my-4">
+    <div className="contacto-redes text-center ">
       <h2>Contacto y redes</h2>
       <br />
       <div className="redes mt-4">
@@ -42,8 +42,6 @@ const ContactoRedes = () => {
           <p>De lunes a viernes de 08:00 hasta las 21:00</p>
         </div>
       </div>
-      <br />
-      <br />
     </div>
   );
 };

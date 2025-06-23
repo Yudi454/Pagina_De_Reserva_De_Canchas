@@ -15,7 +15,6 @@ const MainHome = () => {
       <Main2/>
       <Servicios/>
       <ContactoRedes/>
-      <Footer/>
     </div>
   )
 }

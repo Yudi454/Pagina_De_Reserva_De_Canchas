@@ -16,12 +16,12 @@ const NavBar = () => {
       }`}
     >
       <nav className="navbar-custom">
-        <div className="logo">
-          <Link to="/">
-            <img src="/.png" alt="Logo" className="logo-img" />
-          </Link>
-        </div>
-
+  <div className="logo-title">
+    <Link to="/">
+      <img src="/icono.png" alt="Logo" className="logo-img" />
+    </Link>
+    <h2 className="title-principal">MIS CANCHAS</h2>
+  </div>
         <div className="nav-links">
           <Link to="/login">Iniciar Sesión</Link>
           <Link to="/register">Registrarse</Link>
