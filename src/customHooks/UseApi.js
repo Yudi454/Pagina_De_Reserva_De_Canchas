@@ -11,14 +11,24 @@ export const getDato = async (url, id, setValor) => {
   setValor(data);
 };
 
-export const updateDato = async (url, id, dato, setValor) => {
+export const updateDato = async (url, dato, setValor, setOcultar) => {
   try {
-    const res = await axios.patch(`${url}/${id}`, {
+    const res = await axios.patch(`${url}/${dato.id}`, {
       ...dato,
     });
+    getDatos(url, setValor);
     alert("Cliente actualizado");
   } catch (error) {
     console.log(error);
   }
-  getDatos(url, setValor);
+};
+
+export const deleteDato = async (url, id, setDatos) => {
+  try {
+    const res = await axios.delete(`${url}/${id}`);
+    getDatos(url, setDatos);
+    alert("Objeto eliminado");
+  } catch (error) {
+    console.log(error);
+  }
 };

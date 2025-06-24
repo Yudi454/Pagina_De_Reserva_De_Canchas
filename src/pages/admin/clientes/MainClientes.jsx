@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 
-const MainClientes = ({ clientes, handleVer, handleEditar }) => {
+const MainClientes = ({ clientes, handleVer, handleEditar, handleDelete }) => {
   return (
     <>
       <h3>Clientes</h3>
@@ -24,7 +24,7 @@ const MainClientes = ({ clientes, handleVer, handleEditar }) => {
             <td>
               <Button onClick={() => handleVer(cliente.id)}>Ver</Button>
               <Button onClick={() => handleEditar(cliente.id)} >Editar</Button>
-              <Button>Eliminar</Button>
+              <Button onClick={() => handleDelete(cliente.id)}>Eliminar</Button>
             </td>
           </tr>
           )}

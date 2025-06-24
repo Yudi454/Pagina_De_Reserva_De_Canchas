@@ -2,10 +2,16 @@ import { Col, Row } from "react-bootstrap";
 import MainClientes from "./MainClientes";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
-import { getDato, getDatos, updateDato } from "../../../customHooks/UseApi";
+import {
+  deleteDato,
+  getDato,
+  getDatos,
+  updateDato,
+} from "../../../customHooks/UseApi";
 import { URLCLIENTES } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ClientesEditar from "./ClientesEditar";
+import axios from "axios";
 
 const Clientes = () => {
   const [clientes, setClientes] = useState();
@@ -33,10 +39,15 @@ const Clientes = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    updateDato(URLCLIENTES, cliente.id, cliente, setClientes);
+    try {
+      e.preventDefault();
+      updateDato(URLCLIENTES, cliente, setClientes);
+      setMostrarEditar(false);
+    } catch (error) {}
+  };
 
-    console.log("Funciona submit");
+  const handleDelete = (id) => {
+    deleteDato(URLCLIENTES, id, setClientes);
   };
 
   return (
@@ -50,19 +61,12 @@ const Clientes = () => {
             clientes={clientes}
             handleVer={handleVer}
             handleEditar={handleEditar}
-            url={URLCLIENTES}
-            setMostrarVer={setMostrarVer}
-            setValor={setCliente}
-            setMostrarEditar={setMostrarEditar}
+            handleDelete={handleDelete}
           />
         </Col>
         {mostrarVer && (
           <Col>
-            <VerDatoAdmin
-              mostrarVer={mostrarVer}
-              setMostrarVer={setMostrarVer}
-              cliente={cliente}
-            />
+            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cliente} />
           </Col>
         )}
         {mostrarEditar && (
@@ -71,6 +75,7 @@ const Clientes = () => {
               cliente={cliente}
               setCliente={setCliente}
               handleSubmit={handleSubmit}
+              setMostrarEditar={setMostrarEditar}
             />
           </Col>
         )}

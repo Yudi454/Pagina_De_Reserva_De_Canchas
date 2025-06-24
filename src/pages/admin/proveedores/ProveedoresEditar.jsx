@@ -1,46 +1,44 @@
 import { Button, Form } from "react-bootstrap";
 
-const ClientesEditar = ({ cliente, setCliente, handleSubmit,setMostrarEditar }) => {
+const ProveedoresEditar = ({setMostrarEditar,proveedor,setProveedor,handleSubmit}) => {
   return (
     <>
-    <Button onClick={() => setMostrarEditar(false)}>X</Button>
+      <Button onClick={() => setMostrarEditar(false)}>X</Button>
       <h3>Editar</h3>
-      {cliente && (
+      {proveedor && (
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group>
-            <Form.Label>Usuario</Form.Label>
+            <Form.Label>Nombre</Form.Label>
             <Form.Control
-              value={cliente.usuario}
+              value={proveedor.nombre}
               onChange={(e) =>
-                setCliente({ ...cliente, usuario: e.target.value })
+                setProveedor({ ...proveedor, nombre: e.target.value })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
-              value={cliente.email}
+              value={proveedor.email}
               onChange={(e) =>
-                setCliente({ ...cliente, email: e.target.value })
+                setProveedor({ ...proveedor, email: e.target.value })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Telefono</Form.Label>
             <Form.Control
-              value={cliente.telefono}
+              value={proveedor.telefono}
               onChange={(e) =>
-                setCliente({ ...cliente, telefono: e.target.value })
+                setProveedor({ ...proveedor, telefono: e.target.value })
               }
             />
           </Form.Group>
-          <Button type="submit">
-            Editar
-          </Button>
+          <Button type="submit">Editar</Button>
         </Form>
       )}
     </>
   );
 };
 
-export default ClientesEditar;
+export default ProveedoresEditar;

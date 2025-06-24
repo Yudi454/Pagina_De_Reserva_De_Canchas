@@ -1,15 +1,14 @@
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
-const VerDatoAdmin = ({ cliente }) => {
-  console.log(cliente);
-
+const VerDatoAdmin = ({ dato,setMostrarVer }) => {
   return (
     <>
-      {cliente != null &&
-        Object.keys(cliente).map((atributo, i) => (
+    <Button onClick={() => setMostrarVer(false)}>X</Button>
+      {dato != null &&
+        Object.keys(dato).map((atributo, i) => (
           <Form.Group key={i} className="mb-3" controlId="formBasicEmail">
             <Form.Label>{atributo}</Form.Label>
-            <Form.Control value={cliente[atributo]} disabled />
+            <Form.Control value={dato[atributo]} disabled />
           </Form.Group>
         ))}
     </>
