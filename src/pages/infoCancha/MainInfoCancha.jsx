@@ -78,7 +78,7 @@ const MainInfoCancha = () => {
                   <Form.Select className="rounded-pill">
                     {turnos.map((turno) => (
                       <option key={turno.id_horario} value={turno.id_horario}>
-                        {turno.hora_inicio} - {turno.hora_fin}
+                        {turno.hora_inicio}
                       </option>
                     ))}
                   </Form.Select>
@@ -86,7 +86,7 @@ const MainInfoCancha = () => {
                   <Form.Select className="rounded-pill">
                     {turnos.map((turno) => (
                       <option key={turno.id_horario} value={turno.id_horario}>
-                        {turno.hora_inicio} - {turno.hora_fin}
+                        {turno.hora_fin}
                       </option>
                     ))}
                   </Form.Select>
