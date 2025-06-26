@@ -31,7 +31,7 @@ const MainInfoCancha = () => {
   }, [id]);
 
   const handleFecha = (fecha) => {
-    axios;
+    setFechaCargada(fecha)
     axios
       .get(`http://localhost:8000/canchas/InfoCancha/${id}/turnos`, {
         params: { fecha },
@@ -41,6 +41,28 @@ const MainInfoCancha = () => {
       })
       .catch((err) => console.error("Error al traer turnos:", err));
   };
+
+  const [fechaCargada, setFechaCargada]= useState("")
+  const [horarioInicio, setHorarioInicio]=useState("")
+  const [horarioFin, setHorarioFin]=useState("")
+
+
+  const handleReservas=()=>{
+    const nuevaReserva={
+      id_cancha:id,
+      id_usuario:3, //ejemeplo de id de usuario
+      precio:cancha.precio_cancha,
+      dia_reserva: fechaCargada,
+      horario_inicio:horarioInicio,
+      horario_fin:horarioFin,
+    }
+
+    axios
+    .post("http://localhost:8000/canchas/reservas",nuevaReserva)
+    .then((res)=>alert("reserva realizada con exito"))
+    .catch((err)=>alert("a ocurrido un error:" ,err));
+    
+  }
 
   return (
     <div>
@@ -72,20 +94,20 @@ const MainInfoCancha = () => {
                   Precio: ${cancha.precio_cancha}
                 </Card.Text>
                 <Card.Text className="mb-3">Reserva tu Turno</Card.Text>
-                <Calendario handleFecha={handleFecha} />
+                <Calendario handleFecha={handleFecha}/>
                 <Form.Group className="mt-3">
                   <Form.Label>Desde:</Form.Label>
-                  <Form.Select className="rounded-pill">
+                  <Form.Select className="rounded-pill" onChange={(e)=>setHorarioInicio(e.target.value)}>
                     {turnos.map((turno) => (
-                      <option key={turno.id_horario} value={turno.id_horario}>
+                      <option key={turno.id_horario} value={turno.hora_inicio}>
                         {turno.hora_inicio}
                       </option>
                     ))}
                   </Form.Select>
                   <Form.Label className="mt-3">Hasta:</Form.Label>
-                  <Form.Select className="rounded-pill">
+                  <Form.Select className="rounded-pill" onChange={(e)=>setHorarioFin(e.target.value)}>
                     {turnos.map((turno) => (
-                      <option key={turno.id_horario} value={turno.id_horario}>
+                      <option key={turno.id_horario} value={turno.hora_fin}>
                         {turno.hora_fin}
                       </option>
                     ))}
@@ -94,6 +116,7 @@ const MainInfoCancha = () => {
                 <Button
                   className="mt-3"
                   style={{ backgroundColor: "#45BF55", borderColor: "#FFC04D" }}
+                  onClick={handleReservas}
                 >
                   Reservar
                 </Button>
