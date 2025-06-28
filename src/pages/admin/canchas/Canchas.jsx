@@ -8,7 +8,7 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { URLCANCHAS } from "../../../routes/Rutas";
+import { rutas, URLCANCHAS } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import CanchasEditar from "./CanchasEditar";
 
@@ -21,35 +21,42 @@ const Canchas = () => {
 
   const [mostrarEditar, setMostrarEditar] = useState();
 
+  const API_ROUTE = import.meta.env.VITE_API_URL;
+
+  const RUTA_CANCHAS = `${API_ROUTE}${rutas.canchas}`;
+
   useEffect(() => {
-    getDatos(URLCANCHAS, setCanchas);
+    getDatos(RUTA_CANCHAS, setCanchas);
   }, []);
 
   const handleVer = (id) => {
     setMostrarVer(true);
     setMostrarEditar(false);
-    getDato(URLCANCHAS, id, setCancha);
+    getDato(`${RUTA_CANCHAS}/${id}`, setCancha);
   };
 
   const handleEditar = (id) => {
     setMostrarVer(false);
     setMostrarEditar(true);
-    getDato(URLCANCHAS, id, setCancha);
+    getDato(`${RUTA_CANCHAS}/${id}`, setCancha);
   };
 
   const handleDelete = (id) => {
-    deleteDato(URLCANCHAS, id, setCanchas);
+    deleteDato(`${RUTA_CANCHAS}/delete/${id}`);
+    getDatos(RUTA_CANCHAS,setCanchas)
   };
 
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
-      updateDato(URLCANCHAS, cancha, setCanchas);
+      updateDato(`${RUTA_CANCHAS},/update/${cancha.id}`, cancha);
+      alert("Cancha actualizada con exito")
+      getDatos(RUTA_CANCHAS,setCanchas)
       setMostrarEditar(false);
     } catch (error) {
       console.log(error);
     }
-  };
+  };  
 
   return (
     <>

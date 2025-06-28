@@ -13,7 +13,7 @@ const VentasEditar = ({
   setProductoEncontrado,
   mostrarProductos,
   setMostrarProductos,
-  añadirProducto
+  añadirProducto,
 }) => {
   return (
     <>
@@ -39,7 +39,8 @@ const VentasEditar = ({
               }
             />
           </Form.Group>
-          <Button onClick={() => añadirProducto()}>Añadir Producto</Button>
+          {/* <Button onClick={() => añadirProducto()}>Añadir Producto</Button>
+              <p className="text-danger">Cargas datos antes de añadir productos</p>
           <Form.Group>
             <Form.Label>Nombre:</Form.Label>
             <div className="position-relative">
@@ -76,11 +77,12 @@ const VentasEditar = ({
 
             <Form.Label >Cantidad:</Form.Label>
             <Form.Control onChange={(e) => setProductoEncontrado({...productoEncontrado,cantidad: e.target.value})}/>
-          </Form.Group>
+          </Form.Group> */}
+          {console.log(venta.productos)}
           {Object(venta.productos).map((producto) => (
-            <Form.Group key={producto.id}>
+            <Form.Group key={producto.id_producto}>
               <Form.Label>
-                {producto.nombre}-Cantidad -{" "}
+                {producto.nombre_producto}-Cantidad -
                 <Button onClick={() => deleteProducto(producto.id)}>
                   Eliminar
                 </Button>
@@ -88,7 +90,7 @@ const VentasEditar = ({
               <Form.Control
                 value={producto.cantidad}
                 onChange={(e) =>
-                  setVenta({ ...producto, cantidad: e.target.value })
+                  setVenta({ ...venta, productos: e.target.value })
                 }
               />
             </Form.Group>

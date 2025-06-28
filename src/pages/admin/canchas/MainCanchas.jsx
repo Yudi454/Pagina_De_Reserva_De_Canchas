@@ -17,17 +17,17 @@ const MainCanchas = ({ canchas, handleEditar, handleVer, handleDelete }) => {
         <tbody>
           {canchas != undefined &&
             canchas.map((cancha) => (
-              <tr key={cancha.id}>
-                <td>{cancha.id}</td>
-                <td>{cancha.imagen}</td>
-                <td>{cancha.tipo}</td>
-                <td>{cancha.precio}</td>
+              <tr key={cancha.id_cancha}>
+                <td>{cancha.id_cancha}</td>
+                <td>{cancha.imagen_cancha}</td>
+                <td>{cancha.tipo_cancha}</td>
+                <td>{cancha.precio_cancha}</td>
                 <td>
-                  <Button onClick={() => handleVer(cancha.id)}>Ver</Button>
-                  <Button onClick={() => handleEditar(cancha.id)}>
+                  <Button onClick={() => handleVer(cancha.id_cancha)}>Ver</Button>
+                  <Button disabled onClick={() => handleEditar(cancha.id_cancha)}>
                     Editar
                   </Button>
-                  <Button onClick={() => handleDelete(cancha.id)}>
+                  <Button disabled onClick={() => handleDelete(cancha.id_cancha)}>
                     Eliminar
                   </Button>
                 </td>

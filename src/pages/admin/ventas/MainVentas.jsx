@@ -18,18 +18,18 @@ const MainVentas = ({ventas,handleVer,handleEditar,handleDelete}) => {
         <tbody>
           {ventas != undefined &&
             ventas.map((venta) => (
-              <tr key={venta.id}>
-                <td>{venta.id}</td>
-                <td>{venta.nombre_vendedor}-{venta.apellido_vendedor}</td>
+              <tr key={venta.id_venta}>
+                <td>{venta.id_venta}</td>
+                <td>{venta.nombre_usuario}-{venta.apellido_usuario}</td>
                 <td>{venta.fecha_venta}</td>
                 <td>{venta.hora_venta}</td>
-                <td>${venta.total}</td>
+                <td>${venta.total_venta}</td>
                 <td>
-                  <Button onClick={() => handleVer(venta.id)}>Ver</Button>
-                  <Button onClick={() => handleEditar(venta.id)}>
+                  <Button onClick={() => handleVer(venta.id_venta)}>Ver</Button>
+                  <Button disabled onClick={() => handleEditar(venta.id_venta)}>
                     Editar
                   </Button>
-                  <Button onClick={() => handleDelete(venta.id)}>
+                  <Button onClick={() => handleDelete(venta.id_venta)}>
                     Eliminar
                   </Button>
                 </td>

@@ -8,7 +8,7 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { URLPRODUCTOS, URLVENTAS } from "../../../routes/Rutas";
+import { rutas, URLPRODUCTOS, URLVENTAS } from "../../../routes/Rutas";
 import VerVentas from "./VerVentas";
 import VentasEditar from "./VentasEditar";
 
@@ -29,25 +29,28 @@ const Ventas = () => {
 
   const [mostrarProductos, setMostrarProductos] = useState(false);
 
+  const API_ROUTE = import.meta.env.VITE_API_URL;
+
+  const RUTA_VENTAS = `${API_ROUTE}${rutas.ventas}`;
+
   useEffect(() => {
-    getDatos(URLVENTAS, setVentas);
-    getDatos(URLPRODUCTOS, setProductos);
+    getDatos(RUTA_VENTAS, setVentas);
   }, []);
 
   const handleVer = (id) => {
     setMostrarVer(true);
     setMostrarEditar(false);
-    getDato(URLVENTAS, id, setVenta);
+    getDato(`${RUTA_VENTAS}/${id}`, setVenta);
   };
 
   const handleEditar = (id) => {
     setMostrarVer(false);
     setMostrarEditar(true);
-    getDato(URLVENTAS, id, setVenta);
+    getDato(`${RUTA_VENTAS}/${id}`, setVenta);
   };
 
   const handleDelete = (id) => {
-    deleteDato(URLVENTAS, id, setVentas);
+    deleteDato(`${RUTA_VENTAS}/delete/${id}`, setVentas);
   };
 
   const deleteProducto = (id) => {
@@ -64,12 +67,17 @@ const Ventas = () => {
       e.preventDefault();
       let Total = 0;
       Object(venta.productos).map(
-        (producto) => (Total += producto.precio * producto.cantidad)
+        (producto) => (Total += producto.precio_producto * producto.cantidad)
       );
 
       const ventaFinal = { ...venta, total: Total };
 
-      updateDato(URLVENTAS, ventaFinal, setVentas);
+      console.log(ventaFinal);
+      
+
+      updateDato(`${RUTA_VENTAS}/update/${ventaFinal.id_venta}`, ventaFinal);
+      alert("Venta actualizada con exito");
+      getDatos(RUTA_VENTAS, setVentas);
       setMostrarEditar(false);
     } catch (error) {}
   };
@@ -85,11 +93,8 @@ const Ventas = () => {
   };
 
   const añadirProducto = () => {
-    setVenta({...venta,productos:[...venta.productos,productoEncontrado]})
-  }
-
-  console.log(venta);
-  
+    setVenta({ ...venta, productos: [...venta.productos, productoEncontrado] });
+  };
 
   return (
     <>

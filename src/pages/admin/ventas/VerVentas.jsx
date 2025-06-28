@@ -8,18 +8,15 @@ const VerVentas = ({ venta, setMostrarVer }) => {
         <>
           <Form.Group className="mb-3">
             <Form.Label>Id</Form.Label>
-            <Form.Control value={venta.id} disabled />
+            <Form.Control value={venta.id_venta} disabled />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Vendedor</Form.Label>
-            <Form.Control
-              value={`${venta.nombre_vendedor}-${venta.apellido_vendedor}`}
-              disabled
-            />
+            <Form.Control value={venta.nombre_usuario} disabled />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Telefono-Vendedor</Form.Label>
-            <Form.Control value={venta.telefono_vendedor} disabled />
+            <Form.Control value={venta.telefono_usuario} disabled />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Fecha y Hora</Form.Label>
@@ -30,25 +27,17 @@ const VerVentas = ({ venta, setMostrarVer }) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Total</Form.Label>
-            <Form.Control value={venta.total} disabled />
+            <Form.Control value={venta.total_venta} disabled />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Productos</Form.Label>
             {Object(venta.productos).map((producto) => (
-              <ul key={producto.id}>
-                <li>Nobre: {producto.nombre}</li>
-                <li>Precio-c/u: ${producto.precio}</li>
+              <ul key={producto.id_venta}>
+                <li>Nobre: {producto.nombre_producto}</li>
+                <li>Subtotal: ${producto.subtotal_detalle_venta}</li>
                 <li>Cantidad: {producto.cantidad}</li>
               </ul>
             ))}
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Fecha_Creacion</Form.Label>
-            <Form.Control value={venta.fecha_creacion} disabled />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Estado</Form.Label>
-            <Form.Control value={venta.estado} disabled />
           </Form.Group>
         </>
       )}

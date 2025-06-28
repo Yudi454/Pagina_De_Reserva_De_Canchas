@@ -13,5 +13,7 @@ export const rutas = {
   clientes: "/clientes",
   usuarios: "/usuarios",
   productos: "/productos",
-  proveedores: "/proveedores"
+  proveedores: "/proveedores",
+  ventas: "/ventas",
+  canchas: "/canchas"
 };

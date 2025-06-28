@@ -31,7 +31,7 @@ const MainAdmin = () => {
           <Link to="/admin/horarios">Horarios</Link>
         </li>
         <li>
-          <Link to="/admin/reservas">Reservas</Link>
+          <p  class="disabled" to="/admin/reservas">Reservas</p>
         </li>
       </ul>
     </>

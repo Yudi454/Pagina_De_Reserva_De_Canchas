@@ -7,7 +7,7 @@ export const getDatos = async (url, setValor) => {
 
 export const getDato = async (url, setValor) => {
   const res = await axios.get(url);
-  setValor(res.data[0]);
+  setValor(res.data);
 };
 
 export const updateDato = async (url, dato) => {
