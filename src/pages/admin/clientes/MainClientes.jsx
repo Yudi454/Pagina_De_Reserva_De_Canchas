@@ -16,15 +16,15 @@ const MainClientes = ({ clientes, handleVer, handleEditar, handleDelete }) => {
         </thead>
         <tbody>
           {clientes != undefined && clientes.map((cliente) => 
-          <tr key={cliente.id}>
-            <td>{cliente.id}</td>
+          <tr key={cliente.id_clientes}>
+            <td>{cliente.id_clientes}</td>
             <td>{cliente.usuario}</td>
-            <td>{cliente.email}</td>
-            <td>{cliente.telefono}</td>
+            <td>{cliente.email_cliente}</td>
+            <td>{cliente.telefono_cliente}</td>
             <td>
-              <Button onClick={() => handleVer(cliente.id)}>Ver</Button>
-              <Button onClick={() => handleEditar(cliente.id)} >Editar</Button>
-              <Button onClick={() => handleDelete(cliente.id)}>Eliminar</Button>
+              <Button onClick={() => handleVer(cliente.id_clientes)}>Ver</Button>
+              <Button onClick={() => handleEditar(cliente.id_clientes)} >Editar</Button>
+              <Button onClick={() => handleDelete(cliente.id_clientes)}>Eliminar</Button>
             </td>
           </tr>
           )}

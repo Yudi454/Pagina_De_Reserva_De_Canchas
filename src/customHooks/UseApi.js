@@ -5,28 +5,24 @@ export const getDatos = async (url, setValor) => {
   setValor(res.data);
 };
 
-export const getDato = async (url, id, setValor) => {
+export const getDato = async (url, setValor) => {
   const res = await axios.get(url);
-  const data = await res.data.find((cliente) => cliente.id === id);
-  setValor(data);
+  setValor(res.data[0]);
 };
 
-export const updateDato = async (url, dato, setValor, setOcultar) => {
+export const updateDato = async (url, dato) => {
   try {
-    const res = await axios.patch(`${url}/${dato.id}`, {
+    const res = await axios.patch(url, {
       ...dato,
     });
-    getDatos(url, setValor);
-    alert("Cliente actualizado");
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deleteDato = async (url, id, setDatos) => {
+export const deleteDato = async (url) => {
   try {
-    const res = await axios.delete(`${url}/${id}`);
-    getDatos(url, setDatos);
+    const res = await axios.delete(url);
     alert("Objeto eliminado");
   } catch (error) {
     console.log(error);

@@ -19,18 +19,18 @@ const ClientesEditar = ({ cliente, setCliente, handleSubmit,setMostrarEditar }) 
           <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
-              value={cliente.email}
+              value={cliente.email_cliente}
               onChange={(e) =>
-                setCliente({ ...cliente, email: e.target.value })
+                setCliente({ ...cliente, email_cliente: e.target.value })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Telefono</Form.Label>
             <Form.Control
-              value={cliente.telefono}
+              value={cliente.telefono_cliente}
               onChange={(e) =>
-                setCliente({ ...cliente, telefono: e.target.value })
+                setCliente({ ...cliente, telefono_cliente: e.target.value })
               }
             />
           </Form.Group>
