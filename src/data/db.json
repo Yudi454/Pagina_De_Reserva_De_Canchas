@@ -1,1 +1,27 @@
-{}
+
+{
+    "canchas": [
+    {
+      "nombre": "Cancha de Futbol",
+      "descripcion": "Las mejores canchas de futbol",
+      "imagen":"/futbol.jpg"
+    },
+     {
+      "nombre": "Cancha de Basquet",
+      "descripcion": "Las mejores canchas de basquet",
+      "imagen":"/canchabasquet.jpg"
+    },
+    {
+      "nombre": "Cancha de Tenis",
+      "descripcion": "Las mejores canchas de Tenis",
+      "imagen":"/canchatenis.jpg"
+    },
+    {
+      "nombre": "Cancha de Padle",
+      "descripcion": "Las mejores canchas de Padle",
+      "imagen":"/canchapadle.jpg"
+    }
+
+  ]
+   
+}

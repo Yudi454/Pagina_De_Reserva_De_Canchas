@@ -17,16 +17,16 @@ import Reservas from "./pages/admin/reservas/Reservas";
 import Usuarios from "./pages/admin/usuarios/Usuarios";
 import Ventas from "./pages/admin/ventas/Ventas";
 import Admin from "./pages/admin/Admin";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
-
+import NavBar from "./components/header/NavBar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
