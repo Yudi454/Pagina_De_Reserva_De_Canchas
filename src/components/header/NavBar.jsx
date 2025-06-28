@@ -4,11 +4,17 @@ import { useStore } from "../../store/AuthStore";
 import "../../css/modo_claro/ModoClaro.css";
 import "../../css/modo_oscuro/ModoOscuro.css";
 import "../../css/navbar/navbar.css";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
 const NavBar = () => {
   const { color, changeColor } = useStore();
   const [user, setUser] = useState(null);
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+
+  const toggleMenu = () => {
+    setMenuAbierto(!menuAbierto);
+  };
 
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
@@ -20,7 +26,7 @@ const NavBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("usuario"); // Elimina el usuario del localStorage
     setUser(null); // Limpia el estado local
-    <Link to="/"></Link>
+    <Link to="/"></Link>;
   };
 
   let sinLoguear = "";
@@ -71,12 +77,18 @@ const NavBar = () => {
           </Link>
           <h2 className="title-principal">MIS CANCHAS</h2>
         </div>
-        <div className="nav-links">
+
+        {/* Botón hamburguesa (solo visible en móvil) */}
+        <div className="menu-icon" onClick={toggleMenu}>
+          {menuAbierto ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </div>
+
+        {/* Links del nav (se ocultan o muestran en móvil) */}
+        <div className={`nav-links ${menuAbierto ? "open" : ""}`}>
           {sinLoguear}
           {linksClientes}
           {linksRoles}
           {Desloguearboton}
-
           <button
             className="color-toggle"
             onClick={() => changeColor(color === "Claro" ? "Oscuro" : "Claro")}
