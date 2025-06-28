@@ -17,17 +17,17 @@ const MainProductos = ({productos,handleDelete,handleEditar,handleVer}) => {
         <tbody>
           {productos != undefined &&
             productos.map((producto) => (
-              <tr key={producto.id}>
-                <td>{producto.id}</td>
-                <td>{producto.nombre}</td>
-                <td>{producto.precio}</td>
+              <tr key={producto.id_producto}>
+                <td>{producto.id_producto}</td>
+                <td>{producto.nombre_producto}</td>
+                <td>{producto.precio_producto}</td>
                 <td>{producto.stock}</td>
                 <td>
-                  <Button onClick={() => handleVer(producto.id)}>Ver</Button>
-                  <Button onClick={() => handleEditar(producto.id)}>
+                  <Button onClick={() => handleVer(producto.id_producto)}>Ver</Button>
+                  <Button onClick={() => handleEditar(producto.id_producto)}>
                     Editar
                   </Button>
-                  <Button onClick={() => handleDelete(producto.id)}>
+                  <Button onClick={() => handleDelete(producto.id_producto)}>
                     Eliminar
                   </Button>
                 </td>

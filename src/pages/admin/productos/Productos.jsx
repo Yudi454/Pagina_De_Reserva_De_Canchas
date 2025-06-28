@@ -8,9 +8,9 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { URLPRODUCTOS } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ProductosEditar from "./ProductosEditar";
+import { rutas } from "../../../routes/Rutas";
 
 const Productos = () => {
   const [mostrarVer, setMostrarVer] = useState(false);
@@ -21,34 +21,42 @@ const Productos = () => {
 
   const [productos, setProductos] = useState();
 
+  const API_ROUTE = import.meta.env.VITE_API_URL;
+
+  const RUTA_PRODUCTOS = `${API_ROUTE}${rutas.productos}`;
+
   useEffect(() => {
-    getDatos(URLPRODUCTOS, setProductos);
+    getDatos(RUTA_PRODUCTOS, setProductos);
   }, []);
 
   const handleVer = (id) => {
     setMostrarVer(true);
     setMostrarEditar(false);
-    getDato(URLPRODUCTOS, id, setProducto);
+    getDato(`${RUTA_PRODUCTOS}/${id}`, setProducto);
   };
 
   const handleEditar = (id) => {
     setMostrarVer(false);
     setMostrarEditar(true);
-    getDato(URLPRODUCTOS, id, setProducto);
+    getDato(`${RUTA_PRODUCTOS}/${id}`, setProducto);
   };
 
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
-      updateDato(URLPRODUCTOS, producto, setProductos);
+      updateDato(`${RUTA_PRODUCTOS}/update/${producto.id_producto}`, producto);
+      alert("Producto editado con exito")
+      getDatos(RUTA_PRODUCTOS, setProductos);
       setMostrarEditar(false);
     } catch (error) {}
   };
 
   const handleDelete = (id) => {
-    deleteDato(URLPRODUCTOS, id, setProductos);
+    deleteDato(`${RUTA_PRODUCTOS}/delete/${id}`);
+    getDatos(RUTA_PRODUCTOS, setProductos);
   };
 
+  
   return (
     <>
       <Row>

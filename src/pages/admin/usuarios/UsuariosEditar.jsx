@@ -15,18 +15,18 @@ const UsuariosEditar = ({
           <Form.Group>
             <Form.Label>Nombre</Form.Label>
             <Form.Control
-              value={usuario.nombre}
+              value={usuario.nombre_usuario}
               onChange={(e) =>
-                setUsuario({ ...usuario, nombre: e.target.value })
+                setUsuario({ ...usuario, nombre_usuario: e.target.value })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Apellido</Form.Label>
             <Form.Control
-              value={usuario.apellido}
+              value={usuario.apellido_usuario}
               onChange={(e) =>
-                setUsuario({ ...usuario, apellido: e.target.value })
+                setUsuario({ ...usuario, apellido_usuario: e.target.value })
               }
             />
           </Form.Group>
@@ -42,18 +42,18 @@ const UsuariosEditar = ({
           <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
-              value={usuario.email}
+              value={usuario.email_usuario}
               onChange={(e) =>
-                setUsuario({ ...usuario, email: e.target.value })
+                setUsuario({ ...usuario, email_usuario: e.target.value })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Telefono</Form.Label>
             <Form.Control
-              value={usuario.telefono}
+              value={usuario.telefono_usuario}
               onChange={(e) =>
-                setUsuario({ ...usuario, telefono: e.target.value })
+                setUsuario({ ...usuario, telefono_usuario: e.target.value })
               }
             />
           </Form.Group>

@@ -10,27 +10,27 @@ const ProveedoresEditar = ({setMostrarEditar,proveedor,setProveedor,handleSubmit
           <Form.Group>
             <Form.Label>Nombre</Form.Label>
             <Form.Control
-              value={proveedor.nombre}
+              value={proveedor.nombre_proveedor}
               onChange={(e) =>
-                setProveedor({ ...proveedor, nombre: e.target.value })
+                setProveedor({ ...proveedor, nombre_proveedor: e.target.value })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
-              value={proveedor.email}
+              value={proveedor.email_proveedor}
               onChange={(e) =>
-                setProveedor({ ...proveedor, email: e.target.value })
+                setProveedor({ ...proveedor, email_proveedor: e.target.value })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Telefono</Form.Label>
             <Form.Control
-              value={proveedor.telefono}
+              value={proveedor.telefono_proveedor}
               onChange={(e) =>
-                setProveedor({ ...proveedor, telefono: e.target.value })
+                setProveedor({ ...proveedor, telefono_proveedor: e.target.value })
               }
             />
           </Form.Group>

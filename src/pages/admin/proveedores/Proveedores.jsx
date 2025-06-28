@@ -8,7 +8,7 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { URLPROVEEDORES } from "../../../routes/Rutas";
+import { rutas, URLPROVEEDORES } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import { set } from "react-hook-form";
 import ProveedoresEditar from "./ProveedoresEditar";
@@ -22,37 +22,45 @@ const Proveedores = () => {
 
   const [mostrarEditar, setMostrarEditar] = useState();
 
+  const API_ROUTE = import.meta.env.VITE_API_URL;
+
+  const RUTA_PROVEEDORES = `${API_ROUTE}${rutas.proveedores}`;
+
   useEffect(() => {
-    getDatos(URLPROVEEDORES, setProveedores);
+    getDatos(RUTA_PROVEEDORES, setProveedores);
   }, []);
 
   const handleVer = (id) => {
     setMostrarVer(true);
     setMostrarEditar(false);
-    getDato(URLPROVEEDORES, id, setProveedor);
+    getDato(`${RUTA_PROVEEDORES}/${id}`, setProveedor);
   };
 
   const handleEditar = (id) => {
     setMostrarVer(false);
     setMostrarEditar(true);
-    getDato(URLPROVEEDORES, id, setProveedor);
+    getDato(`${RUTA_PROVEEDORES}/${id}`, setProveedor);
   };
 
   const handleDelete = (id) => {
-    deleteDato(URLPROVEEDORES, id, setProveedores);
+    deleteDato(`${RUTA_PROVEEDORES}/delete/${id}`);
+    getDatos(RUTA_PROVEEDORES, setProveedores);
   };
 
   const handleSubmit = (e) => {
-    console.log(proveedor);
     try {
       e.preventDefault();
-      updateDato(URLPROVEEDORES, proveedor, setProveedores);
+      updateDato(
+        `${RUTA_PROVEEDORES}/update/${proveedor.id_proveedor}`,
+        proveedor
+      );
+      alert("Se actualizo el proveedor con exito");
+      getDatos(RUTA_PROVEEDORES,setProveedores);
       setMostrarEditar(false);
     } catch (error) {
       console.log(error);
     }
   };
-
 
   return (
     <>

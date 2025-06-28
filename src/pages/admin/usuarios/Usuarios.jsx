@@ -8,9 +8,8 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { URLUSUARIOS } from "../../../routes/Rutas";
+import { rutas } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
-import ClientesEditar from "./UsuariosEditar";
 import UsuariosEditar from "./UsuariosEditar";
 
 const Usuarios = () => {
@@ -22,31 +21,43 @@ const Usuarios = () => {
 
   const [mostrarEditar, setMostrarEditar] = useState(false);
 
+  const API_ROUTE = import.meta.env.VITE_API_URL;
+
+  const RUTA_USUARIOS = `${API_ROUTE}${rutas.usuarios}`;
+
   useEffect(() => {
-    getDatos(URLUSUARIOS, setUsuarios);
+    getDatos(RUTA_USUARIOS, setUsuarios);
   }, []);
 
   const handleVer = (id) => {
     setMostrarVer(true);
     setMostrarEditar(false);
-    getDato(URLUSUARIOS, id, setUsuario);
+    getDato(`${RUTA_USUARIOS}/${id}`, setUsuario);
   };
 
   const handleEditar = (id) => {
     setMostrarVer(false);
     setMostrarEditar(true);
-    getDato(URLUSUARIOS, id, setUsuario);
+    getDato(`${RUTA_USUARIOS}/${id}`, setUsuario);
   };
 
   const handleDelete = (id) => {
-    deleteDato(URLUSUARIOS, id, setUsuarios);
-  }
+    deleteDato(`${RUTA_USUARIOS}/delete/${id}`);
+    getDatos(RUTA_USUARIOS, setUsuarios);
+  };
+  
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
-      updateDato(URLUSUARIOS, usuario, setUsuarios);
+      console.log(usuario);
+      
+      updateDato(`${RUTA_USUARIOS}/update/${usuario.id_usuario}`, usuario);
+      getDatos(RUTA_USUARIOS, setUsuarios);
+      alert("Usuario actualizado");
       setMostrarEditar(false);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

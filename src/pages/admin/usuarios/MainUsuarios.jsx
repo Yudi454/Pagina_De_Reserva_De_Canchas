@@ -9,7 +9,7 @@ const MainUsuarios = ({ usuarios, handleVer, handleEditar, handleDelete }) => {
           <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>Apellido</th>
+            <th>DNI</th>
             <th>Telefono</th>
             <th>Acciones</th>
           </tr>
@@ -17,17 +17,21 @@ const MainUsuarios = ({ usuarios, handleVer, handleEditar, handleDelete }) => {
         <tbody>
           {usuarios != undefined &&
             usuarios.map((usuario) => (
-              <tr key={usuario.id}>
-                <td>{usuario.id}</td>
-                <td>{usuario.nombre}</td>
-                <td>{usuario.apellido}</td>
-                <td>{usuario.telefono}</td>
+              <tr key={usuario.id_usuario}>
+                <td>{usuario.id_usuario}</td>
                 <td>
-                  <Button onClick={() => handleVer(usuario.id)}>Ver</Button>
-                  <Button onClick={() => handleEditar(usuario.id)}>
+                  {usuario.nombre_usuario}-{usuario.apellido_usuario}
+                </td>
+                <td>{usuario.dni}</td>
+                <td>{usuario.telefono_usuario}</td>
+                <td>
+                  <Button onClick={() => handleVer(usuario.id_usuario)}>
+                    Ver
+                  </Button>
+                  <Button onClick={() => handleEditar(usuario.id_usuario)}>
                     Editar
                   </Button>
-                  <Button onClick={() => handleDelete(usuario.id)}>
+                  <Button onClick={() => handleDelete(usuario.id_usuario)}>
                     Eliminar
                   </Button>
                 </td>
