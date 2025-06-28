@@ -18,6 +18,8 @@ import Usuarios from "./pages/admin/usuarios/Usuarios";
 import Ventas from "./pages/admin/ventas/Ventas";
 import Admin from "./pages/admin/Admin";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 
 function App() {
@@ -45,6 +47,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer />
+      <ToastContainer position="bottom-left" autoClose={3000}/>
     </>
   );
 }

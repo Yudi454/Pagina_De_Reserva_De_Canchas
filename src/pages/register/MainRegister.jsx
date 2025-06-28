@@ -9,7 +9,7 @@ const MainRegister = ({ usuario, setUsuario, handleSubmit }) => {
           <Form.Control
             name="usuario"
             onChange={(e) => setUsuario({...usuario, [e.target.name]: e.target.value })}
-            placeholder="Enter email"
+            placeholder="Ingrese un nombre de usuario"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -17,7 +17,7 @@ const MainRegister = ({ usuario, setUsuario, handleSubmit }) => {
           <Form.Control
             name="email"
             onChange={(e) => setUsuario({...usuario, [e.target.name]: e.target.value })}
-            placeholder="Enter email"
+            placeholder="Ingrese un email"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -25,7 +25,7 @@ const MainRegister = ({ usuario, setUsuario, handleSubmit }) => {
           <Form.Control
             name="telefono"
             onChange={(e) => setUsuario({...usuario, [e.target.name]: e.target.value })}
-            placeholder="Enter email"
+            placeholder="Ingrese un numero de telefono"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -33,7 +33,7 @@ const MainRegister = ({ usuario, setUsuario, handleSubmit }) => {
           <Form.Control
             name="contraseña"
             onChange={(e) => setUsuario({...usuario, [e.target.name]: e.target.value })}
-            placeholder="Enter email"
+            placeholder="Ingrese una contraseña"
           />
         </Form.Group>
         <Button type="submit">Registrarse</Button>
