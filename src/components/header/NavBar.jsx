@@ -7,62 +7,55 @@ import "../../css/navbar/navbar.css";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
 const NavBar = () => {
-  const { color, changeColor } = useStore();
-  const [user, setUser] = useState(null);
-  const [menuAbierto, setMenuAbierto] = useState(false);
 
+  const { color, changeColor } = useStore();
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  const [user, setUser] = useState(null);
+  const [mostrarSinUsuario, setMostrarSinUsuario] = useState(false);
+  const [mostrarCliente, setMostrarCliente] = useState(false);
+  const [mostrarCaja, setMostrarCaja] = useState(false);
+  const [mostrarAdmin, setMostrarAdmin] = useState(false);
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("usuario");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    const usuario = localStorage.getItem("usuario");
+    if (usuario) {
+      setUser(JSON.parse(usuario));
+    }
+  }, []);
+
+  useEffect(() => {
+    const usuario = localStorage.getItem("usuario");
+
+    if (usuario) {
+      const parsedUser = JSON.parse(usuario);
+      setUser(parsedUser);
+
+      if (parsedUser.rol === "empleado") {
+        setMostrarCliente(true);
+        setMostrarCaja(true);
+      } else if (parsedUser.rol === "admin") {
+        setMostrarCliente(true);
+        setMostrarAdmin(true);
+      } else {
+        setMostrarCliente(true); // tiene usuario pero sin rol
+      }
+    } else {
+      setMostrarSinUsuario(true);
     }
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("usuario"); // Elimina el usuario del localStorage
-    setUser(null); // Limpia el estado local
-    <Link to="/"></Link>;
+    localStorage.removeItem("usuario");
+    setUser(null);
+    setMostrarSinUsuario(true);
+    setMostrarCliente(false);
+    setMostrarCaja(false);
+    setMostrarAdmin(false);
   };
-
-  let sinLoguear = "";
-  let linksClientes = "";
-  let linksRoles = "";
-  let Desloguearboton = "";
-
-  if (!user) {
-    sinLoguear = (
-      <>
-        <Link to="/login">Iniciar Sesión</Link>
-        <Link to="/register">Registrarse</Link>
-      </>
-    );
-  } else {
-    linksClientes = (
-      <>
-        <Link to="/reservas">Reservas</Link>
-        <Link to="/mis-reservas">Mis Reservas</Link>
-      </>
-    );
-
-    if (user.rol === "empleado") {
-      linksRoles = <Link to="/caja">Caja</Link>;
-    }
-
-    if (user.rol === "admin") {
-      linksRoles = <Link to="/admin">Admin</Link>;
-    }
-
-    Desloguearboton = (
-      <button onClick={handleLogout} className="logout-button">
-        Cerrar Sesión
-      </button>
-    );
-  }
 
   return (
     <div
@@ -78,17 +71,36 @@ const NavBar = () => {
           <h2 className="title-principal">MIS CANCHAS</h2>
         </div>
 
-        {/* Botón hamburguesa (solo visible en móvil) */}
+        {/* Botón hamburguesa (mobile) */}
         <div className="menu-icon" onClick={toggleMenu}>
           {menuAbierto ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
 
-        {/* Links del nav (se ocultan o muestran en móvil) */}
+        {/* Links condicionales */}
         <div className={`nav-links ${menuAbierto ? "open" : ""}`}>
-          {sinLoguear}
-          {linksClientes}
-          {linksRoles}
-          {Desloguearboton}
+          {mostrarSinUsuario && (
+            <>
+              <Link to="/login">Iniciar Sesión</Link>
+              <Link to="/register">Registrarse</Link>
+            </>
+          )}
+
+          {mostrarCliente && (
+            <>
+              <Link to="/reservas">Reservas</Link>
+              <Link to="/mis-reservas">Mis Reservas</Link>
+            </>
+          )}
+
+          {mostrarCaja && <Link to="/caja">Caja</Link>}
+          {mostrarAdmin && <Link to="/admin">Admin</Link>}
+
+          {!mostrarSinUsuario && (
+            <button onClick={handleLogout} className="logout-button">
+              Cerrar Sesión
+            </button>
+          )}
+
           <button
             className="color-toggle"
             onClick={() => changeColor(color === "Claro" ? "Oscuro" : "Claro")}

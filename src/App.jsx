@@ -17,6 +17,8 @@ import Reservas from "./pages/admin/reservas/Reservas";
 import Usuarios from "./pages/admin/usuarios/Usuarios";
 import Ventas from "./pages/admin/ventas/Ventas";
 import Admin from "./pages/admin/Admin";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 import NavBar from "./components/header/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -28,7 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
-          <Route path="/login" element={Login} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reservar-Cancha" element={<Reservar />} />
           <Route path="/mis-reservas" element={<MisReservas />} />
@@ -43,8 +45,9 @@ function App() {
           <Route path="/admin/usuarios" element={<Usuarios />} />
           <Route path="/admin/ventas" element={<Ventas />} />
         </Routes>
-        <Footer/>
       </BrowserRouter>
+      <Footer />
+      <ToastContainer position="bottom-left" autoClose={3000}/>
     </>
   );
 }
