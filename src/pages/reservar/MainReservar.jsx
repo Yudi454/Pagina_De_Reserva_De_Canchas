@@ -11,6 +11,7 @@ import axios from "axios";
 const MainReservar = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [canchas, setCanchas] = useState([]);
+  const [valorModal, setValorModal] = useState("")
 
   useEffect(() => {
     axios
@@ -31,7 +32,7 @@ const MainReservar = () => {
           <Navbar.Brand href="#home">LOGO</Navbar.Brand>
           <Nav>
             <Nav.Link onClick={() => setMostrarModal(true)}>
-              Mis Reservas <Badge bg="secondary">1</Badge>
+              Mis Reservas <Badge bg="secondary">{valorModal}</Badge>
             </Nav.Link>
             <Nav.Link href="/info-usuario">Usuario</Nav.Link>
           </Nav>
@@ -48,7 +49,7 @@ const MainReservar = () => {
           />
         ))}
       </Container>
-      <MainMisReservas
+      <MainMisReservas setValorModal={setValorModal}
         show={mostrarModal}
         onHide={() => setMostrarModal(false)}
       />
