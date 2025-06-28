@@ -1,0 +1,64 @@
+.modo-claro {
+  background-color: #ffffff ;
+  color:#121212 ;             
+  
+}
+
+.modo-claro .main1-overlay {
+   
+  color: #ffffff;
+  text-shadow: 2px 2px 6px #1fa135;
+  background-color: #73ad7b3a;
+}
+
+
+.modo-claro .boton-reservar{
+  background-color: #45bf55;
+  color: #ffffff;
+}
+
+
+.modo-claro .main2-fondo {
+  background-color: #45bf55;
+  color: #eaffed;
+}
+
+
+.modo-claro .card-overlay p {
+  color: #ffc964;
+  text-shadow: 2px 2px 9px rgb(0, 0, 0);
+}
+
+
+.modo-claro .servicio-card {
+  border: 2px solid #005512;
+  background-color: #45bf55;
+  color: #076113;
+}
+
+.modo-claro .servicio-card p {
+  color: #edfff0;
+}
+
+.modo-claro .contacto-redes {
+
+  background-color: #45bf55; /* Color celeste suave, podés cambiarlo */
+  
+}
+
+.modo-claro .icon {
+ 
+  background-color: #1fa135;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+.modo-claro .icon:hover {
+
+  background-color: #fbfffc;
+}
+
+
+.modo-claro .footer{
+  background-color: #45bf55;
+  color: #000000;
+}

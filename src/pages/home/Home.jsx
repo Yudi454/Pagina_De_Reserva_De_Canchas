@@ -1,8 +1,13 @@
 import MainHome from './MainHome'
+import { useStore } from '../../store/AuthStore';
 
 const Home = () => {
+  const { color } = useStore();
+  
   return (
-    <MainHome/>
+    <div className={color === 'Claro' ? 'modo-claro' : 'modo-oscuro'}>
+      <MainHome />
+    </div>
   )
 }
 
