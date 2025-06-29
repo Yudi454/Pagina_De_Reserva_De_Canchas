@@ -37,6 +37,7 @@ function App() {
           <Route path="/reservar-Cancha" element={<Reservar />} />
           <Route path="/reservar-Cancha/InfoCancha/:id" element={<InfoCancha />} />
           <Route path="/mis-reservas" element={<MisReservas />} />
+          <Route path="/admin/reservas" element={<Reservas />} />
           <Route path="/info-usuario" element={<InfoUsuario />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/caja" element={<Caja />} />
@@ -44,7 +45,6 @@ function App() {
           <Route path="/admin/horarios" element={<Horarios />} />
           <Route path="/admin/productos" element={<Productos />} />
           <Route path="/admin/proveedores" element={<Proveedores />} />
-          <Route path="/admin/reservas" element={<Reservas />} />
           <Route path="/admin/usuarios" element={<Usuarios />} />
           <Route path="/admin/ventas" element={<Ventas />} />
           <Route path="/admin/canchas" element={<Canchas/>} />
