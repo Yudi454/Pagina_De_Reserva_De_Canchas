@@ -17,7 +17,7 @@ const Main2 = () => {
   };
 
   useEffect(() => {
-    getDatos();
+    //getDatos();
   }, []);
 
   return (

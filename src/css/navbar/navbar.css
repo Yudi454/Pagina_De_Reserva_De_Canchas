@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  max-height: 100px; /
+  max-height: 100px ;
 }
 
 .logo-img {
@@ -21,29 +21,24 @@
   text-align: left;
 }
 
-
 .navbar-container {
   width: 100%;
-  background-color: rgba(36, 255, 76, 0.678); 
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
-
-
 
 .navbar-custom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  flex-wrap: wrap;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
+
 
 .nav-links a {
 
@@ -70,4 +65,33 @@
   font-size: 1.2rem;
   display: flex;
   align-items: center;
+}
+
+/* Oculta el botón hamburguesa en escritorio */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* Responsive: menú colapsable en pantallas chicas */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .navbar-custom {
+    align-items: flex-start;
+  }
 }

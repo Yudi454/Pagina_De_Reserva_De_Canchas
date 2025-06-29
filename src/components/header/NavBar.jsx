@@ -4,59 +4,33 @@ import { useStore } from "../../store/AuthStore";
 import "../../css/modo_claro/ModoClaro.css";
 import "../../css/modo_oscuro/ModoOscuro.css";
 import "../../css/navbar/navbar.css";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
 const NavBar = () => {
   const { color, changeColor } = useStore();
-  const [user, setUser] = useState(null);
+  const [menuAbierto, setMenuAbierto] = useState(false);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("usuario");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+  const user = useStore((state) => state.user);
+  const setUser = useStore((state) => state.setUser);
 
-  const handleLogout = () => {
-    localStorage.removeItem("usuario"); // Elimina el usuario del localStorage
-    setUser(null); // Limpia el estado local
-    <Link to="/"></Link>
+  console.log(user);
+
+  const toggleMenu = () => {
+    setMenuAbierto(!menuAbierto);
   };
 
-  let sinLoguear = "";
-  let linksClientes = "";
-  let linksRoles = "";
-  let Desloguearboton = "";
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("usuario"))[0]);
+  }, []);
 
-  if (!user) {
-    sinLoguear = (
-      <>
-        <Link to="/login">Iniciar Sesión</Link>
-        <Link to="/register">Registrarse</Link>
-      </>
-    );
-  } else {
-    linksClientes = (
-      <>
-        <Link to="/reservar-Cancha">Reservas</Link>
-        <Link to="/mis-reservas">Mis Reservas</Link>
-      </>
-    );
-
-    if (user.rol === "empleado") {
-      linksRoles = <Link to="/caja">Caja</Link>;
-    }
-
-    if (user.rol === "admin") {
-      linksRoles = <Link to="/admin">Admin</Link>;
-    }
-
-    Desloguearboton = (
-      <button onClick={handleLogout} className="logout-button">
-        Cerrar Sesión
-      </button>
-    );
+  if (user) {
+    console.log(user.rol);
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem("usuario");
+    setUser(null);
+  };
 
   return (
     <div
@@ -71,11 +45,34 @@ const NavBar = () => {
           </Link>
           <h2 className="title-principal">MIS CANCHAS</h2>
         </div>
+
+        {/* Botón hamburguesa (mobile) */}
+        <div className="menu-icon" onClick={toggleMenu}>
+          {menuAbierto ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </div>
+
         <div className="nav-links">
-          {sinLoguear}
-          {linksClientes}
-          {linksRoles}
-          {Desloguearboton}
+          {/* Links condicionales */}
+          {user === null && (
+            <>
+              <Link to="/login">Iniciar Sesión</Link>
+              <Link to="/register">Registrarse</Link>
+            </>
+          )}
+          {user && user.rol === undefined && (
+            <>
+              <Link to="/reservas">Reservas</Link>
+              <Link to="/mis-reservas">Mis Reservas</Link>
+            </>
+          )}
+          {user && user.rol === "empleado" && <Link to="/caja">Caja</Link>}
+          {user && user.rol === "admin" && <Link to="/admin">Admin</Link>}
+
+          {user && (
+            <button onClick={handleLogout} className="logout-button">
+              Cerrar Sesión
+            </button>
+          )}
 
           <button
             className="color-toggle"
