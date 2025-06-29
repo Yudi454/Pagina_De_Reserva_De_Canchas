@@ -20,7 +20,9 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("usuario"))[0]);
+    if (localStorage.getItem("usuarios")) {
+      setUser(JSON.parse(localStorage.getItem("usuario"))[0]);
+    }
   }, []);
 
   if (user) {
