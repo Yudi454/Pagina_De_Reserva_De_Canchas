@@ -1,0 +1,71 @@
+
+
+.modo-oscuro {
+  background-color: #121212; 
+  color: #ffffff ;             
+ 
+}
+
+.modo-oscuro .main1-overlay {
+   
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #008b1e;
+  background-color: #154b205d;
+}
+
+.modo-oscuro .boton-reservar{
+  background-color: #36a54c;
+  color: #ffffff;
+}
+
+.modo-oscuro .main2-fondo {
+  background-color: #36a54c;
+  color: #020202;
+}
+
+.modo-oscuro .card-overlay p {
+  color: #f3aa2b;
+  text-shadow: 2px 2px 9px rgb(0, 0, 0);
+}
+
+.modo-oscuro .servicio-card {
+  border: 2px solid #a5ffb4;
+  background-color: #36a54c;
+  color: #ffffff;
+}
+
+.modo-oscuro .servicio-card p {
+  color: #71f077;
+}
+
+.modo-oscuro .contacto-redes {
+
+  background-color: #36a54c; 
+  
+}
+
+.modo-oscuro .icon {
+ 
+  background-color: #008b1e;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+  
+}
+
+.modo-oscuro .icon:hover {
+
+  background-color: #000000;
+}
+
+
+.modo-oscuro .navbar-container {
+   background-color: rgba(9, 75, 21, 0.486);
+}
+
+.modo-oscuro .footer{
+  background-color: #36a54c;
+  color: #eaffed;
+}
+
+.modo-oscuro .footer-icons a {
+ color: #2904fc;
+}
