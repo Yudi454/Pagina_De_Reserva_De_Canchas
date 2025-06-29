@@ -1,27 +1,55 @@
-
 {
-    "canchas": [
+  "canchas": [
+    {
+      "id": "1",
+      "imagen": "canchas/futbol5_1.jpg",
+      "tipo": "Fútbol 4",
+      "precio": 5000
+    },
+    {
+      "id": "2",
+      "imagen": "canchas/futbol7_1.jpg",
+      "tipo": "Fútbol 7",
+      "precio": 6500
+    },
+    {
+      "id": "3",
+      "imagen": "canchas/paddle_1.jpg",
+      "tipo": "Paddle",
+      "precio": 4000
+    },
+    {
+      "id": "4",
+      "imagen": "canchas/tenis_1.jpg",
+      "tipo": "Tenis",
+      "precio": 4500
+    },
+    {
+      "id": "5",
+      "imagen": "canchas/basket_1.jpg",
+      "tipo": "Básquet",
+      "precio": 5500
+    },
     {
       "nombre": "Cancha de Futbol",
       "descripcion": "Las mejores canchas de futbol",
-      "imagen":"/futbol.jpg"
+      "imagen": "/futbol.jpg"
     },
-     {
+    {
       "nombre": "Cancha de Basquet",
       "descripcion": "Las mejores canchas de basquet",
-      "imagen":"/canchabasquet.jpg"
+      "imagen": "/canchabasquet.jpg"
     },
     {
       "nombre": "Cancha de Tenis",
       "descripcion": "Las mejores canchas de Tenis",
-      "imagen":"/canchatenis.jpg"
+      "imagen": "/canchatenis.jpg"
     },
     {
       "nombre": "Cancha de Padle",
       "descripcion": "Las mejores canchas de Padle",
-      "imagen":"/canchapadle.jpg"
+      "imagen": "/canchapadle.jpg"
     }
-
   ]
-   
 }
+

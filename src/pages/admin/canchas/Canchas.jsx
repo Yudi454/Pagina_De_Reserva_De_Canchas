@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import MainReservas from "./MainReservas";
+import MainCanchas from "./MainCanchas";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
 import {
@@ -8,48 +8,55 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { URLRESERVAS } from "../../../routes/Rutas";
+import { rutas, URLCANCHAS } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
-import ReservasEditar from "./ReservasEditar";
+import CanchasEditar from "./CanchasEditar";
 
-const Reservas = () => {
-  const [reservas, setReservas] = useState();
+const Canchas = () => {
+  const [canchas, setCanchas] = useState();
 
-  const [reserva, setReserva] = useState();
+  const [cancha, setCancha] = useState();
 
   const [mostrarVer, setMostrarVer] = useState();
 
   const [mostrarEditar, setMostrarEditar] = useState();
 
+  const API_ROUTE = import.meta.env.VITE_API_URL;
+
+  const RUTA_CANCHAS = `${API_ROUTE}${rutas.canchas}`;
+
   useEffect(() => {
-    getDatos(URLRESERVAS, setReservas);
+    getDatos(RUTA_CANCHAS, setCanchas);
   }, []);
 
   const handleVer = (id) => {
     setMostrarVer(true);
     setMostrarEditar(false);
-    getDato(URLRESERVAS, id, setReserva);
+    getDato(`${RUTA_CANCHAS}/${id}`, setCancha);
   };
 
   const handleEditar = (id) => {
     setMostrarVer(false);
     setMostrarEditar(true);
-    getDato(URLRESERVAS, id, setReserva);
+    getDato(`${RUTA_CANCHAS}/${id}`, setCancha);
   };
 
   const handleDelete = (id) => {
-    deleteDato(URLRESERVAS, id, setReservas);
+    deleteDato(`${RUTA_CANCHAS}/delete/${id}`);
+    getDatos(RUTA_CANCHAS,setCanchas)
   };
 
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
-      updateDato(URLRESERVAS, reserva, setReservas);
+      updateDato(`${RUTA_CANCHAS},/update/${cancha.id}`, cancha);
+      alert("Cancha actualizada con exito")
+      getDatos(RUTA_CANCHAS,setCanchas)
       setMostrarEditar(false);
     } catch (error) {
       console.log(error);
     }
-  };
+  };  
 
   return (
     <>
@@ -58,24 +65,24 @@ const Reservas = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <MainReservas
-            reservas={reservas}
+          <MainCanchas
+            canchas={canchas}
+            handleEditar={handleEditar}
             handleDelete={handleDelete}
             handleVer={handleVer}
-            handleEditar={handleEditar}
           />
         </Col>
         {mostrarVer && (
           <Col>
-            <VerDatoAdmin dato={reserva} setMostrarVer={setMostrarVer} />
+            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cancha} />
           </Col>
         )}
         {mostrarEditar && (
           <Col>
-            <ReservasEditar
+            <CanchasEditar
               setMostrarEditar={setMostrarEditar}
-              reserva={reserva}
-              setReserva={setReserva}
+              cancha={cancha}
+              setCancha={setCancha}
               handleSubmit={handleSubmit}
             />
           </Col>
@@ -85,4 +92,4 @@ const Reservas = () => {
   );
 };
 
-export default Reservas;
+export default Canchas;
