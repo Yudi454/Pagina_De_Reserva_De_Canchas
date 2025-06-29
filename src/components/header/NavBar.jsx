@@ -63,7 +63,7 @@ const NavBar = () => {
           )}
           {user && user.rol === undefined && (
             <>
-              <Link to="/reservas">Reservas</Link>
+              <Link to="/reservar-Cancha">Reservas</Link>
               <Link to="/mis-reservas">Mis Reservas</Link>
             </>
           )}
