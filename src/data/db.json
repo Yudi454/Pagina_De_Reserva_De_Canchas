@@ -1,184 +1,4 @@
 {
-  "Clientes": [
-    {
-      "id": "2",
-      "usuario": "martina456",
-      "email": "martina@example.com",
-      "telefono": "3817654321"
-    },
-    {
-      "id": "3",
-      "usuario": "juan789",
-      "email": "juanito@correo.com",
-      "telefono": "3811122334"
-    }
-  ],
-  "usuarios": [
-    {
-      "id": "1",
-      "nombre": "Lucas123",
-      "apellido": "Gómez",
-      "dni": "12345678",
-      "email": "lucas.gomez@email.com",
-      "telefono": "3815123456",
-      "fecha_creacion": "2025-06-14",
-      "estado": "activo"
-    },
-    {
-      "id": "2",
-      "nombre": "María",
-      "apellido": "Pérez",
-      "dni": "87654321",
-      "email": "maria.perez@email.com",
-      "telefono": "3815987654",
-      "fecha_creacion": "2025-06-14",
-      "estado": "activo"
-    }
-  ],
-  "ventas": [
-    {
-      "id": "1",
-      "nombre_vendedor": "Carlos",
-      "apellido_vendedor": "Fernández",
-      "telefono_vendedor": "3815001234",
-      "fecha_venta": "2025-06-14",
-      "hora_venta": "15:30:00",
-      "total": 13900,
-      "fecha_creacion": "2025-06-14",
-      "estado": "completada",
-      "productos": [
-        {
-          "id": 1,
-          "nombre": "Cerveza Andes Rubia",
-          "precio": 1500,
-          "cantidad": 3
-        },
-        {
-          "id": 2,
-          "nombre": "Fernet Branca 750ml",
-          "precio": 2500,
-          "cantidad": 1
-        },
-        {
-          "id": 3,
-          "nombre": "Coca-Cola 2.25L",
-          "precio": 850,
-          "cantidad": 3
-        },
-        {
-          "id": "3",
-          "nombre": "Coca-Cola 2.25L",
-          "precio": 870,
-          "cantidad": "5"
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "nombre_vendedor": "Ana",
-      "apellido_vendedor": "López",
-      "telefono_vendedor": "3815119876",
-      "fecha_venta": "2025-06-14",
-      "hora_venta": "17:10:00",
-      "total": 5432.1,
-      "fecha_creacion": "2025-06-14",
-      "estado": "pendiente",
-      "productos": [
-        {
-          "id": 4,
-          "nombre": "Gin Bombay Sapphire",
-          "precio": 4200,
-          "cantidad": 1
-        },
-        {
-          "id": 5,
-          "nombre": "Tónica Schweppes 1.25L",
-          "precio": 820,
-          "cantidad": 1
-        },
-        {
-          "id": 6,
-          "nombre": "Hielo 2kg",
-          "precio": 412.1,
-          "cantidad": 1
-        }
-      ]
-    }
-  ],
-  "productos": [
-    {
-      "id": "1",
-      "nombre": "Cerveza Heineken Lata 473ml",
-      "precio": "970",
-      "stock": 120,
-      "nombre_proveedor": "Distribuidora Norte Bebidas",
-      "telefono_proveedor": "3814001122",
-      "fecha_creacion": "2025-06-14",
-      "estado": "activo"
-    },
-    {
-      "id": "2",
-      "nombre": "Fernet Branca 750ml",
-      "precio": 2550,
-      "stock": 40,
-      "nombre_proveedor": "Branca Distribuciones SRL",
-      "telefono_proveedor": "3814558899",
-      "fecha_creacion": "2025-06-14",
-      "estado": "activo"
-    },
-    {
-      "id": "3",
-      "nombre": "Coca-Cola 2.25L",
-      "precio": 870,
-      "stock": 75,
-      "nombre_proveedor": "Coca-Cola Andina",
-      "telefono_proveedor": "3814227766",
-      "fecha_creacion": "2025-06-14",
-      "estado": "activo"
-    },
-    {
-      "id": "4",
-      "nombre": "Hielo 2kg",
-      "precio": 420,
-      "stock": 200,
-      "nombre_proveedor": "Hielos del Norte",
-      "telefono_proveedor": "3814783200",
-      "fecha_creacion": "2025-06-14",
-      "estado": "activo"
-    }
-  ],
-  "proveedores": [
-    {
-      "id": "1",
-      "nombre": "Distribuidora El Sol",
-      "email": "contacto@elsol.com",
-      "telefono": "3814123456"
-    },
-    {
-      "id": "2",
-      "nombre": "Proveedora Sur",
-      "email": "ventas@norte.com.ar",
-      "telefono": "3814987654"
-    },
-    {
-      "id": "3",
-      "nombre": "Insumos SRL",
-      "email": "info@insumossrl.com",
-      "telefono": "3814554321"
-    },
-    {
-      "id": "4",
-      "nombre": "Productos del Valle",
-      "email": "pedidos@delvalle.com",
-      "telefono": "3814009876"
-    },
-    {
-      "id": "5",
-      "nombre": "Tucumarket",
-      "email": "tucumarket@proveedores.com",
-      "telefono": "3814234567"
-    }
-  ],
   "canchas": [
     {
       "id": "1",
@@ -209,63 +29,27 @@
       "imagen": "canchas/basket_1.jpg",
       "tipo": "Básquet",
       "precio": 5500
-    }
-  ],
-  "reservas": [
-    {
-      "id": "1",
-      "usuario": "lucas123",
-      "telefono": "3815123456",
-      "total": 5000,
-      "dia": "2025-06-24",
-      "hora_inicio": "18:00",
-      "hora_fin": "19:00",
-      "id_cancha": "1",
-      "tipo": "Fútbol 5"
     },
     {
-      "id": "2",
-      "usuario": "martina456",
-      "telefono": "3817654321",
-      "total": 6500,
-      "dia": "2025-06-24",
-      "hora_inicio": "20:00",
-      "hora_fin": "21:30",
-      "id_cancha": "2",
-      "tipo": "Fútbol 7"
+      "nombre": "Cancha de Futbol",
+      "descripcion": "Las mejores canchas de futbol",
+      "imagen": "/futbol.jpg"
     },
     {
-      "id": "3",
-      "usuario": "juanito89",
-      "telefono": "3811122334",
-      "total": 4000,
-      "dia": "2025-06-25",
-      "hora_inicio": "17:00",
-      "hora_fin": "18:00",
-      "id_cancha": "3",
-      "tipo": "Paddle"
+      "nombre": "Cancha de Basquet",
+      "descripcion": "Las mejores canchas de basquet",
+      "imagen": "/canchabasquet.jpg"
     },
     {
-      "id": "4",
-      "usuario": "sofia22",
-      "telefono": "3815449876",
-      "total": 4500,
-      "dia": "2025-06-25",
-      "hora_inicio": "19:00",
-      "hora_fin": "20:00",
-      "id_cancha": "4",
-      "tipo": "Tenis"
+      "nombre": "Cancha de Tenis",
+      "descripcion": "Las mejores canchas de Tenis",
+      "imagen": "/canchatenis.jpg"
     },
     {
-      "id": "5",
-      "usuario": "matias99",
-      "telefono": "3815007890",
-      "total": 5500,
-      "dia": "2025-06-26",
-      "hora_inicio": "21:00",
-      "hora_fin": "22:00",
-      "id_cancha": "5",
-      "tipo": "Básquet"
+      "nombre": "Cancha de Padle",
+      "descripcion": "Las mejores canchas de Padle",
+      "imagen": "/canchapadle.jpg"
     }
   ]
 }
+

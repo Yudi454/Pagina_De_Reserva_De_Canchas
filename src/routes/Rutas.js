@@ -15,5 +15,7 @@ export const rutas = {
   productos: "/productos",
   proveedores: "/proveedores",
   ventas: "/ventas",
-  canchas: "/canchas"
+  canchas: "/canchas",
+    register: "/auth/register",
+    login: "/auth/login"
 };
