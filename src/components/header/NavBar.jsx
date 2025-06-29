@@ -7,54 +7,29 @@ import "../../css/navbar/navbar.css";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
 const NavBar = () => {
-
   const { color, changeColor } = useStore();
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const [user, setUser] = useState(null);
-  const [mostrarSinUsuario, setMostrarSinUsuario] = useState(false);
-  const [mostrarCliente, setMostrarCliente] = useState(false);
-  const [mostrarCaja, setMostrarCaja] = useState(false);
-  const [mostrarAdmin, setMostrarAdmin] = useState(false);
+
+  const user = useStore((state) => state.user);
+  const setUser = useStore((state) => state.setUser);
+
+  console.log(user);
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
   };
 
   useEffect(() => {
-    const usuario = localStorage.getItem("usuario");
-    if (usuario) {
-      setUser(JSON.parse(usuario));
-    }
+    setUser(JSON.parse(localStorage.getItem("usuario"))[0]);
   }, []);
 
-  useEffect(() => {
-    const usuario = localStorage.getItem("usuario");
-
-    if (usuario) {
-      const parsedUser = JSON.parse(usuario);
-      setUser(parsedUser);
-
-      if (parsedUser.rol === "empleado") {
-        setMostrarCliente(true);
-        setMostrarCaja(true);
-      } else if (parsedUser.rol === "admin") {
-        setMostrarCliente(true);
-        setMostrarAdmin(true);
-      } else {
-        setMostrarCliente(true); // tiene usuario pero sin rol
-      }
-    } else {
-      setMostrarSinUsuario(true);
-    }
-  }, []);
+  if (user) {
+    console.log(user.rol);
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("usuario");
     setUser(null);
-    setMostrarSinUsuario(true);
-    setMostrarCliente(false);
-    setMostrarCaja(false);
-    setMostrarAdmin(false);
   };
 
   return (
@@ -76,26 +51,24 @@ const NavBar = () => {
           {menuAbierto ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
 
-        {/* Links condicionales */}
-        <div className={`nav-links ${menuAbierto ? "open" : ""}`}>
-          {mostrarSinUsuario && (
+        <div className="nav-links">
+          {/* Links condicionales */}
+          {user === null && (
             <>
               <Link to="/login">Iniciar Sesión</Link>
               <Link to="/register">Registrarse</Link>
             </>
           )}
-
-          {mostrarCliente && (
+          {user && user.rol === undefined && (
             <>
               <Link to="/reservas">Reservas</Link>
               <Link to="/mis-reservas">Mis Reservas</Link>
             </>
           )}
+          {user && user.rol === "empleado" && <Link to="/caja">Caja</Link>}
+          {user && user.rol === "admin" && <Link to="/admin">Admin</Link>}
 
-          {mostrarCaja && <Link to="/caja">Caja</Link>}
-          {mostrarAdmin && <Link to="/admin">Admin</Link>}
-
-          {!mostrarSinUsuario && (
+          {user && (
             <button onClick={handleLogout} className="logout-button">
               Cerrar Sesión
             </button>

@@ -23,6 +23,8 @@ export const login = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
+    console.log(res.data);
+    
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
   } catch (error) {
     toast.error(error);
