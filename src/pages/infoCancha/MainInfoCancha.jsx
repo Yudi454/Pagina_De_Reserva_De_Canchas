@@ -25,7 +25,7 @@ const MainInfoCancha = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/canchas/${id}`)
+      .get(`http://localhost:8000/reservas/${id}`)
       .then((response) => {
         setCancha(response.data);
       })
@@ -37,7 +37,7 @@ const MainInfoCancha = () => {
   const handleFecha = (fecha) => {
     setFechaCargada(fecha);
     axios
-      .get(`http://localhost:8000/canchas/${id}/turnos`, {
+      .get(`http://localhost:8000/reservas/${id}/turnos`, {
         params: { fecha },
       })
       .then((res) => {
@@ -72,7 +72,7 @@ const MainInfoCancha = () => {
     };
 
     axios
-      .post("http://localhost:8000/canchas/reservas", nuevaReserva)
+      .post("http://localhost:8000/reservas", nuevaReserva)
       .then((res) => alert("reserva realizada con exito"))
       .catch((err) => {
         console.error("Error al crear reserva:", err);

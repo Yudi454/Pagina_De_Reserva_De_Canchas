@@ -17,7 +17,7 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
   useEffect(() => {
     if (show) {
       axios
-        .get(`http://localhost:8000/canchas/misReservas?usuario=${usuario}`)
+        .get(`http://localhost:8000/reservas/misReservas?usuario=${usuario}`)
         .then((response) => {
           setReservas(response.data);
           setValorModal(response.data.length);
@@ -31,7 +31,7 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
   const handleEliminarReserva = (id_reserva) => {
     if (window.confirm("¿estas seguro que quieres eliminar la reserva?")) {
       axios
-        .delete(`http://localhost:8000/canchas/reservas/${id_reserva}`)
+        .delete(`http://localhost:8000/reservas/${id_reserva}`)
         .then(() => {
           setReservas((prev) => {
             const nuevas = prev.filter((r) => r.id_reserva !== id_reserva);
