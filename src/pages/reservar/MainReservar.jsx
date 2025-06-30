@@ -28,7 +28,7 @@ const MainReservar = () => {
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+          <Navbar.Brand href="#home"></Navbar.Brand>
           <Nav>
             <Nav.Link onClick={() => setMostrarModal(true)}>
               Mis Reservas <Badge bg="secondary">{valorModal}</Badge>
@@ -42,6 +42,7 @@ const MainReservar = () => {
         {canchas.map((cancha) => (
           <Cards
             key={cancha.id_cancha}
+            imagen_cancha={cancha.imagen_cancha}
             tipo_cancha={cancha.tipo_cancha}
             precio_cancha={cancha.precio_cancha}
             id_cancha={cancha.id_cancha}

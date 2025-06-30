@@ -64,7 +64,7 @@ const MainInfoCancha = () => {
 
     const nuevaReserva = {
       id_cancha: id,
-      id_usuario: user.id_cliente,
+      id_cliente: user.id_cliente,
       precio: cancha.precio_cancha,
       dia_reserva: fechaCargada,
       horario_inicio: horarioInicio,
@@ -95,10 +95,10 @@ const MainInfoCancha = () => {
         <Row className="align-items-center">
           <Col md={4} className="d-flex justify-content-center">
             <Image
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_hCJ00ytDGrDTDXldjA5iiJnC3hH9yx9LDQ&s"
+              src={cancha.imagen_cancha}
               fluid
               rounded
-              className="w-75"
+              className="w-100"
               alt="Imagen de la cancha"
             />
           </Col>
