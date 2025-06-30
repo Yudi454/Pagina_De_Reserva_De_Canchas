@@ -11,14 +11,13 @@ import axios from "axios";
 const MainReservar = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [canchas, setCanchas] = useState([]);
-  const [valorModal, setValorModal] = useState("")
+  const [valorModal, setValorModal] = useState(0)
 
   useEffect(() => {
     axios
       .get("http://localhost:8000/canchas")
       .then((response) => {
         setCanchas(response.data);
-        console.log(response);
       })
       .catch((error) => {
         console.error("error al traer las canchas:", error);

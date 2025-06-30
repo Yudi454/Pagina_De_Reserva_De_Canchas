@@ -2,30 +2,42 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useStore } from "../../store/AuthStore";
 
 const MainMisReservas = ({ show, onHide, setValorModal }) => {
-  const [usuario, setUsuario] = useState(3);
+  const [usuario, setUsuario] = useState();
   const [reservas, setReservas] = useState([]);
 
+  const user = useStore((state) => state.user);
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/canchas/misReservas?usuario=${usuario}`)
-      .then((response) => {
-        setReservas(response.data);
-        setValorModal(response.data.length);
-        console.log("esta es la reserva:", response.data);
-      })
-      .catch((error) => {
-        console.error("error al traer las reservas:", error);
-      });
-  }, []);
+    if (user) setUsuario(user.id_cliente);
+  }, [user]);
+
+  useEffect(() => {
+    if (show) {
+      axios
+        .get(`http://localhost:8000/canchas/misReservas?usuario=${usuario}`)
+        .then((response) => {
+          setReservas(response.data);
+          setValorModal(response.data.length);
+        })
+        .catch((error) => {
+          console.error("error al traer las reservas:", error);
+        });
+    }
+  }, [show, usuario]);
 
   const handleEliminarReserva = (id_reserva) => {
     if (window.confirm("¿estas seguro que quieres eliminar la reserva?")) {
       axios
         .delete(`http://localhost:8000/canchas/reservas/${id_reserva}`)
         .then(() => {
-          setReservas(reservas.filter((r) => r.id_reserva !== id_reserva));
+          setReservas((prev) => {
+            const nuevas = prev.filter((r) => r.id_reserva !== id_reserva);
+            setValorModal(nuevas.length);
+            return nuevas;
+          });
           alert("reserva eliminada con exito");
         })
         .catch((err) => {

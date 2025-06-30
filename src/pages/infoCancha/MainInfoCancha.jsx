@@ -11,19 +11,23 @@ import Navbar from "react-bootstrap/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useStore } from "../../store/AuthStore";
 
 const MainInfoCancha = () => {
-  const [cancha, setCancha] = useState([]);
+
+
+  const user = useStore((state) => state.user);
+
+  const [cancha, setCancha] = useState({});
   const [turnos, setTurnos] = useState([]);
 
   const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/canchas/InfoCancha/${id}`)
+      .get(`http://localhost:8000/canchas/${id}`)
       .then((response) => {
         setCancha(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("error al traer la cancha:", error);
@@ -31,9 +35,9 @@ const MainInfoCancha = () => {
   }, [id]);
 
   const handleFecha = (fecha) => {
-    setFechaCargada(fecha)
+    setFechaCargada(fecha);
     axios
-      .get(`http://localhost:8000/canchas/InfoCancha/${id}/turnos`, {
+      .get(`http://localhost:8000/canchas/${id}/turnos`, {
         params: { fecha },
       })
       .then((res) => {
@@ -42,38 +46,51 @@ const MainInfoCancha = () => {
       .catch((err) => console.error("Error al traer turnos:", err));
   };
 
-  const [fechaCargada, setFechaCargada]= useState("")
-  const [horarioInicio, setHorarioInicio]=useState("")
-  const [horarioFin, setHorarioFin]=useState("")
+  const [fechaCargada, setFechaCargada] = useState("");
+  const [horarioInicio, setHorarioInicio] = useState("");
+  const [horarioFin, setHorarioFin] = useState("");
 
+  const handleReservas = () => {
 
-  const handleReservas=()=>{
-    const nuevaReserva={
-      id_cancha:id,
-      id_usuario:3, //ejemeplo de id de usuario
-      precio:cancha.precio_cancha,
-      dia_reserva: fechaCargada,
-      horario_inicio:horarioInicio,
-      horario_fin:horarioFin,
+    if (!user) {
+      alert("Debes iniciar sesión para reservar.");
+      return;
     }
 
+    if (!fechaCargada || !horarioInicio || !horarioFin) {
+      alert("Por favor seleccioná una fecha y un horario de inicio y fin");
+      return;
+    }
+
+    const nuevaReserva = {
+      id_cancha: id,
+      id_usuario: user.id_cliente,
+      precio: cancha.precio_cancha,
+      dia_reserva: fechaCargada,
+      horario_inicio: horarioInicio,
+      horario_fin: horarioFin,
+    };
+
     axios
-    .post("http://localhost:8000/canchas/reservas",nuevaReserva)
-    .then((res)=>alert("reserva realizada con exito"))
-    .catch((err)=>alert("a ocurrido un error:" ,err));
-    
-  }
+      .post("http://localhost:8000/canchas/reservas", nuevaReserva)
+      .then((res) => alert("reserva realizada con exito"))
+      .catch((err) => {
+        console.error("Error al crear reserva:", err);
+        alert("Ocurrió un error al crear la reserva.");
+      });
+  };
 
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+          <Navbar.Brand href="/">LOGO</Navbar.Brand>
           <Nav>
             <Nav.Link href="/info-usuario">Usuario</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
+
       <Container>
         <Row className="align-items-center">
           <Col md={4} className="d-flex justify-content-center">
@@ -82,40 +99,67 @@ const MainInfoCancha = () => {
               fluid
               rounded
               className="w-75"
+              alt="Imagen de la cancha"
             />
           </Col>
           <Col md={8}>
             <Card style={{ backgroundColor: "#E5EAF0" }}>
               <Card.Body className="d-flex flex-column align-items-center text-center">
                 <Card.Title className="mb-3">
-                  Cancha:{cancha.tipo_cancha}
+                  Cancha: {cancha.tipo_cancha}
                 </Card.Title>
                 <Card.Text className="mb-3">
                   Precio: ${cancha.precio_cancha}
                 </Card.Text>
                 <Card.Text className="mb-3">Reserva tu Turno</Card.Text>
-                <Calendario handleFecha={handleFecha}/>
-                <Form.Group className="mt-3">
-                  <Form.Label>Desde:</Form.Label>
-                  <Form.Select className="rounded-pill" onChange={(e)=>setHorarioInicio(e.target.value)}>
-                    {turnos.map((turno) => (
-                      <option key={turno.id_horario} value={turno.hora_inicio}>
-                        {turno.hora_inicio}
-                      </option>
-                    ))}
-                  </Form.Select>
-                  <Form.Label className="mt-3">Hasta:</Form.Label>
-                  <Form.Select className="rounded-pill" onChange={(e)=>setHorarioFin(e.target.value)}>
-                    {turnos.map((turno) => (
-                      <option key={turno.id_horario} value={turno.hora_fin}>
-                        {turno.hora_fin}
-                      </option>
-                    ))}
-                  </Form.Select>
-                </Form.Group>
+
+                <Calendario handleFecha={handleFecha} />
+
+                {turnos.length === 0 && fechaCargada && (
+                  <p className="text-danger mt-3">
+                    No hay turnos disponibles para esta fecha.
+                  </p>
+                )}
+
+                {turnos.length > 0 && (
+                  <Form.Group className="mt-3 w-75">
+                    <Form.Label>Desde:</Form.Label>
+                    <Form.Select
+                      className="rounded-pill"
+                      onChange={(e) => setHorarioInicio(e.target.value)}
+                    >
+                      <option value="">Seleccioná un horario</option>
+                      {turnos.map((turno) => (
+                        <option
+                          key={turno.id_horario}
+                          value={turno.hora_inicio}
+                        >
+                          {turno.hora_inicio}
+                        </option>
+                      ))}
+                    </Form.Select>
+
+                    <Form.Label className="mt-3">Hasta:</Form.Label>
+                    <Form.Select
+                      className="rounded-pill"
+                      onChange={(e) => setHorarioFin(e.target.value)}
+                    >
+                      <option value="">Seleccioná un horario</option>
+                      {turnos.map((turno) => (
+                        <option key={turno.id_horario} value={turno.hora_fin}>
+                          {turno.hora_fin}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                )}
+
                 <Button
                   className="mt-3"
-                  style={{ backgroundColor: "#45BF55", borderColor: "#FFC04D" }}
+                  style={{
+                    backgroundColor: "#45BF55",
+                    borderColor: "#FFC04D",
+                  }}
                   onClick={handleReservas}
                 >
                   Reservar

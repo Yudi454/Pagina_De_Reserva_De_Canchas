@@ -23,8 +23,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/header/NavBar";
+import { useEffect } from "react";
+import { useStore } from "./store/AuthStore"
 
 function App() {
+
+  const loadUser = useStore((state) => state.loadUser);
+
+  useEffect(() => {
+    loadUser(); // Cargar usuario desde localStorage al iniciar la app
+  }, [loadUser]);
+
   return (
     <>
       <BrowserRouter>
