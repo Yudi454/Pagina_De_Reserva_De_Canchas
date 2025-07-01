@@ -12,8 +12,8 @@ import {
 import { rutas } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ClientesEditar from "./ClientesEditar";
-import { toast } from "react-toastify";
 import CreateClientes from "./CreateClientes";
+import { useForm } from "react-hook-form";
 
 const Clientes = () => {
   const [clientes, setClientes] = useState();
@@ -29,6 +29,13 @@ const Clientes = () => {
   const API_ROUTE = import.meta.env.VITE_API_URL;
 
   const RUTA_CLIENTES = `${API_ROUTE}${rutas.clientes}`;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   useEffect(() => {
     getDatos(RUTA_CLIENTES, setClientes);
@@ -54,29 +61,33 @@ const Clientes = () => {
     setMostrarCreate(true);
   };
 
-  const handleCreateCliente = async (e) => {
+  const handleCreateCliente = async (data) => {
     try {
-      e.preventDefault();
-      await createDato(`${RUTA_CLIENTES}/create`, cliente, "cliente");
+      await createDato(`${RUTA_CLIENTES}/create`, data, "cliente");
       await getDatos(RUTA_CLIENTES, setClientes);
       setMostrarCreate(false);
       setCliente("");
+      reset();
     } catch (error) {
-      toast.error(error);
+      MySwal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: error,
+      });
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleEditarCliente = async (data) => {
     try {
-      e.preventDefault();
-      updateDato(
+      await updateDato(
         `${RUTA_CLIENTES}/update/${cliente.id_clientes}`,
-        cliente,
+        data,
         "cliente"
       );
-      getDatos(RUTA_CLIENTES, setClientes);
+      await getDatos(RUTA_CLIENTES, setClientes);
       setMostrarEditar(false);
       setCliente("");
+      reset();
     } catch (error) {
       MySwal.fire({
         icon: "error",
@@ -104,9 +115,6 @@ const Clientes = () => {
     }
   };
 
-  console.log(cliente);
-  
-
   return (
     <>
       <Row>
@@ -132,8 +140,11 @@ const Clientes = () => {
             <ClientesEditar
               cliente={cliente}
               setCliente={setCliente}
-              handleSubmit={handleSubmit}
               setMostrarEditar={setMostrarEditar}
+              handleEditarCliente={handleEditarCliente}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
             />
           </Col>
         )}
@@ -144,6 +155,9 @@ const Clientes = () => {
               cliente={cliente}
               setCliente={setCliente}
               handleCreateCliente={handleCreateCliente}
+              handleSubmit={handleSubmit}
+              errors={errors}
+              register={register}
             />
           </Col>
         )}

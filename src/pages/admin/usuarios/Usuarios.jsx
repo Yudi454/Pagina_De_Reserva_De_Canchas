@@ -66,12 +66,13 @@ const Usuarios = () => {
     setMostrarVer(false);
     setMostrarEditar(false);
     setMostrarCrear(true);
+    reset();
   };
 
   //Logica de crear
-  const handleCrearUsuario = async () => {
+  const handleCrearUsuario = async (data) => {
     try {
-      await createDato(`${RUTA_USUARIOS}/create`, usuario, "usuario");
+      await createDato(`${RUTA_USUARIOS}/create`, data, "usuario");
       await getDatos(RUTA_USUARIOS, setUsuarios);
       setMostrarCrear(false);
       setUsuario("");
@@ -105,11 +106,11 @@ const Usuarios = () => {
   };
 
   //Logica de editar
-  const handleEditarUsuario = (e) => {
+  const handleEditarUsuario = async (data) => {
     try {
-      updateDato(`${RUTA_USUARIOS}/update/${usuario.id_usuario}`, usuario),
+      await updateDato(`${RUTA_USUARIOS}/update/${usuario.id_usuario}`, data),
         "usuario";
-      getDatos(RUTA_USUARIOS, setUsuarios);
+      await getDatos(RUTA_USUARIOS, setUsuarios);
       setMostrarEditar(false);
       setUsuario("");
       reset();

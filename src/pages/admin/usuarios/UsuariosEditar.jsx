@@ -12,7 +12,7 @@ const UsuariosEditar = ({
   return (
     <>
       <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Crear</h3>
+      <h3>Editar</h3>
       {usuario && (
         <Form onSubmit={handleSubmit(handleEditarUsuario)}>
           <Form.Group>
