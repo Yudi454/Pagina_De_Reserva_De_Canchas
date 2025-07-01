@@ -59,6 +59,7 @@ const Clientes = () => {
     setMostrarVer(false);
     setMostrarEditar(false);
     setMostrarCreate(true);
+    reset()
   };
 
   const handleCreateCliente = async (data) => {

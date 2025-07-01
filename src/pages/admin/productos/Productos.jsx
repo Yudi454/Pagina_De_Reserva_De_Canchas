@@ -1,8 +1,9 @@
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import MainProductos from "./MainProductos";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
 import {
+  createDato,
   deleteDato,
   getDato,
   getDatos,
@@ -11,11 +12,15 @@ import {
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ProductosEditar from "./ProductosEditar";
 import { rutas } from "../../../routes/Rutas";
+import { useForm } from "react-hook-form";
+import ProductosCrear from "./ProductosCrear";
 
 const Productos = () => {
   const [mostrarVer, setMostrarVer] = useState(false);
 
   const [mostrarEditar, setMostrarEditar] = useState(false);
+
+  const [mostrarCrear, setMostrarCrear] = useState(false);
 
   const [producto, setProducto] = useState();
 
@@ -25,6 +30,13 @@ const Productos = () => {
 
   const RUTA_PRODUCTOS = `${API_ROUTE}${rutas.productos}`;
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
   useEffect(() => {
     getDatos(RUTA_PRODUCTOS, setProductos);
   }, []);
@@ -32,31 +44,77 @@ const Productos = () => {
   const handleVer = (id) => {
     setMostrarVer(true);
     setMostrarEditar(false);
+    setMostrarCrear(false);
     getDato(`${RUTA_PRODUCTOS}/${id}`, setProducto);
   };
 
   const handleEditar = (id) => {
     setMostrarVer(false);
     setMostrarEditar(true);
+    setMostrarCrear(false);
     getDato(`${RUTA_PRODUCTOS}/${id}`, setProducto);
   };
 
-  const handleSubmit = (e) => {
+  const handleCrear = () => {
+    setMostrarVer(false);
+    setMostrarEditar(false);
+    setMostrarCrear(true);
+  };
+
+  const handleCrearProducto = async (data) => {
     try {
-      e.preventDefault();
-      updateDato(`${RUTA_PRODUCTOS}/update/${producto.id_producto}`, producto);
-      alert("Producto editado con exito")
-      getDatos(RUTA_PRODUCTOS, setProductos);
+      await createDato(`${RUTA_PRODUCTOS}/create`, data, "producto");
+      await getDatos(RUTA_PRODUCTOS, setProductos);
+      setMostrarCrear(false);
+      setProducto("");
+      reset();
+    } catch (error) {
+      MySwal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: error,
+      });
+    }
+  };
+
+  const handleEditarProducto = async (data) => {
+    try {
+      await updateDato(
+        `${RUTA_PRODUCTOS}/update/${producto.id_producto}`,
+        data,
+        "producto"
+      );
+      await getDatos(RUTA_PRODUCTOS, setProductos);
       setMostrarEditar(false);
-    } catch (error) {}
+      setProducto("");
+      reset();
+    } catch (error) {
+      MySwal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: error,
+      });
+    }
   };
 
-  const handleDelete = (id) => {
-    deleteDato(`${RUTA_PRODUCTOS}/delete/${id}`);
-    getDatos(RUTA_PRODUCTOS, setProductos);
+  const handleDelete = async (id) => {
+    try {
+      const eliminado = await deleteDato(
+        `${RUTA_PRODUCTOS}/delete/${id}`,
+        "producto"
+      );
+      if (eliminado) {
+        await getDatos(RUTA_PRODUCTOS, setProductos);
+      }
+    } catch (error) {
+      MySwal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: error,
+      });
+    }
   };
 
-  
   return (
     <>
       <Row>
@@ -64,6 +122,7 @@ const Productos = () => {
           <NavAdmin />
         </Col>
         <Col>
+          <Button onClick={handleCrear}>Crear</Button>
           <MainProductos
             productos={productos}
             handleDelete={handleDelete}
@@ -80,9 +139,25 @@ const Productos = () => {
           <Col>
             <ProductosEditar
               producto={producto}
-              handleSubmit={handleSubmit}
               setProducto={setProducto}
               setMostrarEditar={setMostrarEditar}
+              handleEditarProducto={handleEditarProducto}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        {mostrarCrear && (
+          <Col>
+            <ProductosCrear
+              setMostrarCrear={setMostrarCrear}
+              producto={producto}
+              setProducto={setProducto}
+              handleCrearProducto={handleCrearProducto}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
             />
           </Col>
         )}

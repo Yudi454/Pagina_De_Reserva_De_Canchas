@@ -39,7 +39,7 @@ export const updateDato = async (url, dato, tipo) => {
     MySwal.fire({
       icon: "error",
       title: "¡Error!",
-      text: error,
+      text: error.response.data.message,
     });
   }
 };
@@ -48,16 +48,18 @@ export const updateDato = async (url, dato, tipo) => {
 export const createDato = async (url, dato, tipo) => {
   try {
     const res = await axios.post(url, dato);
+    
     MySwal.fire({
       icon: "success",
       title: "¡Creado!",
       text: `El ${tipo} ha sido creado con éxito`,
     });
   } catch (error) {
+    console.log(error);
     MySwal.fire({
       icon: "error",
       title: "¡Error!",
-      text: error,
+      text: error.response.data.message,
     });
   }
 };
@@ -100,8 +102,7 @@ export const register = async (url, usuario) => {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
   } catch (error) {
-    console.log(error);
-    toast.error("Error al registrarse");
+    toast.error(error);
   }
 };
 
@@ -110,11 +111,8 @@ export const login = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
-    console.log(res.data);
-
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
   } catch (error) {
-    toast.error("Error en login");
-    console.log(error);
+    toast.error(error)
   }
 };

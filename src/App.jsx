@@ -24,6 +24,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/header/NavBar";
 
+
 function App() {
   return (
     <>
