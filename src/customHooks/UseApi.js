@@ -10,7 +10,11 @@ export const getDatos = async (url, setValor) => {
     const res = await axios.get(url);
     setValor(res.data);
   } catch (error) {
-    console.error(error);
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
   }
 };
 
@@ -20,7 +24,24 @@ export const getDato = async (url, setValor) => {
     const res = await axios.get(url);
     setValor(res.data.results);
   } catch (error) {
-    console.error(error);
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
+  }
+};
+
+export const buscarDato = async (url,dato, setDato) => {
+  try {
+    const res = await axios.post(url,dato);
+    setDato(res.data)
+  } catch (error) {
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
   }
 };
 
@@ -48,7 +69,7 @@ export const updateDato = async (url, dato, tipo) => {
 export const createDato = async (url, dato, tipo) => {
   try {
     const res = await axios.post(url, dato);
-    
+
     MySwal.fire({
       icon: "success",
       title: "¡Creado!",
@@ -113,6 +134,6 @@ export const login = async (url, usuario) => {
     toast.success(`${res.data.message}`);
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
   } catch (error) {
-    toast.error(error)
+    toast.error(error);
   }
 };

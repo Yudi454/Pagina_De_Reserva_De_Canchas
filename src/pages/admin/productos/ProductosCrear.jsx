@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 
 const ProductosCrear = ({
-  setMostrarCreate,
+  setMostrarCrear,
   producto,
   setProducto,
   handleCrearProducto,
@@ -11,7 +11,7 @@ const ProductosCrear = ({
 }) => {
   return (
     <>
-      <Button onClick={() => setMostrarCreate(false)}>X</Button>
+      <Button onClick={() => setMostrarCrear(false)}>X</Button>
       <h3>Crear</h3>
       <Form onSubmit={handleSubmit(handleCrearProducto)}>
         <Form.Group>

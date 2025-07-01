@@ -1,8 +1,9 @@
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import MainProductos from "./MainProductos";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
 import {
+  buscarDato,
   createDato,
   deleteDato,
   getDato,
@@ -14,6 +15,7 @@ import ProductosEditar from "./ProductosEditar";
 import { rutas } from "../../../routes/Rutas";
 import { useForm } from "react-hook-form";
 import ProductosCrear from "./ProductosCrear";
+import axios from "axios";
 
 const Productos = () => {
   const [mostrarVer, setMostrarVer] = useState(false);
@@ -26,6 +28,8 @@ const Productos = () => {
 
   const [productos, setProductos] = useState();
 
+  const [buscar, setBuscar] = useState();
+
   const API_ROUTE = import.meta.env.VITE_API_URL;
 
   const RUTA_PRODUCTOS = `${API_ROUTE}${rutas.productos}`;
@@ -37,8 +41,13 @@ const Productos = () => {
     reset,
   } = useForm();
 
-  useEffect(() => {
+  const traerDatos = () => {
     getDatos(RUTA_PRODUCTOS, setProductos);
+
+  }
+
+  useEffect(() => {
+    traerDatos()
   }, []);
 
   const handleVer = (id) => {
@@ -59,6 +68,19 @@ const Productos = () => {
     setMostrarVer(false);
     setMostrarEditar(false);
     setMostrarCrear(true);
+  };
+
+  const handleBuscar = async (data) => {
+    try {
+      buscarDato(`${RUTA_PRODUCTOS}/buscar`, { nombre_producto: data.buscar },setProductos);
+
+    } catch (error) {
+      MySwal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: error.response.data.message,
+      });
+    }
   };
 
   const handleCrearProducto = async (data) => {
@@ -122,7 +144,22 @@ const Productos = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <Button onClick={handleCrear}>Crear</Button>
+          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
+
+          <Form onSubmit={handleSubmit(handleBuscar)}>
+            <Form.Group>
+              <Form.Control
+                placeholder="Buscar..."
+                name="buscar"
+                {...register("buscar", {
+                  required: "El valor es obligatorio",
+                })}
+              />
+              {errors.buscar && <p>{errors.buscar.message}</p>}
+              <Button type="submit">Buscar</Button>
+              <Button type="button" onClick={traerDatos}>Reiniciar</Button>
+            </Form.Group>
+          </Form>
           <MainProductos
             productos={productos}
             handleDelete={handleDelete}
