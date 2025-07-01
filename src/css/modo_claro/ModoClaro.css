@@ -42,7 +42,7 @@
 
 .modo-claro .contacto-redes {
 
-  background-color: #45bf55; /* Color celeste suave, podés cambiarlo */
+  background-color: #45bf55; 
   
 }
 
@@ -54,11 +54,71 @@
 
 .modo-claro .icon:hover {
 
-  background-color: #fbfffc;
+  background-color: #019b28;
 }
 
 
 .modo-claro .footer{
   background-color: #45bf55;
   color: #000000;
+}
+
+.modo-claro .navbar-container {
+   background-color: #45bf55bd;
+}
+
+
+
+.modo-claro .form-login {
+
+  color: #000000;
+  background-color: #45bf55
+
+}
+
+.modo-claro .boton-login {
+  
+   background-color: #0d7c1c;
+  color: #000000;
+  
+}
+
+.modo-claro .boton-login:hover {
+  background-color: #4ff172;
+  border-color: #094918;
+}
+
+.modo-claro .main1-fondo::after {
+  
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.418), transparent);
+  
+}
+
+.modo-claro .scroll-to-top {
+  background-color: #45bf55;
+}
+
+.modo-claro .scroll-to-top:hover {
+  background-color: #1fa135;
+  box-shadow: 0 6px 12px rgba(5, 77, 8, 0.623);
+}
+
+.modo-claro .form-register {
+
+  color: #000000;
+  background-color: #45bf55
+
+}
+
+.modo-claro .boton-register {
+  
+   background-color: #0d7c1c;
+  color: #000000;
+  
+}
+
+.modo-claro .boton-register:hover {
+
+  background-color: #4ff172;
+  border-color: #094918;
 }

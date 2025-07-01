@@ -22,11 +22,13 @@ const Login = () => {
   };
   
   return (
-    <MainLogin
+    <>
+      <MainLogin
       usuario={usuario}
       setUsuario={setUsuario}
       handleSubmit={handleSubmit}
     />
+    </>
   );
 };
 

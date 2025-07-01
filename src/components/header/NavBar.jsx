@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useStore } from "../../store/AuthStore";
 import "../../css/modo_claro/ModoClaro.css";
 import "../../css/modo_oscuro/ModoOscuro.css";
 import "../../css/navbar/navbar.css";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
+import { logout } from "../../customHooks/UseApi";
 
 const NavBar = () => {
   const { color, changeColor } = useStore();
@@ -30,15 +31,16 @@ const NavBar = () => {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem("usuario");
-    setUser(null);
-  };
+  logout();
+  setUser(null);
+  Navigate("/login");
+};
 
   return (
-    <div
-      className={`navbar-container ${
-        color === "Claro" ? "modo-claro" : "modo-oscuro"
-      }`}
+    <>
+    <div className={color === 'Claro' ? 'modo-claro' : 'modo-oscuro'}>
+      <div
+      className= "navbar-container"
     >
       <nav className="navbar-custom">
         <div className="logo-title">
@@ -53,7 +55,7 @@ const NavBar = () => {
           {menuAbierto ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
 
-        <div className="nav-links">
+        <div className={`nav-links ${menuAbierto ? "show" : ""}`}>
           {/* Links condicionales */}
           {user === null && (
             <>
@@ -85,6 +87,8 @@ const NavBar = () => {
         </div>
       </nav>
     </div>
+    </div>
+    </>
   );
 };
 

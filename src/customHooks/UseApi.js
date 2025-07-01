@@ -80,3 +80,10 @@ export const login = async (url, usuario) => {
     console.log(error);
   }
 };
+
+// desloguear
+
+export const logout = () => {
+  localStorage.removeItem("usuario");
+  toast.success("Sesión cerrada correctamente");
+};

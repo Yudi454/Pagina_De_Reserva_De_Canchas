@@ -1,10 +1,19 @@
 import { Button, Form } from "react-bootstrap";
+import "../../css/register/Register.css"
+import { useStore } from "../../store/AuthStore";
+
+
+
 
 const MainRegister = ({ usuario, setUsuario, handleSubmit }) => {
+
+  const { color} = useStore();
+
   return (
     <>
-      <div className=" d-flex justify-content-center">
-        <Form className="col-6 col-md-3" onSubmit={(e) => handleSubmit(e)}>
+      <div className={color === 'Claro' ? 'modo-claro' : 'modo-oscuro'}>
+        <div className=" register-contenedor">
+        <Form className="form-register" onSubmit={(e) => handleSubmit(e)}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Usuario</Form.Label>
             <Form.Control
@@ -45,8 +54,9 @@ const MainRegister = ({ usuario, setUsuario, handleSubmit }) => {
               placeholder="Ingrese una contraseña"
             />
           </Form.Group>
-          <Button type="submit">Registrarse</Button>
+          <button className="boton-register" type="submit">Registrarse</button>
         </Form>
+      </div>
       </div>
     </>
   );
