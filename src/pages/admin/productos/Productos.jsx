@@ -68,6 +68,7 @@ const Productos = () => {
     setMostrarVer(false);
     setMostrarEditar(false);
     setMostrarCrear(true);
+    reset()
   };
 
   const handleBuscar = async (data) => {
