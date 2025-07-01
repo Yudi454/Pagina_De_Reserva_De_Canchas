@@ -43,11 +43,10 @@ const Productos = () => {
 
   const traerDatos = () => {
     getDatos(RUTA_PRODUCTOS, setProductos);
-
-  }
+  };
 
   useEffect(() => {
-    traerDatos()
+    traerDatos();
   }, []);
 
   const handleVer = (id) => {
@@ -68,13 +67,16 @@ const Productos = () => {
     setMostrarVer(false);
     setMostrarEditar(false);
     setMostrarCrear(true);
-    reset()
+    reset();
   };
 
   const handleBuscar = async (data) => {
     try {
-      buscarDato(`${RUTA_PRODUCTOS}/buscar`, { nombre_producto: data.buscar },setProductos);
-
+      buscarDato(
+        `${RUTA_PRODUCTOS}/buscar`,
+        { nombre_producto: data.buscar },
+        setProductos
+      );
     } catch (error) {
       MySwal.fire({
         icon: "error",
@@ -158,7 +160,9 @@ const Productos = () => {
               />
               {errors.buscar && <p>{errors.buscar.message}</p>}
               <Button type="submit">Buscar</Button>
-              <Button type="button" onClick={traerDatos}>Reiniciar</Button>
+              <Button type="button" onClick={traerDatos}>
+                Reiniciar
+              </Button>
             </Form.Group>
           </Form>
           <MainProductos
