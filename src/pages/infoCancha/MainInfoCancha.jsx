@@ -25,7 +25,7 @@ const MainInfoCancha = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/reservas/${id}`)
+      .get(`http://localhost:8000/canchas/${id}`)
       .then((response) => {
         setCancha(response.data);
       })
@@ -72,7 +72,7 @@ const MainInfoCancha = () => {
     };
 
     axios
-      .post("http://localhost:8000/reservas", nuevaReserva)
+      .post("http://localhost:8000/reservas/create", nuevaReserva)
       .then((res) => alert("reserva realizada con exito"))
       .catch((err) => {
         console.error("Error al crear reserva:", err);
