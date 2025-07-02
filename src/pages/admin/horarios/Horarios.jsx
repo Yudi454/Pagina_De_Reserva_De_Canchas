@@ -60,7 +60,6 @@ const Horarios = () => {
     setMostrarVer(false);
     setMostrarEditar(false);
     setMostrarCrear(true);
-    true;
   };
 
   const handleCrearHorario = async (data) => {

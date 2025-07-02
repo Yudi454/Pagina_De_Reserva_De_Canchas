@@ -10,7 +10,7 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { rutas, URLPRODUCTOS, URLVENTAS } from "../../../routes/Rutas";
+import { rutas } from "../../../routes/Rutas";
 import VerVentas from "./VerVentas";
 import VentasEditar from "./VentasEditar";
 import VentasCrear from "./VentasCrear";
@@ -27,17 +27,11 @@ const Ventas = () => {
 
   const [productos, setProductos] = useState();
 
-  const [productosFiltrados, setProductosFiltrados] = useState();
-
-  const [productoEncontrado, setProductoEncontrado] = useState();
-
   const [venta, setVenta] = useState();
 
   const [mostrarVer, setMostrarVer] = useState(false);
 
   const [mostrarEditar, setMostrarEditar] = useState(false);
-
-  const [mostrarProductos, setMostrarProductos] = useState(false);
 
   const [mostrarCrear, setMostrarCrear] = useState(false);
 
@@ -153,15 +147,10 @@ const Ventas = () => {
         total += producto.precio_producto * producto.cantidad;
       });
 
-      console.log(venta);
-
       const ventaFinal = {
         ...venta,
         total_venta: total,
       };
-
-      console.log(ventaFinal);
-      
 
       await updateDato(
         `${RUTA_VENTAS}/update/${ventaFinal.id_venta}`,
@@ -178,15 +167,6 @@ const Ventas = () => {
         title: "¡Error!",
         text: error,
       });
-    }
-  };
-
-  const deleteProducto = (id) => {
-    try {
-      const Productos = venta.productos.filter((p) => p.id != id);
-      setVenta({ ...venta, productos: Productos });
-    } catch (error) {
-      console.log(error);
     }
   };
 

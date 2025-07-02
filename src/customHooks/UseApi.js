@@ -22,6 +22,8 @@ export const getDatos = async (url, setValor) => {
 export const getDato = async (url, setValor) => {
   try {
     const res = await axios.get(url);
+    console.log(res.data);
+    
     setValor(res.data.results);
   } catch (error) {
     MySwal.fire({
