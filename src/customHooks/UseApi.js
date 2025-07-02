@@ -32,10 +32,10 @@ export const getDato = async (url, setValor) => {
   }
 };
 
-export const buscarDato = async (url,dato, setDato) => {
+export const buscarDato = async (url, dato, setDato) => {
   try {
-    const res = await axios.post(url,dato);
-    setDato(res.data)
+    const res = await axios.post(url, dato);
+    setDato(res.data);
   } catch (error) {
     MySwal.fire({
       icon: "error",

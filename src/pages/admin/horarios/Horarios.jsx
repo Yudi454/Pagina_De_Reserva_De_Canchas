@@ -64,10 +64,7 @@ const Horarios = () => {
   };
 
   const handleCrearHorario = async (data) => {
-    console.log(data);
-    
     try {
-
       await createDato(`${RUTA_HORARIOS}/create`, data, "horario");
       await getDatos(RUTA_HORARIOS, setHorarios);
       setMostrarCrear(false);
@@ -100,7 +97,7 @@ const Horarios = () => {
 
   const handleDelete = async (id) => {
     try {
-      const eliminado =  await deleteDato(`${RUTA_HORARIOS}/delete/${id}`);
+      const eliminado = await deleteDato(`${RUTA_HORARIOS}/delete/${id}`);
       if (eliminado) {
         await getDatos(RUTA_HORARIOS, setHorarios);
       }
@@ -120,7 +117,7 @@ const Horarios = () => {
           <NavAdmin />
         </Col>
         <Col>
-        <Button onClick={() => handleCrear(true)}>Crear</Button>
+          <Button onClick={() => handleCrear(true)}>Crear</Button>
           <MainHorarios
             horarios={horarios}
             handleVer={handleVer}
@@ -148,15 +145,15 @@ const Horarios = () => {
         )}
         {mostrarCrear && (
           <Col>
-          <CreateHorarios 
-          setMostrarCrear={setMostrarCrear}
-          horario={horario}
-          setHorario={setHorario}
-          handleCrearHorario={handleCrearHorario}
-          handleSubmit={handleSubmit}
-          register={register}
-          errors={errors}
-          />
+            <CreateHorarios
+              setMostrarCrear={setMostrarCrear}
+              horario={horario}
+              setHorario={setHorario}
+              handleCrearHorario={handleCrearHorario}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
           </Col>
         )}
       </Row>
