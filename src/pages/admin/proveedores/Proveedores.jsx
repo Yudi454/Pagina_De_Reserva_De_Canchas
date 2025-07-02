@@ -9,9 +9,9 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { rutas, URLPROVEEDORES } from "../../../routes/Rutas";
+import { rutas } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import ProveedoresEditar from "./ProveedoresEditar";
 import ProveedorCrear from "./ProveedorCrear";
 

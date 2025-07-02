@@ -18,18 +18,18 @@ const MainReservas = ({ reservas, handleDelete, handleVer, handleEditar }) => {
         <tbody>
           {reservas != undefined &&
             reservas.map((reserva) => (
-              <tr key={reserva.id}>
-                <td>{reserva.id}</td>
+              <tr key={reserva.id_reserva}>
+                <td>{reserva.id_reserva}</td>
                 <td>{reserva.usuario}</td>
                 <td>{reserva.total}</td>
-                <td>{reserva.dia}</td>
+                <td>{reserva.dia_reserva}</td>
                 <td>{reserva.hora_inicio}-{reserva.hora_fin}</td>
                 <td>
-                  <Button onClick={() => handleVer(reserva.id)}>Ver</Button>
-                  <Button onClick={() => handleEditar(reserva.id)}>
+                  <Button onClick={() => handleVer(reserva.id_reserva)}>Ver</Button>
+                  <Button onClick={() => handleEditar(reserva.id_reserva)}>
                     Editar
                   </Button>
-                  <Button onClick={() => handleDelete(reserva.id)}>
+                  <Button onClick={() => handleDelete(reserva.id_reserva)}>
                     Eliminar
                   </Button>
                 </td>

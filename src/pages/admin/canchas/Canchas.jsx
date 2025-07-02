@@ -9,7 +9,7 @@ import {
   getDatos,
   updateDato,
 } from "../../../customHooks/UseApi";
-import { rutas, URLCANCHAS } from "../../../routes/Rutas";
+import { rutas } from "../../../routes/Rutas";
 import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import CanchasEditar from "./CanchasEditar";
 import { useForm } from "react-hook-form";
