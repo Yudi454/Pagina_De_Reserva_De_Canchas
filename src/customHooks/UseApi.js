@@ -67,9 +67,10 @@ export const updateDato = async (url, dato, tipo) => {
 
 // Crear dato
 export const createDato = async (url, dato, tipo) => {
+  console.log(dato);
   try {
     const res = await axios.post(url, dato);
-
+    
     MySwal.fire({
       icon: "success",
       title: "¡Creado!",
