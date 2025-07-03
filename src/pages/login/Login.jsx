@@ -7,28 +7,25 @@ import { useStore } from "../../store/AuthStore";
 
 const Login = () => {
   const [usuario, setUsuario] = useState();
-
-  const loadUser = useStore((state) => state.loadUser)
-
+  const loadUser = useStore((state) => state.loadUser);
   const API_URL = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await login(`${API_URL}${rutas.login}`, usuario);
-    loadUser()    
-    navigate("/")
-  };
   
+  const onLoginSubmit = async (data) => {
+    await login(`${API_URL}${rutas.login}`, data);
+    console.log( login);
+    
+    loadUser();
+    navigate("/Main1");
+  };
+
   return (
-    <>
-      <MainLogin
+    <MainLogin
       usuario={usuario}
       setUsuario={setUsuario}
-      handleSubmit={handleSubmit}
+      onLoginSubmit={onLoginSubmit}
     />
-    </>
   );
 };
 

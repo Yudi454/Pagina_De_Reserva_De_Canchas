@@ -6,22 +6,19 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [usuario, setUsuario] = useState();
-
   const API_URL = import.meta.env.VITE_API_URL;
-
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    register(`${API_URL}${rutas.register}`, usuario);
-    navigate("/login");
+  const onRegisterSubmit = async (data) => {
+    await register(`${API_URL}${rutas.register}`, data);
+    navigate("/Login");
   };
 
   return (
     <MainRegister
       usuario={usuario}
       setUsuario={setUsuario}
-      handleSubmit={handleSubmit}
+      onRegisterSubmit={onRegisterSubmit}
     />
   );
 };
