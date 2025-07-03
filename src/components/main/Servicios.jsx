@@ -11,7 +11,7 @@ const Servicios = () => {
         </h2>
         <br />
         <p className="informacion">
-          "nombre de la web" te brinda una plataforma integral para llevar tu
+          "MIS CANCHAS" te brinda una plataforma integral para llevar tu
           experiencia deportiva al siguiente nivel. Ya sea que estés buscando el
           lugar perfecto para un partido amistoso, estamos aquí para vos.
           Descubí cómo nuestras características únicas pueden mejorar tu

@@ -1,14 +1,35 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import {
   FaWhatsapp,
   FaInstagram,
   FaFacebook,
   FaPhoneAlt,
   FaClock,
+  FaArrowUp,
 } from "react-icons/fa";
 import "../../css/home/contactoRedes.css";
 
 const ContactoRedes = () => {
+  const [isVisible, setIsVisible] = useState(false);    {/* estado para la scroll */}
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      setIsVisible(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  {/* cards con los contactos */}
   return (
     <div className="contacto-redes text-center ">
       <h2>Contacto y redes</h2>
@@ -42,6 +63,13 @@ const ContactoRedes = () => {
           <p>De lunes a viernes de 08:00 hasta las 21:00</p>
         </div>
       </div>
+
+      {/* Botón subir arriba */}
+      {isVisible && (
+        <button className="scroll-to-top" onClick={scrollToTop}>
+          <FaArrowUp />
+        </button>
+      )}
     </div>
   );
 };

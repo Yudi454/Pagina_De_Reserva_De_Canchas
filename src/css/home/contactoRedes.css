@@ -42,3 +42,21 @@
 }
 
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  border: none;
+  border-radius: 20%;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 999;
+  transition: background-color 0.3s;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-3px); /* Pequeño levantamiento */
+  
+  
+}

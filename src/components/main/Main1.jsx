@@ -8,7 +8,7 @@ const Main1 = () => {
       <div className="main1-fondo">
         <div className="main1-overlay">
           <h2 className="maquina-escribir">
-            ¡ Reserva tu cancha en segundos !
+            ¡Reserva tu cancha en segundos!
           </h2>
         </div>
       </div >
