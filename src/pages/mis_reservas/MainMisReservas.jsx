@@ -2,17 +2,19 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useStore } from "../../store/AuthStore";
+
 
 const MainMisReservas = ({ show, onHide, setValorModal }) => {
+  const stored = localStorage.getItem("usuario");
+  const user = stored ? JSON.parse(stored) : null;
   const [usuario, setUsuario] = useState();
   const [reservas, setReservas] = useState([]);
 
-  const user = useStore((state) => state.user);
-
+  
   useEffect(() => {
     if (user) setUsuario(user.id_cliente);
   }, [user]);
+
 
   useEffect(() => {
     if (show) {
@@ -21,6 +23,8 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
         .then((response) => {
           setReservas(response.data);
           setValorModal(response.data.length);
+          console.log("Data que llega:", response.data);
+          setReservas(response.data);
         })
         .catch((error) => {
           console.error("error al traer las reservas:", error);

@@ -11,23 +11,25 @@ import Navbar from "react-bootstrap/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useStore } from "../../store/AuthStore";
+
 
 const MainInfoCancha = () => {
-
-
-  const user = useStore((state) => state.user);
-
+  const stored = localStorage.getItem("usuario");
+  const user = stored ? JSON.parse(stored) : null;
   const [cancha, setCancha] = useState({});
   const [turnos, setTurnos] = useState([]);
+  const [fechaCargada, setFechaCargada] = useState("");
+  const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
 
   const { id } = useParams();
+
+  console.log(user)
 
   useEffect(() => {
     axios
       .get(`http://localhost:8000/canchas/${id}`)
       .then((response) => {
-        setCancha(response.data);
+        setCancha(response.data.results);
       })
       .catch((error) => {
         console.error("error al traer la cancha:", error);
@@ -46,34 +48,27 @@ const MainInfoCancha = () => {
       .catch((err) => console.error("Error al traer turnos:", err));
   };
 
-  const [fechaCargada, setFechaCargada] = useState("");
-  const [horarioInicio, setHorarioInicio] = useState("");
-  const [horarioFin, setHorarioFin] = useState("");
-
   const handleReservas = () => {
-
     if (!user) {
       alert("Debes iniciar sesión para reservar.");
       return;
     }
 
-    if (!fechaCargada || !horarioInicio || !horarioFin) {
-      alert("Por favor seleccioná una fecha y un horario de inicio y fin");
+    if (!fechaCargada || !horarioSeleccionado) {
+      alert("Seleccioná una fecha y un horario.");
       return;
     }
 
     const nuevaReserva = {
+      fecha_reserva: fechaCargada,
+      email_cliente: user.email_cliente,
       id_cancha: id,
-      id_cliente: user.id_cliente,
-      precio: cancha.precio_cancha,
-      dia_reserva: fechaCargada,
-      horario_inicio: horarioInicio,
-      horario_fin: horarioFin,
+      id_horario: horarioSeleccionado,
     };
 
     axios
       .post("http://localhost:8000/reservas/create", nuevaReserva)
-      .then((res) => alert("reserva realizada con exito"))
+      .then(() => alert("Reserva realizada con éxito"))
       .catch((err) => {
         console.error("Error al crear reserva:", err);
         alert("Ocurrió un error al crear la reserva.");
@@ -123,31 +118,15 @@ const MainInfoCancha = () => {
 
                 {turnos.length > 0 && (
                   <Form.Group className="mt-3 w-75">
-                    <Form.Label>Desde:</Form.Label>
+                    <Form.Label>Turno:</Form.Label>
                     <Form.Select
                       className="rounded-pill"
-                      onChange={(e) => setHorarioInicio(e.target.value)}
+                      onChange={(e) => setHorarioSeleccionado(e.target.value)}
                     >
                       <option value="">Seleccioná un horario</option>
                       {turnos.map((turno) => (
-                        <option
-                          key={turno.id_horario}
-                          value={turno.hora_inicio}
-                        >
-                          {turno.hora_inicio}
-                        </option>
-                      ))}
-                    </Form.Select>
-
-                    <Form.Label className="mt-3">Hasta:</Form.Label>
-                    <Form.Select
-                      className="rounded-pill"
-                      onChange={(e) => setHorarioFin(e.target.value)}
-                    >
-                      <option value="">Seleccioná un horario</option>
-                      {turnos.map((turno) => (
-                        <option key={turno.id_horario} value={turno.hora_fin}>
-                          {turno.hora_fin}
+                        <option key={turno.id_horario} value={turno.id_horario}>
+                          {turno.hora_inicio.slice(0, 5)} - {turno.hora_fin.slice(0, 5)}
                         </option>
                       ))}
                     </Form.Select>
