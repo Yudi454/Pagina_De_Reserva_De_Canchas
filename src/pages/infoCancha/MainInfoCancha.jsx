@@ -10,10 +10,12 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { useStore } from "../../store/AuthStore";
 
 const MainInfoCancha = () => {
+  const carrito = useStore((state) => state.carritoReservas);
+  const agregarReserva = useStore((state) => state.agregarReserva);
   const stored = localStorage.getItem("usuario");
   const user = stored ? JSON.parse(stored) : null;
   const [cancha, setCancha] = useState({});
@@ -21,9 +23,9 @@ const MainInfoCancha = () => {
   const [fechaCargada, setFechaCargada] = useState("");
   const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
 
-  const { id } = useParams();
+  const navigate = useNavigate();
 
-  console.log(user)
+  const { id } = useParams();
 
   useEffect(() => {
     axios
@@ -73,6 +75,31 @@ const MainInfoCancha = () => {
         console.error("Error al crear reserva:", err);
         alert("Ocurrió un error al crear la reserva.");
       });
+  };
+
+  const handleCarrito = () => {
+    if (!user) {
+      alert("Debes iniciar sesión para reservar.");
+      return;
+    }
+
+    if (!fechaCargada || !horarioSeleccionado) {
+      alert("Seleccioná una fecha y un horario.");
+      return;
+    }
+
+    const nuevaReserva = {
+      fecha_reserva: fechaCargada,
+      id_cliente: user.id_cliente,
+      id_cancha: id,
+      id_horario: horarioSeleccionado,
+    };
+
+    agregarReserva(nuevaReserva);
+
+    localStorage.setItem("carritoReservas", JSON.stringify(carrito));
+
+    navigate("/reservar-Cancha");
   };
 
   return (
@@ -126,7 +153,8 @@ const MainInfoCancha = () => {
                       <option value="">Seleccioná un horario</option>
                       {turnos.map((turno) => (
                         <option key={turno.id_horario} value={turno.id_horario}>
-                          {turno.hora_inicio.slice(0, 5)} - {turno.hora_fin.slice(0, 5)}
+                          {turno.hora_inicio.slice(0, 5)} -{" "}
+                          {turno.hora_fin.slice(0, 5)}
                         </option>
                       ))}
                     </Form.Select>
@@ -143,6 +171,7 @@ const MainInfoCancha = () => {
                 >
                   Reservar
                 </Button>
+                <Button onClick={handleCarrito}>Agregar al carrito</Button>
               </Card.Body>
             </Card>
           </Col>
