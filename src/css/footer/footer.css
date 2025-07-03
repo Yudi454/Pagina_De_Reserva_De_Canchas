@@ -14,8 +14,9 @@
   font-size: 1.9rem;
   transition: color 0.3s ease;
   text-decoration: none;
+  color: aliceblue;
 }
 
 .footer-icons a:hover {
-  color: #00acee;
+  color: #08611e;
 }

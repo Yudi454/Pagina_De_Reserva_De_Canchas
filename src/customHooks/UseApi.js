@@ -73,10 +73,17 @@ export const login = async (url, usuario) => {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
     console.log(res.data);
-    
+
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
   } catch (error) {
     toast.error("Error en login");
     console.log(error);
   }
+};
+
+// desloguear
+
+export const logout = () => {
+  localStorage.removeItem("usuario");
+  toast.success("Sesión cerrada correctamente");
 };

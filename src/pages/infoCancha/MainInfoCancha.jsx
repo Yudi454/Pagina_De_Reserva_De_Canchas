@@ -88,12 +88,26 @@ const MainInfoCancha = () => {
       return;
     }
 
+    const horarioEncontrado = turnos.filter(
+      (t) => String(t.id_horario) === String(horarioSeleccionado)
+    );
+
+    console.log(horarioEncontrado);
+    
+
+    const horario = `${horarioEncontrado[0].hora_inicio}-${horarioEncontrado[0].hora_fin}`;
+
     const nuevaReserva = {
       fecha_reserva: fechaCargada,
       id_cliente: user.id_cliente,
       id_cancha: id,
       id_horario: horarioSeleccionado,
+      horario: horario,
     };
+    
+
+    console.log(nuevaReserva);
+    
 
     agregarReserva(nuevaReserva);
 

@@ -16,8 +16,8 @@ const MainFooter = () => {
         <img src="./icono.png" alt="Logo" className="logo-img" />
       <p>&copy; 2025 Mis Canchas</p>
       <div className="footer-icons">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+        <a href="https://instagram.com" ><FaInstagram /></a>
+        <a href="https://facebook.com" ><FaFacebook /></a>
       </div>
     </div>
     </div>
