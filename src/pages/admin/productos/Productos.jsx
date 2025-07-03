@@ -148,7 +148,6 @@ const Productos = () => {
         </Col>
         <Col>
           {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
-
           <Form onSubmit={handleSubmit(handleBuscar)}>
             <Form.Group>
               <Form.Control
@@ -165,12 +164,16 @@ const Productos = () => {
               </Button>
             </Form.Group>
           </Form>
-          <MainProductos
-            productos={productos}
-            handleDelete={handleDelete}
-            handleEditar={handleEditar}
-            handleVer={handleVer}
-          />
+          {productos && productos.length > 0 ? (
+            <MainProductos
+              productos={productos}
+              handleDelete={handleDelete}
+              handleEditar={handleEditar}
+              handleVer={handleVer}
+            />
+          ) : (
+            <p>No hay Productos</p>
+          )}
         </Col>
         {mostrarVer && (
           <Col>

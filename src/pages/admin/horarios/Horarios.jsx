@@ -116,13 +116,18 @@ const Horarios = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <Button onClick={() => handleCrear(true)}>Crear</Button>
-          <MainHorarios
-            horarios={horarios}
-            handleVer={handleVer}
-            handleEditar={handleEditar}
-            handleDelete={handleDelete}
-          />
+          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
+
+          {horarios && horarios.length > 0 ? (
+            <MainHorarios
+              horarios={horarios}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <p>No hay Horarios</p>
+          )}
         </Col>
         {mostrarVer && (
           <Col>

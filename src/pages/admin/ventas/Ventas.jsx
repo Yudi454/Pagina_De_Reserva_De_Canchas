@@ -191,13 +191,17 @@ const Ventas = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <Button onClick={handleCrear}>Crear</Button>
-          <MainVentas
-            ventas={ventas}
-            handleVer={handleVer}
-            handleEditar={handleEditar}
-            handleDelete={handleDelete}
-          />
+          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
+          {ventas && ventas.length > 0 ? (
+            <MainVentas
+              ventas={ventas}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <p>No hay Ventas</p>
+          )}
         </Col>
         {mostrarVer && (
           <Col>

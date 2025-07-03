@@ -130,13 +130,17 @@ const Usuarios = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <Button onClick={handleCrear}>Crear</Button>
-          <MainUsuarios
-            usuarios={usuarios}
-            handleVer={handleVer}
-            handleEditar={handleEditar}
-            handleDelete={handleDelete}
-          />
+          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
+          {usuarios && usuarios.length > 0 ? (
+            <MainUsuarios
+              usuarios={usuarios}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <p>No hay Usuarios</p>
+          )}
         </Col>
         {mostrarVer && (
           <Col>

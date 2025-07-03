@@ -59,7 +59,7 @@ const Clientes = () => {
     setMostrarVer(false);
     setMostrarEditar(false);
     setMostrarCreate(true);
-    reset()
+    reset();
   };
 
   const handleCreateCliente = async (data) => {
@@ -123,13 +123,19 @@ const Clientes = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <Button onClick={handleCreate}>Crear Cliente</Button>
-          <MainClientes
-            clientes={clientes}
-            handleVer={handleVer}
-            handleEditar={handleEditar}
-            handleDelete={handleDelete}
-          />
+          {!mostrarCreate && (
+            <Button onClick={handleCreate}>Crear Cliente</Button>
+          )}
+          {clientes && clientes.length > 0 ? (
+            <MainClientes
+              clientes={clientes}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <p>No hay Clientes</p>
+          )}
         </Col>
         {mostrarVer && (
           <Col>

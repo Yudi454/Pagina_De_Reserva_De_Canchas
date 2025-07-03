@@ -86,8 +86,12 @@ const CreateUsuarios = ({
             name="dni"
             {...register("dni", {
               required: "El dni es obligatorio",
-              minLength: { value: 7, message: "Minimo 7 numeros" },
-              maxLength: { value: 8, message: "Maximo 8 numeros" },
+              minLength: { value: 7, message: "Minimo 7 números" },
+              maxLength: { value: 8, message: "Máximo 8 números" },
+              pattern: {
+                value: /^[0-9]+$/,
+                message: "Solo se permiten números",
+              },
             })}
             onChange={(e) =>
               setUsuario({ ...usuario, [e.target.name]: e.target.value })

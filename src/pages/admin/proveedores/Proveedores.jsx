@@ -123,13 +123,17 @@ const Proveedores = () => {
           <NavAdmin />
         </Col>
         <Col>
-          <Button onClick={handleCrear}>Crear</Button>
-          <MainProveedores
-            proveedores={proveedores}
-            handleVer={handleVer}
-            handleEditar={handleEditar}
-            handleDelete={handleDelete}
-          />
+          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
+          {proveedores && proveedores.length > 0 ? (
+            <MainProveedores
+              proveedores={proveedores}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <p>No hay Proveedores</p>
+          )}
         </Col>
         {mostrarVer && (
           <Col>

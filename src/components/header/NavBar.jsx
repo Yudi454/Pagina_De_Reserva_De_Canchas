@@ -25,10 +25,6 @@ const NavBar = () => {
     }
   }, []);
 
-  if (user) {
-    console.log(user.rol);
-  }
-
   const handleLogout = () => {
     localStorage.removeItem("usuario");
     setUser(null);
