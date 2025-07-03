@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 
 const MainAdmin = () => {
   return (
-    <>
+    <div style={{paddingTop: "20vh"}}>
       <ul>
         <li>
           <Link to="/admin/caja">Caja</Link>
@@ -34,7 +34,7 @@ const MainAdmin = () => {
           <Link to="/admin/reservas">Reservas</Link>
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 

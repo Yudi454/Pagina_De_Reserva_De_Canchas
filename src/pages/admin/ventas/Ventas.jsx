@@ -185,7 +185,7 @@ const Ventas = () => {
   };
 
   return (
-    <>
+    <div style={{paddingTop: "20vh"}}>
       <Row>
         <Col>
           <NavAdmin />
@@ -253,7 +253,7 @@ const Ventas = () => {
           </Col>
         )}
       </Row>
-    </>
+    </div>
   );
 };
 

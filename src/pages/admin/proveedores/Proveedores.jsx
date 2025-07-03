@@ -14,6 +14,9 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import { useForm } from "react-hook-form";
 import ProveedoresEditar from "./ProveedoresEditar";
 import ProveedorCrear from "./ProveedorCrear";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Proveedores = () => {
   const [proveedores, setProveedores] = useState();
@@ -117,7 +120,7 @@ const Proveedores = () => {
   };
 
   return (
-    <>
+    <div style={{paddingTop: "20vh"}}>
       <Row>
         <Col>
           <NavAdmin />
@@ -167,7 +170,7 @@ const Proveedores = () => {
           </Col>
         )}
       </Row>
-    </>
+    </div>
   );
 };
 

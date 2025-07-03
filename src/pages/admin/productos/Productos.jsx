@@ -16,6 +16,9 @@ import { rutas } from "../../../routes/Rutas";
 import { useForm } from "react-hook-form";
 import ProductosCrear from "./ProductosCrear";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Productos = () => {
   const [mostrarVer, setMostrarVer] = useState(false);
@@ -28,7 +31,7 @@ const Productos = () => {
 
   const [productos, setProductos] = useState();
 
-  const [buscar, setBuscar] = useState();
+  const [buscar, setBuscar] = useState({ nombre_producto: "" });
 
   const API_ROUTE = import.meta.env.VITE_API_URL;
 
@@ -70,11 +73,16 @@ const Productos = () => {
     reset();
   };
 
-  const handleBuscar = async (data) => {
+  const handleBuscar = async (e) => {
+    e.preventDefault();
+
+    console.log(buscar);
+    
+
     try {
       buscarDato(
         `${RUTA_PRODUCTOS}/buscar`,
-        { nombre_producto: data.buscar },
+        { nombre_producto: buscar.nombre_producto },
         setProductos
       );
     } catch (error) {
@@ -98,7 +106,7 @@ const Productos = () => {
         icon: "error",
         title: "¡Error!",
         text: error,
-      });
+      });7
     }
   };
 
@@ -141,23 +149,24 @@ const Productos = () => {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: "20vh" }}>
       <Row>
         <Col>
           <NavAdmin />
         </Col>
         <Col>
           {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
-          <Form onSubmit={handleSubmit(handleBuscar)}>
+          <Form onSubmit={(e) => handleBuscar(e)}>
             <Form.Group>
               <Form.Control
                 placeholder="Buscar..."
                 name="buscar"
-                {...register("buscar", {
-                  required: "El valor es obligatorio",
+                onChange={(e) => setBuscar({
+                  ...buscar,
+                  nombre_producto: e.target.value,
                 })}
               />
-              {errors.buscar && <p>{errors.buscar.message}</p>}
+
               <Button type="submit">Buscar</Button>
               <Button type="button" onClick={traerDatos}>
                 Reiniciar
@@ -207,7 +216,7 @@ const Productos = () => {
           </Col>
         )}
       </Row>
-    </>
+    </div>
   );
 };
 

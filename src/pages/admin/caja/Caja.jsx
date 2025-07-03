@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { buscarDato, createDato } from "../../../customHooks/UseApi";
 import Carrito from "./Carrito";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Caja = () => {
   const [venta, setVenta] = useState();
@@ -81,14 +84,17 @@ const Caja = () => {
 
       const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-      const id_usuario = usuario[0].id_usuario;
+      console.log(usuario);
+      
+
+      const id_usuario = usuario.id_usuario;
 
       await createDato(
         `${RUTA_VENTAS}/cargarVentas/${id_usuario}`,
         carritoFinal,
         "venta"
       );
-      setCarrito("")
+      setCarrito("");
     } catch (error) {
       MySwal.fire({
         icon: "error",
@@ -99,7 +105,7 @@ const Caja = () => {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: "20vh" }}>
       <Row>
         <Col>
           <NavAdmin />
@@ -122,7 +128,7 @@ const Caja = () => {
           </Col>
         )}
       </Row>
-    </>
+    </div>
   );
 };
 

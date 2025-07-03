@@ -37,7 +37,7 @@ const NavBar = () => {
         localStorage.removeItem("carritoReservas");
       }
     }
-  }, [carrito]);
+  }, []);
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);

@@ -14,6 +14,10 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ClientesEditar from "./ClientesEditar";
 import CreateClientes from "./CreateClientes";
 import { useForm } from "react-hook-form";
+import Usuarios from "../usuarios/Usuarios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Clientes = () => {
   const [clientes, setClientes] = useState();
@@ -81,7 +85,7 @@ const Clientes = () => {
   const handleEditarCliente = async (data) => {
     try {
       await updateDato(
-        `${RUTA_CLIENTES}/update/${cliente.id_clientes}`,
+        `${RUTA_CLIENTES}/update/${cliente.id_cliente}`,
         data,
         "cliente"
       );
@@ -117,7 +121,7 @@ const Clientes = () => {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: "20vh" }}>
       <Row>
         <Col md={3}>
           <NavAdmin />
@@ -169,7 +173,7 @@ const Clientes = () => {
           </Col>
         )}
       </Row>
-    </>
+    </div>
   );
 };
 

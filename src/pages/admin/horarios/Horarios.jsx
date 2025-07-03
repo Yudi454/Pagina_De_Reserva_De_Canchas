@@ -15,6 +15,9 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import HorariosEditar from "./HorariosEditar";
 import { useForm } from "react-hook-form";
 import CreateHorarios from "./CreateHorarios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Horarios = () => {
   const [mostrarVer, setMostrarVer] = useState();
@@ -110,7 +113,7 @@ const Horarios = () => {
   };
 
   return (
-    <>
+    <div style={{paddingTop: "20vh"}}>
       <Row>
         <Col>
           <NavAdmin />
@@ -161,7 +164,7 @@ const Horarios = () => {
           </Col>
         )}
       </Row>
-    </>
+    </div>
   );
 };
 

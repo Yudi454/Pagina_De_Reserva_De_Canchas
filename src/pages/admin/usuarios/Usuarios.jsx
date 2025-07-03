@@ -123,8 +123,11 @@ const Usuarios = () => {
     }
   };
 
+console.log(usuario);
+
+
   return (
-    <>
+    <div style={{paddingTop: "20vh"}}>
       <Row>
         <Col>
           <NavAdmin />
@@ -174,7 +177,7 @@ const Usuarios = () => {
           </Col>
         )}
       </Row>
-    </>
+    </div>
   );
 };
 
