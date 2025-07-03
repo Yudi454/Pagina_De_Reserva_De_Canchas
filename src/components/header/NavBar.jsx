@@ -25,19 +25,15 @@ const NavBar = () => {
 
   const API_RUTE = import.meta.env.VITE_API_URL;
 
-  console.log(API_RUTE);
-
   const RUTA_RESERVAS = `${API_RUTE}${rutas.reservas}`;
 
   useEffect(() => {
     if (localStorage.getItem("carritoReservas")) {
       if (JSON.parse(localStorage.getItem("carritoReservas")).length > 0) {
         cargarCarrito(JSON.parse(localStorage.getItem("carritoReservas")));
-      } else {
-        localStorage.removeItem("carritoReservas");
       }
     }
-  }, [carrito]);
+  }, []);
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
@@ -69,6 +65,18 @@ const NavBar = () => {
       toast(error);
     }
   };
+
+  const eliminarReserva = async (r, index) => {
+    quitarReserva(index);
+
+    let carritoStorage = JSON.parse(localStorage.getItem("carritoReservas"));
+
+    const carritoFinal = carritoStorage.filter((r, i) => i !== index);
+
+    localStorage.setItem("carritoReservas", JSON.stringify(carritoFinal));
+  };
+
+  
 
   return (
     <>
@@ -118,15 +126,12 @@ const NavBar = () => {
                       ) : (
                         <ul>
                           {carrito.map((r, index) => (
-                            <li key={r.id_cancha}>
+                            <li key={index}>
                               Fecha: {r.fecha_reserva} - Horario: {r.horario} -{" "}
                               {r.id_cancha}
                               <Button
                                 onClick={() => {
-                                  quitarReserva(r.id_cancha),
-                                    toast.success(
-                                      "Reserva eliminada con exito"
-                                    );
+                                  eliminarReserva(r, index);
                                 }}
                               >
                                 Eliminar

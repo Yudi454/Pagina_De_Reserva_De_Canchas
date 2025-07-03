@@ -8,10 +8,11 @@ export const useStore = create((set) => ({
     set((state) => ({
       carritoReservas: [...state.carritoReservas, reserva],
     })),
-  cargarCarritoReservas: (newCarrito) => set((stat) => ({carritoReservas: newCarrito})),
-  quitarReserva: (id) =>
+  cargarCarritoReservas: (newCarrito) =>
+    set((stat) => ({ carritoReservas: newCarrito })),
+  quitarReserva: (index) =>
     set((state) => ({
-      carritoReservas: state.carritoReservas.filter((r) => r.id !== id),
+      carritoReservas: state.carritoReservas.filter((r, i) => i !== index),
     })),
   setUser: (newUser) => set(() => ({ user: newUser })),
   loadUser: () => {

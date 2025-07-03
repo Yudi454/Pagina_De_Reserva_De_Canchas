@@ -92,10 +92,9 @@ const MainInfoCancha = () => {
       (t) => String(t.id_horario) === String(horarioSeleccionado)
     );
 
-    console.log(horarioEncontrado);
-    
-
     const horario = `${horarioEncontrado[0].hora_inicio}-${horarioEncontrado[0].hora_fin}`;
+
+    
 
     const nuevaReserva = {
       fecha_reserva: fechaCargada,
@@ -104,14 +103,18 @@ const MainInfoCancha = () => {
       id_horario: horarioSeleccionado,
       horario: horario,
     };
-    
-
-    console.log(nuevaReserva);
-    
 
     agregarReserva(nuevaReserva);
 
-    localStorage.setItem("carritoReservas", JSON.stringify(carrito));
+    let carritoFinal = [];
+
+    if (localStorage.getItem("carritoReservas")) {
+      carritoFinal = JSON.parse(localStorage.getItem("carritoReservas"));
+    }
+
+    carritoFinal.push(nuevaReserva);
+
+    localStorage.setItem("carritoReservas", JSON.stringify(carritoFinal));
 
     navigate("/reservar-Cancha");
   };
