@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 
-const MainVentas = ({ventas,handleVer,handleEditar,handleDelete}) => {
+const MainVentas = ({ ventas, handleVer, handleEditar, handleDelete }) => {
   return (
     <>
       <h3>Ventas</h3>
@@ -20,13 +20,15 @@ const MainVentas = ({ventas,handleVer,handleEditar,handleDelete}) => {
             ventas.map((venta) => (
               <tr key={venta.id_venta}>
                 <td>{venta.id_venta}</td>
-                <td>{venta.nombre_usuario}-{venta.apellido_usuario}</td>
+                <td>
+                  {venta.nombre_usuario}-{venta.apellido_usuario}
+                </td>
                 <td>{venta.fecha_venta}</td>
                 <td>{venta.hora_venta}</td>
                 <td>${venta.total_venta}</td>
                 <td>
                   <Button onClick={() => handleVer(venta.id_venta)}>Ver</Button>
-                  <Button disabled onClick={() => handleEditar(venta.id_venta)}>
+                  <Button onClick={() => handleEditar(venta.id_venta)}>
                     Editar
                   </Button>
                   <Button onClick={() => handleDelete(venta.id_venta)}>
