@@ -11,15 +11,13 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
   const [reservas, setReservas] = useState([]);
 
   
-  useEffect(() => {
-    if (user) setUsuario(user.id_cliente);
-  }, [user]);
+
 
 
   useEffect(() => {
     if (show) {
       axios
-        .get(`http://localhost:8000/reservas/misReservas?usuario=${usuario}`)
+        .get(`http://localhost:8000/reservas/misReservas/${user.id_cliente}`)
         .then((response) => {
           setReservas(response.data);
           setValorModal(response.data.length);
@@ -35,7 +33,7 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
   const handleEliminarReserva = (id_reserva) => {
     if (window.confirm("¿estas seguro que quieres eliminar la reserva?")) {
       axios
-        .delete(`http://localhost:8000/reservas/${id_reserva}`)
+        .delete(`http://localhost:8000/reservas/delete/${id_reserva}`)
         .then(() => {
           setReservas((prev) => {
             const nuevas = prev.filter((r) => r.id_reserva !== id_reserva);
