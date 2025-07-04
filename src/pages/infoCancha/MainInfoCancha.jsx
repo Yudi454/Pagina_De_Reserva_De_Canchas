@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStore } from "../../store/AuthStore";
+import { FaArrowLeft } from "react-icons/fa";
 
 const MainInfoCancha = () => {
   const carrito = useStore((state) => state.carritoReservas);
@@ -24,6 +25,7 @@ const MainInfoCancha = () => {
   const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
 
   const navigate = useNavigate();
+  const { color } = useStore();
 
   const { id } = useParams();
 
@@ -70,7 +72,10 @@ const MainInfoCancha = () => {
 
     axios
       .post("http://localhost:8000/reservas/create", nuevaReserva)
-      .then(() => alert("Reserva realizada con éxito"))
+      .then(() => {
+        alert("Reserva realizada con éxito");
+        navigate("/reservar-Cancha");
+      })
       .catch((err) => {
         console.error("Error al crear reserva:", err);
         alert("Ocurrió un error al crear la reserva.");
@@ -88,12 +93,28 @@ const MainInfoCancha = () => {
       return;
     }
 
+<<<<<<< Updated upstream
+=======
+    const horarioEncontrado = turnos.filter(
+      (t) => String(t.id_horario) === String(horarioSeleccionado)
+    );
+
+    console.log(horarioEncontrado);
+
+    const horario = `${horarioEncontrado[0].hora_inicio}-${horarioEncontrado[0].hora_fin}`;
+
+>>>>>>> Stashed changes
     const nuevaReserva = {
       fecha_reserva: fechaCargada,
       id_cliente: user.id_cliente,
       id_cancha: id,
       id_horario: horarioSeleccionado,
     };
+<<<<<<< Updated upstream
+=======
+
+    console.log(nuevaReserva);
+>>>>>>> Stashed changes
 
     agregarReserva(nuevaReserva);
 
@@ -103,10 +124,16 @@ const MainInfoCancha = () => {
   };
 
   return (
-    <div>
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"} style={{ paddingTop: "17vh" }}>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/">LOGO</Navbar.Brand>
+          <Navbar.Brand
+            onClick={() => navigate("/reservar-Cancha")}
+            style={{ cursor: "pointer" }}
+          >
+            <FaArrowLeft style={{ marginRight: "5px" }} />
+            Volver
+          </Navbar.Brand>
           <Nav>
             <Nav.Link href="/info-usuario">Usuario</Nav.Link>
           </Nav>
