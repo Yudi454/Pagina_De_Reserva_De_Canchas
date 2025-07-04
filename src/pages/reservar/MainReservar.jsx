@@ -25,7 +25,7 @@ const MainReservar = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ paddingTop: "17vh" }}>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home"></Navbar.Brand>

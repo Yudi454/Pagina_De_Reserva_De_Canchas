@@ -1,42 +1,82 @@
 import { Button, Form } from "react-bootstrap";
 
-const ClientesEditar = ({ cliente, setCliente, handleSubmit,setMostrarEditar }) => {
+const ClientesEditar = ({
+  cliente,
+  setCliente,
+  setMostrarEditar,
+  handleEditarCliente,
+  handleSubmit,
+  register,
+  errors,
+}) => {
   return (
     <>
-    <Button onClick={() => setMostrarEditar(false)}>X</Button>
+      <Button onClick={() => setMostrarEditar(false)}>X</Button>
       <h3>Editar</h3>
       {cliente && (
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form onSubmit={handleSubmit(handleEditarCliente)}>
           <Form.Group>
             <Form.Label>Usuario</Form.Label>
             <Form.Control
+              name="usuario"
               value={cliente.usuario}
+              {...register("usuario", {
+                required: "El usuario es obligatorio",
+              })}
               onChange={(e) =>
-                setCliente({ ...cliente, usuario: e.target.value })
+                setCliente({ ...cliente, [e.target.name]: e.target.value })
               }
             />
+            {errors.usuario && <p>{errors.usuario.message}</p>}
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
+              name="email_cliente"
               value={cliente.email_cliente}
+              {...register("email_cliente", {
+                required: "El email es obligatorio",
+              })}
               onChange={(e) =>
-                setCliente({ ...cliente, email_cliente: e.target.value })
+                setCliente({ ...cliente, [e.target.name]: e.target.value })
               }
             />
+            {errors.email_cliente && <p>{errors.email_cliente.message}</p>}
           </Form.Group>
           <Form.Group>
             <Form.Label>Telefono</Form.Label>
             <Form.Control
+              name="telefono_cliente"
               value={cliente.telefono_cliente}
+              {...register("telefono_cliente", {
+                required: "El telefono es obligatorio",
+                minLength: { value: 7, message: "Minimo 7 numeros" },
+              })}
               onChange={(e) =>
-                setCliente({ ...cliente, telefono_cliente: e.target.value })
+                setCliente({ ...cliente, [e.target.name]: e.target.value })
               }
             />
+            {errors.telefono_cliente && (
+              <p>{errors.telefono_cliente.message}</p>
+            )}
           </Form.Group>
-          <Button type="submit">
-            Editar
-          </Button>
+          <Form.Group>
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control
+              name="contraseña_cliente"
+              {...register("contraseña_cliente", {
+                required: "La contraseña es obligatorio",
+                minLength: { value: 7, message: "Minimo 7 caracteres" },
+              })}
+              onChange={(e) =>
+                setCliente({ ...cliente, [e.target.name]: e.target.value })
+              }
+            />
+            {errors.contraseña_cliente && (
+              <p>{errors.contraseña_cliente.message}</p>
+            )}
+          </Form.Group>
+          <Button type="submit">Editar</Button>
         </Form>
       )}
     </>
