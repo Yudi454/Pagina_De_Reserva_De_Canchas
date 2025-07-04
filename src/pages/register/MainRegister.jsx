@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import "../../css/register/Register.css";
 import { useStore } from "../../store/AuthStore";
 
+
 const MainRegister = ({ usuario, setUsuario, onRegisterSubmit }) => {
   const { color } = useStore();
 

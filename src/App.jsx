@@ -23,10 +23,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/header/NavBar";
+import { useStore } from "./store/AuthStore";
+
 
 function App() {
+  const { color } = useStore();
   return (
     <>
+     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -49,9 +53,10 @@ function App() {
           <Route path="/admin/ventas" element={<Ventas />} />
           <Route path="/admin/canchas" element={<Canchas/>} />
         </Routes>
-      </BrowserRouter>
       <Footer />
+      </BrowserRouter>
       <ToastContainer position="bottom-left" autoClose={3000}/>
+      </div>
     </>
   );
 }

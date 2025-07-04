@@ -14,8 +14,6 @@ const Login = () => {
   
   const onLoginSubmit = async (data) => {
     await login(`${API_URL}${rutas.login}`, data);
-    console.log( login);
-    
     loadUser();
     navigate("/Main1");
   };

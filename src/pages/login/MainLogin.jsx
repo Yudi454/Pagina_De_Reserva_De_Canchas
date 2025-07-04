@@ -13,7 +13,8 @@ const MainLogin = ({ usuario, setUsuario, onLoginSubmit }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    setUsuario(data);
+    
+    setUsuario(data); 
     onLoginSubmit(data);
   };
 

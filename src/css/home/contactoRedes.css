@@ -1,62 +1,84 @@
 .contacto-redes {
-  width: 100%; 
-  padding: 50px 20px;
-  border-radius: 0; 
-  text-align: center;
-}
-
-
-.contacto-redes h2 {
+  padding: 4rem 1rem;
   font-family: "Michroma", sans-serif;
-  font-weight: 700;
-  margin-bottom: 30px;
-}
-
-.redes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-  gap: 20px;
-  justify-items: center;
-}
-
-.icon {
+  text-align: center;
   
-  border-radius: 12px;
-  padding: 20px 10px;
-  width: 100%;
-  max-width: 160px;
-  transition: 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.icon:hover {
-  border-color: #028802;
-  transform: translateY(-5px);
+.contacto-titulo {
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.icon p {
-  margin-top: 10px;
+.redes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card-red {
+
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 40px rgb(3, 218, 74);
+}
+
+.card-red:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-red svg {
+  
+ 
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.card-red:hover svg {
+  color: #6d88ff;
+}
+
+.card-red .titulo {
   font-weight: 600;
-  font-family: "Lato", sans-serif;
-  margin: 6px 0;
+  margin-bottom: 0.5rem;
 }
 
+.card-red p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #333;
+}
 
+/* Botón subir */
 .scroll-to-top {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 30px;
+  right: 30px;
+  color: white;
   border: none;
-  border-radius: 20%;
-  padding: 15px;
+  border-radius: 50%;
+  padding: 10px 12px;
   cursor: pointer;
   font-size: 1.2rem;
-  z-index: 999;
-  transition: background-color 0.3s;
+  z-index: 1000;
+  box-shadow: 0 0 40px rgb(3, 218, 74);
 }
 
 .scroll-to-top:hover {
-  transform: translateY(-3px); /* Pequeño levantamiento */
-  
-  
+  background-color: #1351fc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-red {
+    width: 90%;
+  }
 }
