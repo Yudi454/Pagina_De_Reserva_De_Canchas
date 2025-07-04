@@ -52,7 +52,7 @@ function App() {
           <Route path="/admin/ventas" element={<Ventas />} />
           <Route path="/admin/canchas" element={<Canchas />} />
         </Routes>
-          <Footer />
+        <Footer />
       </BrowserRouter>
       <ToastContainer position="bottom-left" autoClose={3000} />
     </>

@@ -19,6 +19,7 @@
   max-width: 550px; /* Limita el ancho máximo del formulario */
   display: flex;
   flex-direction: column;
+   margin-bottom: 50px;
 }
 
 .boton-register {
