@@ -19,6 +19,7 @@
   margin: 0;
   padding: 0;
   text-align: left;
+  
 }
 
 .navbar-container {
@@ -26,7 +27,7 @@
   position: fixed;
   top: 0;
   z-index: 1000;
-  height: 121px; /* Asegurate de fijar una altura */
+  height: 124px; /* Asegurate de fijar una altura */
   background-color: #fff; /* opcional */
 }
 

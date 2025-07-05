@@ -10,8 +10,17 @@
 
 }
 
+.register-titulo {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: rgba(230, 255, 4, 0.897);
+  text-shadow: 3px 5px 24px rgb(0, 0, 0);
+}
+
 .form-register {
-  margin-top: 180px;
+  margin-top: 45px;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(52, 209, 105, 0.712);
@@ -40,4 +49,22 @@
   
   transform: translateX(-3px); /* Pequeño levantamiento */
   box-shadow: 0 6px 12px rgba(25, 163, 66, 0.438); 
+}
+
+.volver-atras {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: rem 0 0 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.726);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  margin-top: 125px;
+  text-shadow: 0 3px 6px rgb(0, 10, 0); 
+}
+
+.volver-atras:hover {
+  color: #ffffff;
 }

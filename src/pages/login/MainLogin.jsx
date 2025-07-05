@@ -2,13 +2,15 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "../../css/login/login.css";
 import { useStore } from "../../store/AuthStore";
+import { Link } from "react-router-dom";
 
 const MainLogin = ({ usuario, setUsuario, onLoginSubmit }) => {
   const { color } = useStore();
 
   const {
     register,
-    handleSubmit, 
+    handleSubmit,
+    reset, 
     formState: { errors },
   } = useForm();
 
@@ -16,10 +18,13 @@ const MainLogin = ({ usuario, setUsuario, onLoginSubmit }) => {
     
     setUsuario(data); 
     onLoginSubmit(data);
+    reset();
+    
   };
 
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <h2 className="login-titulo">"Bienvenido/a de vuelta, accedé a tu cuenta"</h2>
       <div className="login-container">
         <Form className="form-login" onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3">
@@ -75,6 +80,12 @@ const MainLogin = ({ usuario, setUsuario, onLoginSubmit }) => {
             Iniciar Sesión
           </button>
         </Form>
+      </div>
+      <div className="cuenta">
+        <h5>"¿No tenés cuenta?"</h5>
+      <Link className="link-cuenta" to="/Register">
+      Registrate
+      </Link>
       </div>
     </div>
   );

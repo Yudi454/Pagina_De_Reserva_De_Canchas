@@ -17,7 +17,7 @@ const Login = () => {
     console.log( login);
     
     loadUser();
-    navigate("/Main1");
+    navigate("/Home");
   };
 
   return (
