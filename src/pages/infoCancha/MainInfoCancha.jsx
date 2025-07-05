@@ -13,6 +13,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStore } from "../../store/AuthStore";
 import { FaArrowLeft } from "react-icons/fa";
+import Toast from "react-bootstrap/Toast";
 
 const MainInfoCancha = () => {
   const carrito = useStore((state) => state.carritoReservas);
@@ -23,6 +24,8 @@ const MainInfoCancha = () => {
   const [turnos, setTurnos] = useState([]);
   const [fechaCargada, setFechaCargada] = useState("");
   const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
+  const [mostrarToast, setMostrarToast] = useState(false);
+  const [reservaConfirmada, setReservaConfirmada] = useState(null);
 
   const navigate = useNavigate();
   const { color } = useStore();
@@ -73,8 +76,8 @@ const MainInfoCancha = () => {
     axios
       .post("http://localhost:8000/reservas/create", nuevaReserva)
       .then(() => {
-        alert("Reserva realizada con éxito");
-        navigate("/reservar-Cancha");
+        setReservaConfirmada(nuevaReserva);
+        setMostrarToast(true);
       })
       .catch((err) => {
         console.error("Error al crear reserva:", err);
@@ -119,6 +122,34 @@ const MainInfoCancha = () => {
       className={color === "Claro" ? "modo-claro" : "modo-oscuro"}
       style={{ paddingTop: "17vh" }}
     >
+      <Toast
+        onClose={() => {
+          setMostrarToast(false);
+          navigate("/reservar-Cancha");
+        }}
+        show={mostrarToast}
+        delay={5000}
+        autohide
+        style={{
+          position: "fixed",
+          top: 20,
+          right: 20,
+          minWidth: "250px",
+          backgroundColor: "#d1e7dd",
+          border: "1px solid #0f5132",
+          color: "#0f5132",
+          zIndex: 9999,
+        }}
+      >
+        <Toast.Header>
+          <strong className="me-auto">Reserva Confirmada</strong>
+        </Toast.Header>
+        <Toast.Body>
+          Cancha: {cancha.tipo_cancha} <br />
+          Fecha: {reservaConfirmada?.fecha_reserva} <br />
+          Precio: ${cancha.precio_cancha}
+        </Toast.Body>
+      </Toast>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand

@@ -2,17 +2,13 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import ReservaItem from "./ReservaItem"
 
 const MainMisReservas = ({ show, onHide, setValorModal }) => {
   const stored = localStorage.getItem("usuario");
   const user = stored ? JSON.parse(stored) : null;
   const [usuario, setUsuario] = useState();
   const [reservas, setReservas] = useState([]);
-
-  
-
-
 
   useEffect(() => {
     if (show) {
@@ -48,6 +44,15 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
     }
   };
 
+  const hoy = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD'
+
+  const reservasHoy = reservas.filter(
+    (r) => r.dia_reserva.slice(0, 10) === hoy
+  );
+  const reservasFuturas = reservas.filter(
+    (r) => r.dia_reserva.slice(0, 10) > hoy
+  );
+
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
@@ -58,34 +63,39 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
         {reservas.length === 0 ? (
           <p>No hay reservas.</p>
         ) : (
-          <ul>
-            {reservas.map((reserva, key) => (
-              <li key={key} style={{ marginBottom: "15px" }}>
-                <div>
-                  <span>
-                    <strong>Cancha:</strong> {reserva.tipo_cancha} -{" "}
-                    <strong>Total:</strong> ${reserva.precio_cancha}
-                  </span>
-                </div>
-                <div>
-                  <span>
-                    <strong>Dia:</strong> {reserva.dia_reserva.slice(0, 10)} -{" "}
-                    <strong>Horario: </strong>
-                    {reserva.hora_inicio.slice(0, 5)}/
-                    {reserva.hora_fin.slice(0, 5)}
-                  </span>
-                  <Button
-                    style={{ marginLeft: "20px" }}
-                    variant="danger"
-                    size="sm"
-                    onClick={() => handleEliminarReserva(reserva.id_reserva)}
-                  >
-                    Eliminar
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <>
+            {reservasHoy.length > 0 && (
+              <>
+                <h6 style={{ marginTop: "10px" }}>Hoy</h6>
+                <ul>
+                  {reservasHoy.map((reserva, key) => (
+                    <li key={`hoy-${key}`} style={{ marginBottom: "15px" }}>
+                      <ReservaItem
+                        reserva={reserva}
+                        onEliminar={handleEliminarReserva}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+
+            {reservasFuturas.length > 0 && (
+              <>
+                <h6 style={{ marginTop: "15px" }}>Próximas</h6>
+                <ul>
+                  {reservasFuturas.map((reserva, key) => (
+                    <li key={`futuro-${key}`} style={{ marginBottom: "15px" }}>
+                      <ReservaItem
+                        reserva={reserva}
+                        onEliminar={handleEliminarReserva}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </>
         )}
       </Modal.Body>
       <Modal.Footer>
