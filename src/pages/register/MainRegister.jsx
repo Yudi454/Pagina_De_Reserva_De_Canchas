@@ -2,15 +2,18 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "../../css/register/Register.css";
 import { useStore } from "../../store/AuthStore";
+import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
-const MainRegister = ({ usuario, setUsuario, onRegisterSubmit }) => {
+const MainRegister = ({
+  usuario,
+  setUsuario,
+  onRegisterSubmit,
+  register,
+  handleSubmit,
+  errors,
+}) => {
   const { color } = useStore();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const onSubmit = (data) => {
     setUsuario(data);
@@ -19,7 +22,14 @@ const MainRegister = ({ usuario, setUsuario, onRegisterSubmit }) => {
 
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <Link to="/" className="volver-atras">
+        <FaArrowLeft style={{ marginRight: "8px" }} />
+        Volver al inicio
+      </Link>
       <div className="register-contenedor">
+        <h3 className="register-titulo">
+          "Gracias por registrarte, completá tus datos y empezá a disfrutar"
+        </h3>
         <Form className="form-register" onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3">
             <Form.Label>Usuario</Form.Label>
@@ -102,7 +112,7 @@ const MainRegister = ({ usuario, setUsuario, onRegisterSubmit }) => {
             <Form.Control
               type="password"
               name="contraseña"
-              placeholder="Ingrese una contraseña"
+              placeholder="Ingrese una contraseña minimo 6 caracteres"
               {...register("contraseña", {
                 required: "La contraseña es obligatoria",
                 minLength: {
@@ -127,9 +137,14 @@ const MainRegister = ({ usuario, setUsuario, onRegisterSubmit }) => {
           </button>
         </Form>
       </div>
+      <div className="cuenta">
+        <h5>"¿Ya tienes una cuenta?"</h5>
+        <Link className="link-cuenta" to="/Login">
+          Inicia Sesión
+        </Link>
+      </div>
     </div>
   );
 };
-
 
 export default MainRegister;

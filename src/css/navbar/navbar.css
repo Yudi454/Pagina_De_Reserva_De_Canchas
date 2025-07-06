@@ -19,16 +19,18 @@
   margin: 0;
   padding: 0;
   text-align: left;
+  
 }
 
 .navbar-container {
   width: 100%;
   position: fixed;
   top: 0;
-  width: 100%;
   z-index: 1000;
-  
+  height: 124px; /* Asegurate de fijar una altura */
+  background-color: #fff; /* opcional */
 }
+
 
 .navbar-custom {
   display: flex;
