@@ -1,14 +1,14 @@
 .footer-container {
+
   width: 100%;
-  margin-top: 120px;
   padding: 1rem 1rem 1rem; 
   display: flex;
   justify-content: center;
   align-items: center;
   animation: fadeInUp 1s ease;
   position: relative;
-  
 }
+
 
 .footer-content {
   
@@ -36,6 +36,7 @@
 }
 
 .footer-icons a {
+  
   color: #f1f1f1;
   font-size: 1.8rem;
   transition: transform 0.3s ease, color 0.3s ease;

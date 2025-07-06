@@ -1,5 +1,4 @@
 .login-container {
-
   display: flex;
   flex-direction: column;
   font-family: "Lato", sans-serif;
@@ -8,15 +7,25 @@
   min-height: 100%;
 }
 
+.login-titulo {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: rgba(230, 255, 4, 0.897);
+  text-shadow: 3px 5px 24px rgb(0, 0, 0);
+}
+
 .form-login {
-  margin-top: 180px;
+  margin-top: 35px;
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(52, 209, 105, 0.712);
+  box-shadow: 0 4px 20px rgb(10, 173, 64);
   width: 100%;
   max-width: 600px; /* Limita el ancho máximo del formulario */
   display: flex;
   flex-direction: column;
+  margin-bottom: 27px;
 }
 
 .boton-login {
@@ -30,6 +39,7 @@
   cursor: pointer; /* Cambia el cursor a una mano */
   border: none;
   color: white;
+  margin-top: 25px;
   
 }
 
@@ -39,4 +49,18 @@
   box-shadow: 0 6px 12px rgba(25, 163, 66, 0.438); 
 }
 
+.cuenta{
+  text-align: center;
+  padding-bottom: 35px;
+  font-size: 1.4rem;
+}
 
+.link-cuenta {
+  display: inline-block;
+  padding: 12px 25px;
+  color: rgba(230, 255, 4, 0.897);
+  text-decoration: none;
+  border-radius: 8px;
+  text-shadow: 0 6px 12px rgba(145, 255, 178, 0.699); 
+  transition: background-color 0.3s ease;
+}

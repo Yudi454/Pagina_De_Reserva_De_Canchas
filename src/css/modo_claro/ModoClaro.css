@@ -1,36 +1,28 @@
 .modo-claro {
-  background-color: #098030;
+  background-color: #29a853;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23006c15' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat; 
-  color: #ffffff;            
+  background-repeat: repeat;
+  color: #ffffff;
   text-shadow: 2px 2px 4px #11b432;
-  background-size: 250px 250px; 
+  background-size: 250px 250px;
 }
 
 .modo-claro .main1-overlay {
-   
   color: #fffefe;
   text-shadow: 2px 2px 6px #1fa135;
   background-color: #0081113a;
-  box-shadow:2px 2px 9px #003008;
+  box-shadow: 2px 2px 9px #003008;
 }
 
-
-.modo-claro .boton-reservar{
+.modo-claro .boton-reservar {
   background-color: #45bf55;
   color: #022e06;
-  box-shadow:8px 4px 9px #020e04;
+  box-shadow: 8px 4px 9px #020e04;
 }
 
 .modo-claro .carousel {
-
-  
   box-shadow: 0 0 40px rgb(2, 44, 16);
-  
-
 }
-
-
 
 .modo-claro .servicio-card {
   border: 2px solid #005512;
@@ -43,46 +35,39 @@
 }
 
 .modo-claro .contacto-redes {
-
-  background-color: #45bf55; 
-  
+  background-color: #45bf55;
 }
 
 .modo-claro .icon {
- 
   background-color: #1fa135;
   box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
 }
 
 .modo-claro .icon:hover {
-
   background-color: #019b28;
 }
 
-
-.modo-claro .footer{
+.modo-claro .footer {
   background-color: #45bf55;
   color: #000000;
 }
 
 .modo-claro .navbar-container {
-   background-color: #45bf55bd;
+  background-color: #67e277;
 }
 
-
-
 .modo-claro .form-login {
-
-  color: #000000;
-  background-color: #45bf55
-
+  color: rgba(230, 255, 4, 0.897);
+  box-shadow: 0 6px 12px rgba(0, 7, 0, 0.623);
+  background-color: #45bf55;
+  text-shadow: 2px 1px 2px #03330b;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .modo-claro .boton-login {
-  
-   background-color: #0d7c1c;
+  background-color: #0d7c1c;
   color: #000000;
-  
 }
 
 .modo-claro .boton-login:hover {
@@ -91,9 +76,7 @@
 }
 
 .modo-claro .main1-fondo::after {
-  
   background: linear-gradient(to top, rgba(255, 255, 255, 0.418), transparent);
-  
 }
 
 .modo-claro .scroll-to-top {
@@ -106,47 +89,37 @@
 }
 
 .modo-claro .form-register {
-
-  color: #000000;
-  background-color: #45bf55
-
+  color: rgba(230, 255, 4, 0.897);
+  box-shadow: 0 6px 12px rgba(0, 7, 0, 0.623);
+  background-color: #45bf55;
+  text-shadow: 2px 2px 6px #03330b;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .modo-claro .boton-register {
-  
-   background-color: #0d7c1c;
-  color: #000000;
-  
+  background-color: #0d7c1c;
+  color: #ffffff;
 }
 
 .modo-claro .boton-register:hover {
-
   background-color: #4ff172;
   border-color: #094918;
 }
 
 .modo-claro .card-red {
- 
   box-shadow: 0 0 40px rgb(6, 143, 51);
   background-color: #209c31;
 }
 
 .modo-claro .card-red p {
-  
   color: #ffffff;
 }
 
 .modo-claro .card-red svg {
-  
- color: #04460f;
-  
+  color: #04460f;
 }
 
-
-
-
 .modo-claro .footer-container {
- 
   background: linear-gradient(to top, #32c04e, #24eb7d);
-   
 }

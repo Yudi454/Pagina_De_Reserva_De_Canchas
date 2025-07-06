@@ -1,8 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal);
 
 // Obtener muchos datos
 export const getDatos = async (url, setValor) => {
@@ -126,8 +123,21 @@ export const register = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
+    return true;
   } catch (error) {
-    toast.error(error);
+    console.log(error);
+    toast.error("Error al registrarse");
+  }
+};
+
+// Eliminar dato
+export const deleteDato = async (url) => {
+  try {
+    const res = await axios.delete(url);
+    alert("Objeto eliminado");
+  } catch (error) {
+    console.log(error);
+    alert("Error al eliminar");
   }
 };
 
@@ -139,8 +149,10 @@ export const login = async (url, usuario) => {
     console.log(res.data);
 
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
+    return true
   } catch (error) {
-    toast.error(error);
+    toast.error("Error en login");
+    console.log(error);
   }
 };
 
