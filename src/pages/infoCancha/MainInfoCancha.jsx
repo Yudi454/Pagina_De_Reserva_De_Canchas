@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStore } from "../../store/AuthStore";
+import { FaArrowLeft } from "react-icons/fa";
+import Toast from "react-bootstrap/Toast";
 
 const MainInfoCancha = () => {
   const carrito = useStore((state) => state.carritoReservas);
@@ -22,8 +24,11 @@ const MainInfoCancha = () => {
   const [turnos, setTurnos] = useState([]);
   const [fechaCargada, setFechaCargada] = useState("");
   const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
+  const [mostrarToast, setMostrarToast] = useState(false);
+  const [reservaConfirmada, setReservaConfirmada] = useState(null);
 
   const navigate = useNavigate();
+  const { color } = useStore();
 
   const { id } = useParams();
 
@@ -70,7 +75,10 @@ const MainInfoCancha = () => {
 
     axios
       .post("http://localhost:8000/reservas/create", nuevaReserva)
-      .then(() => alert("Reserva realizada con éxito"))
+      .then(() => {
+        setReservaConfirmada(nuevaReserva);
+        setMostrarToast(true);
+      })
       .catch((err) => {
         console.error("Error al crear reserva:", err);
         alert("Ocurrió un error al crear la reserva.");
@@ -92,8 +100,6 @@ const MainInfoCancha = () => {
       (t) => String(t.id_horario) === String(horarioSeleccionado)
     );
 
-    console.log(horarioEncontrado);
-    
 
     const horario = `${horarioEncontrado[0].hora_inicio}-${horarioEncontrado[0].hora_fin}`;
 
@@ -109,6 +115,8 @@ const MainInfoCancha = () => {
     console.log(nuevaReserva);
     
 
+    console.log(nuevaReserva);
+
     agregarReserva(nuevaReserva);
 
     localStorage.setItem("carritoReservas", JSON.stringify(carrito));
@@ -117,10 +125,47 @@ const MainInfoCancha = () => {
   };
 
   return (
-    <div>
+    <div
+      className={color === "Claro" ? "modo-claro" : "modo-oscuro"}
+      style={{ paddingTop: "17vh" }}
+    >
+      <Toast
+        onClose={() => {
+          setMostrarToast(false);
+          navigate("/reservar-Cancha");
+        }}
+        show={mostrarToast}
+        delay={5000}
+        autohide
+        style={{
+          position: "fixed",
+          top: 20,
+          right: 20,
+          minWidth: "250px",
+          backgroundColor: "#d1e7dd",
+          border: "1px solid #0f5132",
+          color: "#0f5132",
+          zIndex: 9999,
+        }}
+      >
+        <Toast.Header>
+          <strong className="me-auto">Reserva Confirmada</strong>
+        </Toast.Header>
+        <Toast.Body>
+          Cancha: {cancha.tipo_cancha} <br />
+          Fecha: {reservaConfirmada?.fecha_reserva} <br />
+          Precio: ${cancha.precio_cancha}
+        </Toast.Body>
+      </Toast>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/">LOGO</Navbar.Brand>
+          <Navbar.Brand
+            onClick={() => navigate("/reservar-Cancha")}
+            style={{ cursor: "pointer" }}
+          >
+            <FaArrowLeft style={{ marginRight: "5px" }} />
+            Volver
+          </Navbar.Brand>
           <Nav>
             <Nav.Link href="/info-usuario">Usuario</Nav.Link>
           </Nav>
