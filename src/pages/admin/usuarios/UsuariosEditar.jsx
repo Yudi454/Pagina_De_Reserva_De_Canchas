@@ -15,8 +15,25 @@ const UsuariosEditar = ({
     <div className="d-flex flex-column align-items-center text-center">
       <Button onClick={() => setMostrarEditar(false)}>X</Button>
       <h3 className="mt-3">Editar usuario</h3>
+      {usuario && usuario.imagen && (
+        <img src={usuario.imagen} className="img-fluid w-25 mt-3 mb-3" />
+      )}
       {usuario && (
         <Form onSubmit={handleSubmit(handleEditarUsuario)}>
+          <Form.Group>
+            <Form.Label>Imagen:</Form.Label>
+            <Form.Control
+              name="imagen_usuario"
+              value={usuario.imagen_usuario}
+              {...register("imagen_usuario", {
+                required: "La imagen ese requerido",
+              })}
+              onChange={(e) =>
+                setUsuario({ ...usuario, [e.target.name]: e.target.value })
+              }
+            />
+            {errors.imagen_usuario && <p>{errors.imagen_usuario.message}</p>}
+          </Form.Group>
           <Form.Group>
             <Form.Label>Nombre:</Form.Label>
             <Form.Control
@@ -134,7 +151,10 @@ const UsuariosEditar = ({
               <p>{errors.telefono_usuario.message}</p>
             )}
           </Form.Group>
-          <Button type="submit" className="mt-3">Crear <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></Button>
+          <Button type="submit" className="mt-3">
+            Editar usuario{" "}
+            <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
+          </Button>
         </Form>
       )}
     </div>

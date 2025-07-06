@@ -18,6 +18,19 @@ const CreateUsuarios = ({
       <h3>Crear usuario</h3>
       <Form onSubmit={handleSubmit(handleCrearUsuario)}>
         <Form.Group>
+          <Form.Label>Imagen:</Form.Label>
+          <Form.Control
+            name="imagen_usuario"
+            {...register("imagen_usuario", {
+              required: "La imagen ese requerido",
+            })}
+            onChange={(e) =>
+              setUsuario({ ...usuario, [e.target.name]: e.target.value })
+            }
+          />
+          {errors.imagen_usuario && <p>{errors.imagen_usuario.message}</p>}
+        </Form.Group>
+        <Form.Group>
           <Form.Label>Nombre:</Form.Label>
           <Form.Control
             name="nombre_usuario"
@@ -128,7 +141,10 @@ const CreateUsuarios = ({
           />
           {errors.telefono_usuario && <p>{errors.telefono_usuario.message}</p>}
         </Form.Group>
-        <Button type="submit" className="mt-3">Crear <FontAwesomeIcon className="icon-admin" icon={faFileSignature}/></Button>
+        <Button type="submit" className="mt-3">
+          Crear{" "}
+          <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
+        </Button>
       </Form>
     </div>
   );
