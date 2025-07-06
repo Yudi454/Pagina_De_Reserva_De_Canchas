@@ -16,6 +16,8 @@ import { rutas } from "../../../routes/Rutas";
 import { useForm } from "react-hook-form";
 import ProductosCrear from "./ProductosCrear";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 
 const Productos = () => {
   const [mostrarVer, setMostrarVer] = useState(false);
@@ -70,13 +72,17 @@ const Productos = () => {
     reset();
   };
 
-  const handleBuscar = async (data) => {
+  const handleBuscar = async (e) => {
+    e.preventDefault();
     try {
       buscarDato(
         `${RUTA_PRODUCTOS}/buscar`,
-        { nombre_producto: data.buscar },
+        { nombre_producto: buscar.buscar },
         setProductos
       );
+      setMostrarCrear(false);
+      setMostrarEditar(false);
+      setMostrarVer(false);
     } catch (error) {
       MySwal.fire({
         icon: "error",
@@ -104,9 +110,13 @@ const Productos = () => {
 
   const handleEditarProducto = async (data) => {
     try {
+      const productoFinal = {
+        ...data,
+        imagen_producto: data.imagen,
+      };
       await updateDato(
         `${RUTA_PRODUCTOS}/update/${producto.id_producto}`,
-        data,
+        productoFinal,
         "producto"
       );
       await getDatos(RUTA_PRODUCTOS, setProductos);
@@ -141,27 +151,91 @@ const Productos = () => {
   };
 
   return (
-    <>
+    <div className="admin-container">
       <Row>
-        <Col>
-          <NavAdmin />
+        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+          <NavAdmin celular={false} mostrar={"productos"} />
         </Col>
-        <Col>
-          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
-          <Form onSubmit={handleSubmit(handleBuscar)}>
+        <Col xs={12} className="d-bock d-md-none">
+          <NavAdmin celular={true} mostrar={"productos"} />
+        </Col>
+        {mostrarCrear && (
+          <Col md={10}>
+            <ProductosCrear
+              setMostrarCrear={setMostrarCrear}
+              producto={producto}
+              setProducto={setProducto}
+              handleCrearProducto={handleCrearProducto}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        {mostrarVer && (
+          <Col md={10} className="d-flex justify-content-center">
+            <div className="text-center">
+              <VerDatoAdmin setMostrarVer={setMostrarVer} dato={producto} />
+            </div>
+          </Col>
+        )}
+        {mostrarEditar && (
+          <Col md={10}>
+            <ProductosEditar
+              producto={producto}
+              setProducto={setProducto}
+              setMostrarEditar={setMostrarEditar}
+              handleEditarProducto={handleEditarProducto}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        <Col
+          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+          sm={12}
+          className={
+            mostrarCrear || mostrarEditar || mostrarVer
+              ? "text-center d-flex justify-content-center flex-column align-items-center"
+              : "text-center"
+          }
+        >
+          {!mostrarCrear && (
+            <div className="mt-3 mb-3">
+              <Button onClick={handleCrear}>
+                Crear productos
+                <FontAwesomeIcon
+                  icon={faFileSignature}
+                  className="icon-admin"
+                />
+              </Button>
+            </div>
+          )}
+          <Form
+            onSubmit={(e) => handleBuscar(e)}
+            className="d-flex justify-content-center"
+          >
             <Form.Group>
               <Form.Control
                 placeholder="Buscar..."
                 name="buscar"
-                {...register("buscar", {
-                  required: "El valor es obligatorio",
-                })}
+                onChange={(e) => setBuscar({ [e.target.name]: e.target.value })}
               />
-              {errors.buscar && <p>{errors.buscar.message}</p>}
-              <Button type="submit">Buscar</Button>
-              <Button type="button" onClick={traerDatos}>
-                Reiniciar
-              </Button>
+              <small className="form-text text-center">
+                Escribe el nombre del producto y luego clickea en "Buscar
+                producto".
+                <br />
+                Clickea reiniciar para traer todos los productos
+              </small>
+              <div className="mt-3 mb-4">
+                <Button type="submit" className="me-4">
+                  Buscar
+                </Button>
+                <Button type="button" onClick={traerDatos}>
+                  Reiniciar
+                </Button>
+              </div>
             </Form.Group>
           </Form>
           {productos && productos.length > 0 ? (
@@ -175,39 +249,8 @@ const Productos = () => {
             <p>No hay Productos</p>
           )}
         </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={producto} />
-          </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <ProductosEditar
-              producto={producto}
-              setProducto={setProducto}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarProducto={handleEditarProducto}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-        {mostrarCrear && (
-          <Col>
-            <ProductosCrear
-              setMostrarCrear={setMostrarCrear}
-              producto={producto}
-              setProducto={setProducto}
-              handleCrearProducto={handleCrearProducto}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
       </Row>
-    </>
+    </div>
   );
 };
 

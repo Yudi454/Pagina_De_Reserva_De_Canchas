@@ -14,6 +14,8 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import CanchasEditar from "./CanchasEditar";
 import { useForm } from "react-hook-form";
 import CanchasCrear from "./CanchasCrear";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 
 const Canchas = () => {
   const [canchas, setCanchas] = useState();
@@ -113,44 +115,16 @@ const Canchas = () => {
   };
 
   return (
-    <>
+    <div className="admin-container">
       <Row>
-        <Col>
-          <NavAdmin />
+        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+          <NavAdmin celular={false} mostrar={"canchas"} />
         </Col>
-        <Col>
-          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
-          {canchas && canchas.length > 0 ? (
-            <MainCanchas
-              canchas={canchas}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-              handleVer={handleVer}
-            />
-          ) : (
-            <p>No hay canchas</p>
-          )}
+        <Col xs={12} className="d-bock d-md-none">
+          <NavAdmin celular={true} mostrar={"canchas"} />
         </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cancha} />
-          </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <CanchasEditar
-              cancha={cancha}
-              setCancha={setCancha}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarCancha={handleEditarCancha}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
         {mostrarCrear && (
-          <Col>
+          <Col md={10}>
             <CanchasCrear
               setMostrarCrear={setMostrarCrear}
               cancha={cancha}
@@ -162,8 +136,59 @@ const Canchas = () => {
             />
           </Col>
         )}
+        {mostrarVer && (
+          <Col md={10} className="d-flex justify-content-center">
+            <div className="text-center">
+              <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cancha} />
+            </div>
+          </Col>
+        )}
+        {mostrarEditar && (
+          <Col md={10}>
+            <CanchasEditar
+              cancha={cancha}
+              setCancha={setCancha}
+              setMostrarEditar={setMostrarEditar}
+              handleEditarCancha={handleEditarCancha}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        <Col
+          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+          sm={12}
+          className={
+            mostrarCrear || mostrarEditar || mostrarVer
+              ? "text-center d-flex justify-content-center flex-column align-items-center"
+              : "text-center"
+          }
+        >
+          {!mostrarCrear && (
+            <div className="mt-3 mb-3">
+              <Button onClick={handleCrear}>
+                Crear Cancha
+                <FontAwesomeIcon
+                  icon={faFileSignature}
+                  className="icon-admin"
+                />
+              </Button>
+            </div>
+          )}
+          {canchas && canchas.length > 0 ? (
+            <MainCanchas
+              canchas={canchas}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+              handleVer={handleVer}
+            />
+          ) : (
+            <p>No hay canchas</p>
+          )}
+        </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

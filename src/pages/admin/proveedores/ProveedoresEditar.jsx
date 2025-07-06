@@ -1,3 +1,5 @@
+import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 
 const ProveedoresEditar = ({
@@ -10,13 +12,15 @@ const ProveedoresEditar = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Editar</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <Button onClick={() => setMostrarEditar(false)}>
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </Button>
+      <h3>Editar proveedor</h3>
       {proveedor && (
         <Form onSubmit={handleSubmit(handleEditarProveedor)}>
           <Form.Group>
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label>Nombre:</Form.Label>
             <Form.Control
               value={proveedor.nombre_proveedor}
               name="nombre_proveedor"
@@ -32,7 +36,7 @@ const ProveedoresEditar = ({
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Email:</Form.Label>
             <Form.Control
               value={proveedor.email_proveedor}
               name="email_proveedor"
@@ -46,7 +50,7 @@ const ProveedoresEditar = ({
             {errors.email_proveedor && <p>{errors.email_proveedor.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Telefono</Form.Label>
+            <Form.Label>Telefono:</Form.Label>
             <Form.Control
               value={proveedor.telefono_proveedor}
               name="telefono_proveedor"
@@ -61,10 +65,13 @@ const ProveedoresEditar = ({
               <p>{errors.telefono_proveedor.message}</p>
             )}
           </Form.Group>
-          <Button type="submit">Editar</Button>
+          <Button type="submit" className="mt-3">
+            Editar
+            <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
+          </Button>
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

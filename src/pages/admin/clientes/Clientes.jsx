@@ -14,6 +14,8 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ClientesEditar from "./ClientesEditar";
 import CreateClientes from "./CreateClientes";
 import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 
 const Clientes = () => {
   const [clientes, setClientes] = useState();
@@ -81,7 +83,7 @@ const Clientes = () => {
   const handleEditarCliente = async (data) => {
     try {
       await updateDato(
-        `${RUTA_CLIENTES}/update/${cliente.id_clientes}`,
+        `${RUTA_CLIENTES}/update/${cliente.id_cliente}`,
         data,
         "cliente"
       );
@@ -117,14 +119,62 @@ const Clientes = () => {
   };
 
   return (
-    <>
+    <div className="admin-container">
       <Row>
-        <Col md={3}>
-          <NavAdmin />
+        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+          <NavAdmin celular={false} mostrar={"clientes"} />
         </Col>
-        <Col>
+        <Col xs={12} className="d-bock d-md-none">
+          <NavAdmin celular={true} mostrar={"clientes"} />
+        </Col>
+        {mostrarCreate && (
+          <Col md={10} className="">
+            <CreateClientes
+              setMostrarCreate={setMostrarCreate}
+              cliente={cliente}
+              setCliente={setCliente}
+              handleCreateCliente={handleCreateCliente}
+              handleSubmit={handleSubmit}
+              errors={errors}
+              register={register}
+            />
+          </Col>
+        )}
+        {mostrarVer && (
+          <Col md={10} className="d-flex justify-content-center">
+            <div className="text-center">
+              <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cliente} />
+            </div>
+          </Col>
+        )}
+        {mostrarEditar && (
+          <Col md={10}>
+            <ClientesEditar
+              cliente={cliente}
+              setCliente={setCliente}
+              setMostrarEditar={setMostrarEditar}
+              handleEditarCliente={handleEditarCliente}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        <Col
+          md={mostrarCreate || mostrarEditar || mostrarVer ? 12 : 10}
+          sm={12}
+          className={mostrarCreate || mostrarEditar || mostrarVer ? "text-center d-flex justify-content-center flex-column align-items-center" : "text-center"}
+        >
           {!mostrarCreate && (
-            <Button onClick={handleCreate}>Crear Cliente</Button>
+            <div className="mt-3 mb-3">
+              <Button onClick={handleCreate}>
+                Crear Cliente{" "}
+                <FontAwesomeIcon
+                  icon={faFileSignature}
+                  className="icon-admin"
+                />
+              </Button>
+            </div>
           )}
           {clientes && clientes.length > 0 ? (
             <MainClientes
@@ -137,39 +187,8 @@ const Clientes = () => {
             <p>No hay Clientes</p>
           )}
         </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cliente} />
-          </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <ClientesEditar
-              cliente={cliente}
-              setCliente={setCliente}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarCliente={handleEditarCliente}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-        {mostrarCreate && (
-          <Col>
-            <CreateClientes
-              setMostrarCreate={setMostrarCreate}
-              cliente={cliente}
-              setCliente={setCliente}
-              handleCreateCliente={handleCreateCliente}
-              handleSubmit={handleSubmit}
-              errors={errors}
-              register={register}
-            />
-          </Col>
-        )}
       </Row>
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,5 @@
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 
 const UsuariosEditar = ({
@@ -10,13 +12,13 @@ const UsuariosEditar = ({
   register,
 }) => {
   return (
-    <>
+    <div className="d-flex flex-column align-items-center text-center">
       <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Editar</h3>
+      <h3 className="mt-3">Editar usuario</h3>
       {usuario && (
         <Form onSubmit={handleSubmit(handleEditarUsuario)}>
           <Form.Group>
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label>Nombre:</Form.Label>
             <Form.Control
               name="nombre_usuario"
               value={usuario.nombre_usuario}
@@ -31,7 +33,7 @@ const UsuariosEditar = ({
             {errors.nombre_usuario && <p>{errors.nombre_usuario.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Apellido</Form.Label>
+            <Form.Label>Apellido:</Form.Label>
             <Form.Control
               name="apellido_usuario"
               value={usuario.apellido_usuario}
@@ -48,7 +50,7 @@ const UsuariosEditar = ({
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label>Contraseña:</Form.Label>
             <Form.Control
               name="contraseña_usuario"
               value={usuario.contraseña_usuario}
@@ -65,7 +67,7 @@ const UsuariosEditar = ({
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Rol de usuario</Form.Label>
+            <Form.Label>Rol de usuario:</Form.Label>
             <Form.Control
               as="select"
               name="rol"
@@ -86,7 +88,7 @@ const UsuariosEditar = ({
             {errors.rol && <p>{errors.rol.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>DNI</Form.Label>
+            <Form.Label>DNI:</Form.Label>
             <Form.Control
               name="dni"
               value={usuario.dni}
@@ -102,7 +104,7 @@ const UsuariosEditar = ({
             {errors.dni && <p>{errors.dni.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Email:</Form.Label>
             <Form.Control
               name="email_usuario"
               value={usuario.email_usuario}
@@ -116,7 +118,7 @@ const UsuariosEditar = ({
             {errors.email_usuario && <p>{errors.email_usuario.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Telefono</Form.Label>
+            <Form.Label>Telefono:</Form.Label>
             <Form.Control
               name="telefono_usuario"
               value={usuario.telefono_usuario}
@@ -132,10 +134,10 @@ const UsuariosEditar = ({
               <p>{errors.telefono_usuario.message}</p>
             )}
           </Form.Group>
-          <Button type="submit">Crear</Button>
+          <Button type="submit" className="mt-3">Crear <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></Button>
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

@@ -20,9 +20,13 @@ export const getDatos = async (url, setValor) => {
 
 // Obtener un solo dato
 export const getDato = async (url, setValor) => {
+  console.log(url);
+  
   try {
     const res = await axios.get(url);
     setValor(res.data.results);
+    console.log(res);
+    
   } catch (error) {
     MySwal.fire({
       icon: "error",
@@ -132,8 +136,17 @@ export const login = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
+    console.log(res.data);
+
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
   } catch (error) {
     toast.error(error);
   }
+};
+
+// desloguear
+
+export const logout = () => {
+  localStorage.removeItem("usuario");
+  toast.success("Sesión cerrada correctamente");
 };

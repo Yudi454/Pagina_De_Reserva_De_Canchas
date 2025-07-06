@@ -1,3 +1,5 @@
+import { faFileSignature, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 
 const ProductosCrear = ({
@@ -10,12 +12,14 @@ const ProductosCrear = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarCrear(false)}>X</Button>
+    <div className="d-flex flex-column align-items-center text-center mb-5">
+      <Button onClick={() => setMostrarCrear(false)}>
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </Button>
       <h3>Crear</h3>
       <Form onSubmit={handleSubmit(handleCrearProducto)}>
         <Form.Group>
-          <Form.Label>Nombre</Form.Label>
+          <Form.Label>Nombre:</Form.Label>
           <Form.Control
             name="nombre_producto"
             {...register("nombre_producto", {
@@ -28,7 +32,20 @@ const ProductosCrear = ({
           {errors.nombre_producto}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Precio</Form.Label>
+          <Form.Label>Imagen:</Form.Label>
+          <Form.Control
+            name="imagen_producto"
+            {...register("imagen_producto", {
+              required: "La imagen es obligatoria",
+            })}
+            onChange={(e) =>
+              setProducto({ ...producto, [e.target.name]: e.target.value })
+            }
+          />
+          {errors.nombre_producto}
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Precio:</Form.Label>
           <Form.Control
             name="precio_producto"
             {...register("precio_producto", {
@@ -41,7 +58,7 @@ const ProductosCrear = ({
           {errors.precio_producto && <p>{errors.precio_producto.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Stock</Form.Label>
+          <Form.Label>Stock:</Form.Label>
           <Form.Control
             name="stock"
             {...register("stock", {
@@ -54,7 +71,7 @@ const ProductosCrear = ({
           {errors.stock && <p>{errors.stock.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Distribuidor</Form.Label>
+          <Form.Label>Distribuidor:</Form.Label>
           <Form.Control
             name="nombre_proveedor"
             {...register("nombre_proveedor", {
@@ -66,9 +83,12 @@ const ProductosCrear = ({
           />
           {errors.nombre_proveedor && <p>{errors.nombre_proveedor.message}</p>}
         </Form.Group>
-        <Button type="submit">Editar</Button>
+        <Button type="submit" className="mt-3">
+          Crear producto{" "}
+          <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
+        </Button>
       </Form>
-    </>
+    </div>
   );
 };
 

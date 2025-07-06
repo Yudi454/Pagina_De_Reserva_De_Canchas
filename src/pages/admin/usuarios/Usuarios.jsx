@@ -16,6 +16,8 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import CreateUsuarios from "./CreateUsuarios";
 import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 const MySwal = withReactContent(Swal);
 
 const Usuarios = () => {
@@ -124,44 +126,16 @@ const Usuarios = () => {
   };
 
   return (
-    <>
+    <div className="admin-container">
       <Row>
-        <Col>
-          <NavAdmin />
+        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+          <NavAdmin celular={false} mostrar={"usuarios"} />
         </Col>
-        <Col>
-          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
-          {usuarios && usuarios.length > 0 ? (
-            <MainUsuarios
-              usuarios={usuarios}
-              handleVer={handleVer}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <p>No hay Usuarios</p>
-          )}
+        <Col xs={12} className="d-bock d-md-none">
+          <NavAdmin celular={true} mostrar={"usuarios"} />
         </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={usuario} />
-          </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <UsuariosEditar
-              usuario={usuario}
-              setUsuario={setUsuario}
-              handleEditarUsuario={handleEditarUsuario}
-              setMostrarEditar={setMostrarEditar}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
         {mostrarCrear && (
-          <Col>
+          <Col md={10}>
             <CreateUsuarios
               setMostrarCrear={setMostrarCrear}
               usuario={usuario}
@@ -173,8 +147,59 @@ const Usuarios = () => {
             />
           </Col>
         )}
+        {mostrarVer && (
+          <Col md={10} className="d-flex justify-content-center">
+            <div className="text-center">
+              <VerDatoAdmin setMostrarVer={setMostrarVer} dato={usuario} />
+            </div>
+          </Col>
+        )}
+        {mostrarEditar && (
+          <Col md={10}>
+            <UsuariosEditar
+              usuario={usuario}
+              setUsuario={setUsuario}
+              handleEditarUsuario={handleEditarUsuario}
+              setMostrarEditar={setMostrarEditar}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        <Col
+          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+          sm={12}
+          className={
+            mostrarCrear || mostrarEditar || mostrarVer
+              ? "text-center d-flex justify-content-center flex-column align-items-center"
+              : "text-center"
+          }
+        >
+          {!mostrarCrear && (
+            <div className="mt-3 mb-3">
+              <Button onClick={handleCrear}>
+                Crear usuario{" "}
+                <FontAwesomeIcon
+                  icon={faFileSignature}
+                  className="icon-admin"
+                />
+              </Button>
+            </div>
+          )}
+          {usuarios && usuarios.length > 0 ? (
+            <MainUsuarios
+              usuarios={usuarios}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <p>No hay Usuarios</p>
+          )}
+        </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

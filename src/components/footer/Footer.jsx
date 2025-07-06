@@ -1,10 +1,11 @@
 import MainFooter from "./MainFooter";
 
+
 const Footer = () => {
   
 
   return (
-      <MainFooter />
+      <MainFooter/>
   );
 };
 

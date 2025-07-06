@@ -18,6 +18,8 @@ import ReservasCrear from "./ReservasCrear";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const MySwal = withReactContent(Swal);
 
 const Reservas = () => {
@@ -151,48 +153,16 @@ const Reservas = () => {
   };
 
   return (
-    <>
+    <div className="admin-container">
       <Row>
-        <Col>
-          <NavAdmin />
+        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+          <NavAdmin celular={false} mostrar={"reservas"} />
         </Col>
-        <Col>
-          {!mostrarCrear && (
-            <Button onClick={handleCrear}>Crear reserva</Button>
-          )}
-          {reservas && reservas.length > 0 ? (
-            <MainReservas
-              reservas={reservas}
-              handleDelete={handleDelete}
-              handleVer={handleVer}
-              handleEditar={handleEditar}
-            />
-          ) : (
-            <p>No hay reservas</p>
-          )}
+        <Col xs={12} className="d-bock d-md-none">
+          <NavAdmin celular={true} mostrar={"reservas"} />
         </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin dato={reserva} setMostrarVer={setMostrarVer} />
-          </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <ReservasEditar
-              reserva={reserva}
-              horarios={horarios}
-              setReserva={setReserva}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarReserva={handleEditarReserva}
-              buscarHorarios={buscarHorarios}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
         {mostrarCrear && (
-          <Col>
+          <Col md={10}>
             <ReservasCrear
               reserva={reserva}
               horarios={horarios}
@@ -206,8 +176,61 @@ const Reservas = () => {
             />
           </Col>
         )}
+        {mostrarVer && (
+          <Col md={10} className="d-flex justify-content-center">
+            <div className="text-center">
+              <VerDatoAdmin dato={reserva} setMostrarVer={setMostrarVer} />
+            </div>
+          </Col>
+        )}
+        {mostrarEditar && (
+          <Col md={10}>
+            <ReservasEditar
+              reserva={reserva}
+              horarios={horarios}
+              setReserva={setReserva}
+              setMostrarEditar={setMostrarEditar}
+              handleEditarReserva={handleEditarReserva}
+              buscarHorarios={buscarHorarios}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        <Col
+          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+          sm={12}
+          className={
+            mostrarCrear || mostrarEditar || mostrarVer
+              ? "text-center d-flex justify-content-center flex-column align-items-center"
+              : "text-center"
+          }
+        >
+          {!mostrarCrear && (
+            <div className="mt-3 mb-3">
+              <Button onClick={handleCrear}>
+                Crear reserva{" "}
+                <FontAwesomeIcon
+                  icon={faFileSignature}
+                  className="icon-admin"
+                />
+              </Button>
+            </div>
+          )}
+          {reservas && reservas.length > 0 ? (
+            <MainReservas
+              reservas={reservas}
+              handleDelete={handleDelete}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+            />
+          ) : (
+            <p>No hay reservas</p>
+          )}
+        </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

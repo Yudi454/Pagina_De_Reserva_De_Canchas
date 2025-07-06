@@ -1,54 +1,56 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Card } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import "../../css/home/main2.css";
 
+const images = [
+  "/canchafutbol.jpg",
+  "/canchabasquet.jpg",
+  "/canchapadle.jpg",
+  "/canchatenis.jpg",
+];
+
 const Main2 = () => {
+  const [current, setCurrent] = useState(0);
+  const total = images.length;
 
-    const [datos, setDatos] = useState([]);
-
-  const getDatos = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/canchas");
-      setDatos(response.data);
-    } catch (error) {
-      console.error("Error al obtener los datos", error);
-    }
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % total);
   };
 
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + total) % total);
+  };
+
+  // Movimiento automático
   useEffect(() => {
-    //getDatos();
-  }, []);
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000); 
+
+    return () => clearInterval(interval); // Limpiar intervalo al desmontar
+  }, []); // [] significa que se ejecuta una sola vez al montar
 
   return (
     <>
-    <div className="main2-fondo">
-    <br />
-    <br />
-    <h2 className="titulo-canchas text-center "> Canchas </h2>
-    <div className="card-grid">
-      {datos.map((dato) => (
-        <div key={dato.nombre} className="canchas-wrapper">
-          <h3 className="canchas-title">{dato.nombre}</h3>
-
-          <div
-            className="canchas-card"
-            style={{
-              backgroundImage: `url(${dato.imagen})`,
-            }}
-          >
-            <div className="card-overlay">
-              <p>{dato.descripcion}</p>
-            </div>
-          </div>
+      <div>
+        <br />
+        <h2 className="carousel-title ">Nuestras Canchas</h2>
+        <br />
+        <div className="carousel">
+          <button className="carousel-btn left" onClick={prevSlide}>
+           
+          </button>
+          <img src={images[current]} alt={`Imagen ${current + 1}`} />
+          <button className="carousel-btn right" onClick={nextSlide}>
+         
+          </button>
         </div>
-      ))}
-    </div>
-    <br />
-    <br />
-    </div>
+      </div>
+      <br />
+      <br />
+      <br />
     </>
-  )
-}
+  );
+};
 
-export default Main2
+export default Main2;
+

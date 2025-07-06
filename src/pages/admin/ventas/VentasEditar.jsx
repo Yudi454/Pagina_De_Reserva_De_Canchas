@@ -1,3 +1,10 @@
+import {
+  faCartPlus,
+  faMagnifyingGlass,
+  faPenToSquare,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 
 const VentasEditar = ({
@@ -19,13 +26,18 @@ const VentasEditar = ({
   errorsProducto,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Editar</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <Button onClick={() => setMostrarEditar(false)}>
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </Button>
+      <h3>Editar venta</h3>
       {venta && (
-        <Form onSubmit={handleSubmitVenta(handleEditarVenta)}>
+        <Form
+          onSubmit={handleSubmitVenta(handleEditarVenta)}
+          className="d-flex flex-column align-items-center"
+        >
           <Form.Group>
-            <Form.Label>Fecha</Form.Label>
+            <Form.Label>Fecha:</Form.Label>
             <Form.Control
               value={venta.fecha_venta}
               name="fecha_venta"
@@ -41,7 +53,7 @@ const VentasEditar = ({
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Hora</Form.Label>
+            <Form.Label>Hora:</Form.Label>
             <Form.Control
               value={venta.hora_venta}
               name="hora_venta"
@@ -55,7 +67,7 @@ const VentasEditar = ({
             {errorsVenta.hora_venta && <p>{errorsVenta.hora_venta.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email-Usuario</Form.Label>
+            <Form.Label>Email-Usuario:</Form.Label>
             <Form.Control
               value={venta.email_usuario}
               name="email_usuario"
@@ -70,35 +82,44 @@ const VentasEditar = ({
               <p>{errorsVenta.email_usuario.message}</p>
             )}
           </Form.Group>
-          <p>Productos</p>
-          <Form.Group>
+          <p className="mt-4">Productos:</p>
+          <Form.Group className="d-flex flex-column align-items-center justify-content-center">
             {venta.productos &&
               venta.productos.map((p, index) => (
-                <div key={p.id_producto}>
-                  <Form.Label>
-                    {p.nombre_producto}-precio: {p.precio_producto}
-                  </Form.Label>
-                  <Form.Control
-                    value={p.cantidad}
-                    name={`cantidad-${index}`}
-                    {...registerVenta(`cantidad-${index}`, {
-                      required: "La cantidad es obligatoria",
-                    })}
-                    onChange={(e) => {
-                      const nuevosProductos = [...venta.productos];
-                      nuevosProductos[index].cantidad = e.target.value;
-                      setVenta({ ...venta, productos: nuevosProductos });
-                    }}
-                  />
-                </div>
+                <>
+                  <img src={p.imagen} className="img-fluid w-25" />
+                  <div key={p.id_producto}>
+                    <Form.Label>
+                      {p.nombre_producto}-precio: {p.precio_producto}
+                    </Form.Label>
+                    <Form.Control
+                      value={p.cantidad}
+                      name={`cantidad-${index}`}
+                      {...registerVenta(`cantidad-${index}`, {
+                        required: "La cantidad es obligatoria",
+                      })}
+                      onChange={(e) => {
+                        const nuevosProductos = [...venta.productos];
+                        nuevosProductos[index].cantidad = e.target.value;
+                        setVenta({ ...venta, productos: nuevosProductos });
+                      }}
+                    />
+                  </div>
+                </>
               ))}
           </Form.Group>
 
-          <Button type="submit">Editar</Button>
+          <Button type="submit" className="mt-3 mb-4">
+            Editar venta
+            <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
+          </Button>
         </Form>
       )}
       {venta && (
-        <Form onSubmit={handleSubmitProducto(añadirProducto)}>
+        <Form
+          onSubmit={handleSubmitProducto(añadirProducto)}
+          className="d-flex flex-column align-items-center"
+        >
           <p>Producto</p>
           <Form.Group>
             <Form.Label>Nombre</Form.Label>
@@ -153,12 +174,23 @@ const VentasEditar = ({
             {errorsProducto.cantidad && (
               <p>{errorsProducto.cantidad.message}</p>
             )}
-            <Button onClick={handleBuscar}>Buscar producto</Button>
-            <Button type="submit">Añadir Producto</Button>
           </Form.Group>
+          <div className="mt-3 mb-2">
+            <Button onClick={handleBuscar} className="me-4">
+              Buscar producto
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                className="icon-admin"
+              />
+            </Button>
+            <Button type="submit">
+              Añadir Producto
+              <FontAwesomeIcon icon={faCartPlus} className="icon-admin" />
+            </Button>
+          </div>
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

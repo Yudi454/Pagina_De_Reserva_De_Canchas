@@ -10,18 +10,26 @@ const Servicios = () => {
           Características Clave de nuestros servicios
         </h2>
         <br />
-        <p className="informacion">
-          "nombre de la web" te brinda una plataforma integral para llevar tu
+        <h2 className="informacion">
+          "MIS CANCHAS" te brinda una plataforma integral para llevar tu
           experiencia deportiva al siguiente nivel. Ya sea que estés buscando el
           lugar perfecto para un partido amistoso, estamos aquí para vos.
           Descubí cómo nuestras características únicas pueden mejorar tu
           experiencia deportiva.
-        </p>
+        </h2>
         <br />
         <br />
         <div className="row justify-content-center">
           <div className="col-md-4 mb-4">
             <div className="card servicio-card h-100">
+              <video
+                src="/estacionamiento.mp4"
+                className="media-servicio"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
               <div className="card-body">
                 <h5 className="card-title">Estacionamiento Gratuito</h5>
                 <p className="card-text">
@@ -30,8 +38,17 @@ const Servicios = () => {
               </div>
             </div>
           </div>
+
           <div className="col-md-4 mb-4">
             <div className="card servicio-card h-100">
+              <video
+                src="/cambiadores.mp4"
+                className="media-servicio"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
               <div className="card-body">
                 <h5 className="card-title">Vestuarios y Duchas</h5>
                 <p className="card-text">
@@ -40,8 +57,17 @@ const Servicios = () => {
               </div>
             </div>
           </div>
+
           <div className="col-md-4 mb-4">
             <div className="card servicio-card h-100">
+              <video
+                src="/bebidas.mp4"
+                className="media-servicio"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
               <div className="card-body">
                 <h5 className="card-title">Kioscos y Bebidas Frías</h5>
                 <p className="card-text">

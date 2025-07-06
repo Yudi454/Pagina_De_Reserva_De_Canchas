@@ -1,3 +1,5 @@
+import { faFileSignature, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 
@@ -11,13 +13,12 @@ const CreateHorarios = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarCrear(false)}>X</Button>
-      <h3>Crear</h3>
-
+    <div className="d-flex flex-column align-items-center text-center">
+      <Button onClick={() => setMostrarCrear(false)}><FontAwesomeIcon icon={faTimes} size="lg"/></Button>
+      <h3>Crear horario</h3>
       <Form onSubmit={handleSubmit(handleCrearHorario)}>
         <Form.Group>
-          <Form.Label>Hora de inicio</Form.Label>
+          <Form.Label>Hora de inicio:</Form.Label>
           <Form.Control
             name="hora_inicio"
             {...register("hora_inicio", {
@@ -30,7 +31,7 @@ const CreateHorarios = ({
           {errors.hora_inicio && <p>{errors.hora_inicio.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Hora de fin</Form.Label>
+          <Form.Label>Hora de fin:</Form.Label>
           <Form.Control
             name="hora_fin"
             {...register("hora_fin", {
@@ -41,9 +42,9 @@ const CreateHorarios = ({
             }
           />
         </Form.Group>
-        <Button type="submit">Editar</Button>
+        <Button type="submit" className="mt-3">Editar horario<FontAwesomeIcon className="icon-admin" icon={faFileSignature}/></Button>
       </Form>
-    </>
+    </div>
   );
 };
 

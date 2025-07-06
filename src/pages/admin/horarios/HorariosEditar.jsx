@@ -1,3 +1,5 @@
+import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 
@@ -11,13 +13,13 @@ const HorariosEditar = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Editar</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <Button onClick={() => setMostrarEditar(false)}><FontAwesomeIcon icon={faTimes} size="lg" /></Button>
+      <h3 className="mt-3">Editar horario</h3>
       {horario && (
         <Form onSubmit={handleSubmit(handleEditarHorario)}>
           <Form.Group>
-            <Form.Label>Hora de inicio</Form.Label>
+            <Form.Label>Hora de inicio:</Form.Label>
             <Form.Control
               value={horario.hora_inicio}
               name="hora_inicio"
@@ -31,7 +33,7 @@ const HorariosEditar = ({
             {errors.hora_inicio && <p>{errors.hora_inicio.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Hora de fin</Form.Label>
+            <Form.Label>Hora de fin:</Form.Label>
             <Form.Control
               value={horario.hora_fin}
               name="hora_fin"
@@ -43,10 +45,10 @@ const HorariosEditar = ({
               }
             />
           </Form.Group>
-          <Button type="submit">Editar</Button>
+          <Button type="submit" className="mt-3">Editar <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></Button>
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

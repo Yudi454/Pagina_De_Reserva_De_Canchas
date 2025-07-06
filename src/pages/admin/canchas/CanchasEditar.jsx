@@ -1,3 +1,5 @@
+import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 
 const CanchasEditar = ({
@@ -9,57 +11,67 @@ const CanchasEditar = ({
   register,
   errors,
 }) => {
+  console.log(cancha);
+
   return (
-    <>
-      <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Editar</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <Button onClick={() => setMostrarEditar(false)}>
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </Button>
+      <h3>Editar cancha</h3>
       {cancha && (
-        <Form onSubmit={handleSubmit(handleEditarCancha)}>
-          <Form.Group>
-            <Form.Label>Imagen</Form.Label>
-            <Form.Control
-              value={cancha.imagen_cancha}
-              name="imagen_cancha"
-              {...register("imagen_cancha", {
-                required: "La imagen es obligatoria",
-              })}
-              onChange={(e) =>
-                setCancha({ ...cancha, [e.target.name]: e.target.value })
-              }
-            />
-            {errors.imagen_cancha && <p>{errors.imagen_cancha.message}</p>}
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Tipo</Form.Label>
-            <Form.Control
-              value={cancha.tipo_cancha}
-              name="tipo_cancha"
-              {...register("tipo_cancha", {
-                required: "El tipo es obligatorio",
-              })}
-              onChange={(e) =>
-                setCancha({ ...cancha, [e.target.name]: e.target.value })
-              }
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Precio</Form.Label>
-            <Form.Control
-              value={cancha.precio_cancha}
-              name="precio_cancha"
-              {...register("precio_cancha", {
-                required: "El precio es obligatorio",
-              })}
-              onChange={(e) =>
-                setCancha({ ...cancha, [e.target.name]: e.target.value })
-              }
-            />
-            {errors.precio_cancha && <p>{errors.precio_cancha.message}</p>}
-          </Form.Group>
-          <Button type="submit">Editar</Button>
-        </Form>
+        <>
+          <img src={cancha.imagen} className="img-fluid w-25 mt-3 mb-3" />
+          <Form onSubmit={handleSubmit(handleEditarCancha)}>
+            <Form.Group>
+              <Form.Label>Imagen:</Form.Label>
+              <Form.Control
+                value={cancha.imagen}
+                name="imagen"
+                {...register("imagen", {
+                  required: "La imagen es obligatoria",
+                })}
+                onChange={(e) =>
+                  setCancha({ ...cancha, [e.target.name]: e.target.value })
+                }
+              />
+              {errors.imagen && <p>{errors.imagen.message}</p>}
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Tipo:</Form.Label>
+              <Form.Control
+                value={cancha.tipo_cancha}
+                name="tipo_cancha"
+                {...register("tipo_cancha", {
+                  required: "El tipo es obligatorio",
+                })}
+                onChange={(e) =>
+                  setCancha({ ...cancha, [e.target.name]: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Precio:</Form.Label>
+              <Form.Control
+                value={cancha.precio_cancha}
+                name="precio_cancha"
+                {...register("precio_cancha", {
+                  required: "El precio es obligatorio",
+                })}
+                onChange={(e) =>
+                  setCancha({ ...cancha, [e.target.name]: e.target.value })
+                }
+              />
+              {errors.precio_cancha && <p>{errors.precio_cancha.message}</p>}
+            </Form.Group>
+            <Button type="submit" className="mt-3">
+              Editar cancha
+              <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
+            </Button>
+          </Form>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

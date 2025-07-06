@@ -15,6 +15,8 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import HorariosEditar from "./HorariosEditar";
 import { useForm } from "react-hook-form";
 import CreateHorarios from "./CreateHorarios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 
 const Horarios = () => {
   const [mostrarVer, setMostrarVer] = useState();
@@ -109,46 +111,18 @@ const Horarios = () => {
     }
   };
 
-  return (
-    <>
-      <Row>
-        <Col>
-          <NavAdmin />
-        </Col>
-        <Col>
-          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
 
-          {horarios && horarios.length > 0 ? (
-            <MainHorarios
-              horarios={horarios}
-              handleVer={handleVer}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <p>No hay Horarios</p>
-          )}
+  return (
+    <div className="admin-container">
+      <Row>
+        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+          <NavAdmin celular={false} mostrar={"horarios"} />
         </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={horario} />
-          </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <HorariosEditar
-              horario={horario}
-              setHorario={setHorario}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarHorario={handleEditarHorario}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
+        <Col xs={12} className="d-bock d-md-none">
+          <NavAdmin celular={true} mostrar={"horarios"} />
+        </Col>
         {mostrarCrear && (
-          <Col>
+          <Col md={10}>
             <CreateHorarios
               setMostrarCrear={setMostrarCrear}
               horario={horario}
@@ -160,8 +134,59 @@ const Horarios = () => {
             />
           </Col>
         )}
+        {mostrarVer && (
+          <Col md={10} className="d-flex justify-content-center">
+            <div className="text-center">
+              <VerDatoAdmin setMostrarVer={setMostrarVer} dato={horario} />
+            </div>
+          </Col>
+        )}
+        {mostrarEditar && (
+          <Col md={10}>
+            <HorariosEditar
+              horario={horario}
+              setHorario={setHorario}
+              setMostrarEditar={setMostrarEditar}
+              handleEditarHorario={handleEditarHorario}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+        )}
+        <Col
+          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+          sm={12}
+          className={
+            mostrarCrear || mostrarEditar || mostrarVer
+              ? "text-center d-flex justify-content-center flex-column align-items-center"
+              : "text-center"
+          }
+        >
+          {!mostrarCrear && (
+            <div className="mt-3 mb-3">
+              <Button onClick={handleCrear}>
+                Crear horario
+                <FontAwesomeIcon
+                  icon={faFileSignature}
+                  className="icon-admin"
+                />
+              </Button>
+            </div>
+          )}
+          {horarios && horarios.length > 0 ? (
+            <MainHorarios
+              horarios={horarios}
+              handleVer={handleVer}
+              handleEditar={handleEditar}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <p>No hay Horarios</p>
+          )}
+        </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

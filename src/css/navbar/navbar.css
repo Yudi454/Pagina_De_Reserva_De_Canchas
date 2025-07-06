@@ -23,7 +23,13 @@
 
 .navbar-container {
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  height: 121px; /* Asegurate de fijar una altura */
+  background-color: #fff; /* opcional */
 }
+
 
 .navbar-custom {
   display: flex;
@@ -93,5 +99,43 @@
 
   .navbar-custom {
     align-items: flex-start;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 789px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 110px; /* debajo del navbar */
+    right: 0;
+    padding: 1rem;
+    width: 100%;
+    z-index: 999;
+    background-color:rgba(7, 216, 77, 0.301);;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
   }
 }
