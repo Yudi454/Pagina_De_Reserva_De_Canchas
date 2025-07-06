@@ -1,5 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 
 // Obtener muchos datos
@@ -8,7 +11,11 @@ export const getDatos = async (url, setValor) => {
     const res = await axios.get(url);
     setValor(res.data);
   } catch (error) {
-    console.error(error);
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
   }
 };
 
@@ -16,34 +23,99 @@ export const getDatos = async (url, setValor) => {
 export const getDato = async (url, setValor) => {
   try {
     const res = await axios.get(url);
-    setValor(res.data);
+    setValor(res.data.results);
   } catch (error) {
-    console.error(error);
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
+  }
+};
+
+export const buscarDato = async (url, dato, setDato) => {
+  try {
+    const res = await axios.post(url, dato);
+    setDato(res.data);
+  } catch (error) {
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
   }
 };
 
 // Actualizar dato
-export const updateDato = async (url, dato) => {
+export const updateDato = async (url, dato, tipo) => {
   try {
     const res = await axios.patch(url, {
       ...dato,
     });
-    toast.success(res.data.message || "Actualizado con éxito");
+    MySwal.fire({
+      icon: "success",
+      title: "¡Actualizado!",
+      text: `El ${tipo} ha sido actualizado con éxito`,
+    });
   } catch (error) {
-    console.error(error);
-    toast.error("Error al actualizar");
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
   }
 };
 
 // Crear dato
-export const createDato = async (url, dato) => {
+export const createDato = async (url, dato, tipo) => {
+  console.log(dato);
   try {
     const res = await axios.post(url, dato);
-    alert(res.data.message);
+    
+    MySwal.fire({
+      icon: "success",
+      title: "¡Creado!",
+      text: `El ${tipo} ha sido creado con éxito`,
+    });
   } catch (error) {
-    console.log(error);
-    alert("Error al crear dato");
+    MySwal.fire({
+      icon: "error",
+      title: "¡Error!",
+      text: error.response.data.message,
+    });
   }
+};
+
+// Eliminar dato
+export const deleteDato = (url, tipo) => {
+  return MySwal.fire({
+    title: `¿Estás seguro de eliminar este ${tipo}?`,
+    text: "Esta acción no se puede deshacer.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        const res = await axios.delete(url);
+        MySwal.fire({
+          icon: "success",
+          title: "¡Eliminado!",
+          text: `El ${tipo} ha sido eliminado con éxito`,
+        });
+        return true;
+      } catch (error) {
+        MySwal.fire({
+          icon: "error",
+          title: "¡Error!",
+          text: error,
+        });
+      }
+    }
+  });
 };
 
 // Registro de usuario
@@ -53,6 +125,7 @@ export const register = async (url, usuario) => {
     toast.success(`${res.data.message}`);
     return true;
   } catch (error) {
+
     console.log(error);
     
     toast.error(error.response.data.message);
@@ -68,6 +141,7 @@ export const deleteDato = async (url) => {
   } catch (error) {
     console.log(error);
     alert("Error al eliminar");
+    toast.error(error);
   }
 };
 
@@ -76,13 +150,13 @@ export const login = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
-    console.log(res.data);
-
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
     return true
   } catch (error) {
+
     toast.error(error.response.data.message);
     return false
+    toast.error(error);
   }
 };
 
