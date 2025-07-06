@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
+
 // Obtener muchos datos
 export const getDatos = async (url, setValor) => {
   try {
@@ -50,9 +51,12 @@ export const register = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
+    return true;
   } catch (error) {
     console.log(error);
-    toast.error("Error al registrarse");
+    
+    toast.error(error.response.data.message);
+    return false;
   }
 };
 
@@ -75,9 +79,10 @@ export const login = async (url, usuario) => {
     console.log(res.data);
 
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
+    return true
   } catch (error) {
-    toast.error("Error en login");
-    console.log(error);
+    toast.error(error.response.data.message);
+    return false
   }
 };
 
