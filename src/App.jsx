@@ -26,6 +26,7 @@ import NavBar from "./components/header/NavBar";
 import { useEffect } from "react";
 import { useStore } from "./store/AuthStore"
 
+
 function App() {
 
   const loadUser = useStore((state) => state.loadUser);

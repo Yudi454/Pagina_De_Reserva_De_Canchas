@@ -46,6 +46,7 @@ const MainReservar = () => {
   }, []);
 
   return (
+
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div style={{ paddingTop: "17vh" }}>
         <Navbar bg="dark" data-bs-theme="dark">
@@ -75,6 +76,7 @@ const MainReservar = () => {
               id_cancha={cancha.id_cancha}
             />
           ))}
+
         </Container>
         <MainMisReservas
           setValorModal={setValorModal}

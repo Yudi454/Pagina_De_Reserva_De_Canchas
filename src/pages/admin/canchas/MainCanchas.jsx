@@ -23,11 +23,13 @@ const MainCanchas = ({ canchas, handleEditar, handleVer, handleDelete }) => {
                 <td>{cancha.tipo_cancha}</td>
                 <td>{cancha.precio_cancha}</td>
                 <td>
-                  <Button onClick={() => handleVer(cancha.id_cancha)}>Ver</Button>
-                  <Button disabled onClick={() => handleEditar(cancha.id_cancha)}>
+                  <Button onClick={() => handleVer(cancha.id_cancha)}>
+                    Ver
+                  </Button>
+                  <Button onClick={() => handleEditar(cancha.id_cancha)}>
                     Editar
                   </Button>
-                  <Button disabled onClick={() => handleDelete(cancha.id_cancha)}>
+                  <Button onClick={() => handleDelete(cancha.id_cancha)}>
                     Eliminar
                   </Button>
                 </td>

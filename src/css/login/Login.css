@@ -1,0 +1,43 @@
+.login-container {
+
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+  justify-content: center; /* Centra horizontalmente los elementos hijos */
+  align-items: center; /* Centra verticalmente los elementos hijos */
+  min-height: 100%;
+  
+}
+
+.form-login {
+  margin-top: 180px;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(52, 209, 105, 0.712);
+  width: 100%;
+  max-width: 600px; /* Limita el ancho máximo del formulario */
+  display: flex;
+  flex-direction: column;
+}
+
+.boton-login {
+  
+  display: inline-block; /* Permite aplicar padding y margin como un bloque, pero se comporta en línea */
+  padding: 19px 30px; /* Espacio interno (arriba/abajo, izquierda/derecha) */
+  font-family: "Lato", sans-serif; 
+  font-size: 1.1rem; /* Tamaño del texto */
+  font-weight: bold; /* Negrita */
+  border-radius: 9px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor a una mano */
+  border: none;
+  color: white;
+  
+}
+
+.boton-login:hover {
+  
+  transform: translateX(-3px); /* Pequeño levantamiento */
+  box-shadow: 0 6px 12px rgba(25, 163, 66, 0.438); 
+}
+
+

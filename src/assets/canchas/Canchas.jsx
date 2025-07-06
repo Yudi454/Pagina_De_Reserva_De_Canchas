@@ -1,6 +1,6 @@
 import { Button, Col, Row } from "react-bootstrap";
 import MainCanchas from "./MainCanchas";
-import NavAdmin from "../NavAdmin";
+import NavAdmin from "../../pages/admin/NavAdmin";
 import { useEffect, useState } from "react";
 import {
   createDato,
@@ -8,15 +8,12 @@ import {
   getDato,
   getDatos,
   updateDato,
-} from "../../../customHooks/UseApi";
-import { rutas } from "../../../routes/Rutas";
-import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
+} from "../../customHooks/UseApi";
+import { rutas } from "../../routes/Rutas";
+import VerDatoAdmin from "../../components/verDatoAdmin/VerDatoAdmin";
 import CanchasEditar from "./CanchasEditar";
 import { useForm } from "react-hook-form";
 import CanchasCrear from "./CanchasCrear";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal);
 
 const Canchas = () => {
   const [canchas, setCanchas] = useState();

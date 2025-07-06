@@ -1,55 +1,135 @@
 import { Button, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import "../../css/register/Register.css";
+import { useStore } from "../../store/AuthStore";
 
-const MainRegister = ({ usuario, setUsuario, handleSubmit }) => {
+const MainRegister = ({ usuario, setUsuario, onRegisterSubmit }) => {
+  const { color } = useStore();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    setUsuario(data);
+    onRegisterSubmit(data);
+  };
+
   return (
-    <>
-      <div className=" d-flex justify-content-center">
-        <Form className="col-6 col-md-3" onSubmit={(e) => handleSubmit(e)}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="register-contenedor">
+        <Form className="form-register" onSubmit={handleSubmit(onSubmit)}>
+          <Form.Group className="mb-3">
             <Form.Label>Usuario</Form.Label>
             <Form.Control
               name="usuario"
+              placeholder="Ingrese un nombre de usuario"
+              {...register("usuario", {
+                required: "El nombre de usuario es obligatorio",
+                minLength: {
+                  value: 3,
+                  message: "Debe tener al menos 3 caracteres",
+                },
+              })}
               onChange={(e) =>
                 setUsuario({ ...usuario, [e.target.name]: e.target.value })
               }
-              placeholder="Ingrese un nombre de usuario"
+              isInvalid={!!errors.usuario}
             />
+            {errors.usuario && (
+              <Form.Text className="text-danger">
+                {errors.usuario.message}
+              </Form.Text>
+            )}
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+
+          <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
               name="email"
+              placeholder="Ingrese un email"
+              {...register("email", {
+                required: "El email es obligatorio",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Formato de email inválido",
+                },
+              })}
               onChange={(e) =>
                 setUsuario({ ...usuario, [e.target.name]: e.target.value })
               }
-              placeholder="Ingrese un email"
+              isInvalid={!!errors.email}
             />
+            {errors.email && (
+              <Form.Text className="text-danger">
+                {errors.email.message}
+              </Form.Text>
+            )}
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Telefono</Form.Label>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Teléfono</Form.Label>
             <Form.Control
               name="telefono"
+              placeholder="Ingrese un número de teléfono"
+              {...register("telefono", {
+                required: "El teléfono es obligatorio",
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: "Solo se permiten números",
+                },
+                minLength: {
+                  value: 6,
+                  message: "Debe tener al menos 6 dígitos",
+                },
+              })}
               onChange={(e) =>
                 setUsuario({ ...usuario, [e.target.name]: e.target.value })
               }
-              placeholder="Ingrese un numero de telefono"
+              isInvalid={!!errors.telefono}
             />
+            {errors.telefono && (
+              <Form.Text className="text-danger">
+                {errors.telefono.message}
+              </Form.Text>
+            )}
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+
+          <Form.Group className="mb-3">
             <Form.Label>Contraseña</Form.Label>
             <Form.Control
+              type="password"
               name="contraseña"
+              placeholder="Ingrese una contraseña"
+              {...register("contraseña", {
+                required: "La contraseña es obligatoria",
+                minLength: {
+                  value: 6,
+                  message: "Debe tener al menos 6 caracteres",
+                },
+              })}
               onChange={(e) =>
                 setUsuario({ ...usuario, [e.target.name]: e.target.value })
               }
-              placeholder="Ingrese una contraseña"
+              isInvalid={!!errors.contraseña}
             />
+            {errors.contraseña && (
+              <Form.Text className="text-danger">
+                {errors.contraseña.message}
+              </Form.Text>
+            )}
           </Form.Group>
-          <Button type="submit">Registrarse</Button>
+
+          <button className="boton-register" type="submit">
+            Registrarse
+          </button>
         </Form>
       </div>
-    </>
+    </div>
   );
 };
+
 
 export default MainRegister;
