@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import MainClientes from "./MainClientes";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -14,12 +14,18 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ClientesEditar from "./ClientesEditar";
 import CreateClientes from "./CreateClientes";
 import { useForm } from "react-hook-form";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
 import Usuarios from "../usuarios/Usuarios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Clientes = () => {
+  const { color } = useStore();
+
   const [clientes, setClientes] = useState();
 
   const [cliente, setCliente] = useState();
@@ -121,58 +127,79 @@ const Clientes = () => {
   };
 
   return (
-    <div style={{ paddingTop: "20vh" }}>
-      <Row>
-        <Col md={3}>
-          <NavAdmin />
-        </Col>
-        <Col>
-          {!mostrarCreate && (
-            <Button onClick={handleCreate}>Crear Cliente</Button>
+
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
+        <Row className="gx-0">
+          <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+            <NavAdmin celular={false} mostrar={"clientes"} />
+          </Col>
+          <Col xs={12} className="d-bock d-md-none gx-0">
+            <NavAdmin celular={true} mostrar={"clientes"} />
+          </Col>
+          {mostrarCreate && (
+            <Col md={10} className="">
+              <CreateClientes
+                setMostrarCreate={setMostrarCreate}
+                cliente={cliente}
+                setCliente={setCliente}
+                handleCreateCliente={handleCreateCliente}
+                handleSubmit={handleSubmit}
+                errors={errors}
+                register={register}
+              />
+            </Col>
           )}
-          {clientes && clientes.length > 0 ? (
-            <MainClientes
-              clientes={clientes}
-              handleVer={handleVer}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <p>No hay Clientes</p>
+          {mostrarVer && (
+            <Col md={10} className="d-flex justify-content-center">
+              <div className="text-center">
+                <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cliente} />
+              </div>
+            </Col>
           )}
-        </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cliente} />
+          {mostrarEditar && (
+            <Col md={10}>
+              <ClientesEditar
+                cliente={cliente}
+                setCliente={setCliente}
+                setMostrarEditar={setMostrarEditar}
+                handleEditarCliente={handleEditarCliente}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
+          )}
+          <Col
+            md={mostrarCreate || mostrarEditar || mostrarVer ? 12 : 10}
+            sm={12}
+            className="text-center d-md-flex flex-column align-items-center justify-content-between"
+          >
+            {!mostrarCreate && (
+              <div className="mt-3 mb-3">
+                <button className="admin-button" onClick={handleCreate}>
+                  Crear Cliente{" "}
+                  <FontAwesomeIcon
+                    icon={faFileSignature}
+                    className="icon-admin"
+                  />
+                </button>
+              </div>
+            )}
+            {clientes && clientes.length > 0 ? (
+              <MainClientes
+                clientes={clientes}
+                handleVer={handleVer}
+                handleEditar={handleEditar}
+                handleDelete={handleDelete}
+              />
+            ) : (
+              <p>No hay Clientes</p>
+            )}
           </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <ClientesEditar
-              cliente={cliente}
-              setCliente={setCliente}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarCliente={handleEditarCliente}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-        {mostrarCreate && (
-          <Col>
-            <CreateClientes
-              setMostrarCreate={setMostrarCreate}
-              cliente={cliente}
-              setCliente={setCliente}
-              handleCreateCliente={handleCreateCliente}
-              handleSubmit={handleSubmit}
-              errors={errors}
-              register={register}
-            />
-          </Col>
-        )}
-      </Row>
+
+        </Row>
+      </div>
     </div>
   );
 };

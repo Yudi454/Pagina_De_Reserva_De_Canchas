@@ -1,15 +1,13 @@
-.title-servicios{
-
-    font-size: 2.5rem;
-    font-weight: 900;
-    margin-bottom: 46px;
-    margin-top: 4px;
-    font-family: "Michroma", sans-serif;
-    
+.title-servicios {
+  font-size: 2.9rem;
+  font-weight: 900;
+  margin-bottom: 46px;
+  margin-top: 5px;
+  font-family: "Michroma", sans-serif;
+  text-shadow: 0 0 50px rgb(162, 253, 192);
 }
 
 .card-title {
-  
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 35px;
@@ -18,18 +16,17 @@
 }
 
 .card-text {
-  
   margin-top: 12px;
   display: flex;
   font-weight: bold;
 }
 
-
 .servicio-card {
-
+  background: linear-gradient(to left, #3ab352, #24eb7e8a);
   border-radius: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 1rem;
+  box-shadow: 0 0 40px rgb(3, 218, 74);
 }
 
 .servicio-card:hover {
@@ -38,48 +35,53 @@
 }
 
 .servicio-card h5 {
-  font-weight: 620;
-  font-size: 1.1rem;
+  font-weight: 600;
+  font-size: 1.3rem;
   margin-bottom: 2rem;
 }
 
-.servicio-card p{
-    font-weight: 530;
-    font-family: "Lato", sans-serif;
+.servicio-card p {
+  font-weight: 500;
+  font-family: "Lato", sans-serif;
 }
 
 .informacion {
-  font-weight: 530;
-  font-family: "Lato", sans-serif;
-  max-width: 900px;        /* Limita el ancho */
-  margin: 0 auto 2rem;     /* Centra horizontalmente y da margen abajo */
-  text-align: center;      /* Centra el texto dentro */
-  padding: 0 1rem;         /* Espacio lateral en pantallas chicas */
-}
 
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-family: "Lato", sans-serif; /* Limita el ancho */
+  margin: 0 auto 2rem; /* Centra horizontalmente y da margen abajo */
+  text-align: center; /* Centra el texto dentro */
+  padding: 1rem;
+  background: linear-gradient(to left, #3ab352, #24eb7e8a);
+}
 
 .mapa-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 1rem;
   text-align: center;
-  
 }
 
 .titulo-mapa {
-
   font-family: "Michroma", sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  background-color: #36a54c;
-  padding: 12px;
 
+  padding: 12px;
 }
 
 .mapa-container iframe {
-  
   border-radius: 12px;
   box-shadow: 0 9px 25px rgba(34, 255, 100, 0.582);
-  
+}
+
+.media-servicio {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 1rem 1rem 0 0;
+  margin-bottom: 1rem;
+  display: block;
 }

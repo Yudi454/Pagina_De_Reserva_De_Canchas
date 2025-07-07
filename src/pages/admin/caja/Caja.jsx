@@ -7,11 +7,18 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { buscarDato, createDato } from "../../../customHooks/UseApi";
 import Carrito from "./Carrito";
+import "../../../css/admin/Admin.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCashRegister } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
+
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Caja = () => {
+  const { color } = useStore();
+
   const [venta, setVenta] = useState();
 
   const [carrito, setCarrito] = useState();
@@ -85,7 +92,6 @@ const Caja = () => {
       const usuario = JSON.parse(localStorage.getItem("usuario"));
 
       console.log(usuario);
-      
 
       const id_usuario = usuario.id_usuario;
 
@@ -105,29 +111,44 @@ const Caja = () => {
   };
 
   return (
-    <div style={{ paddingTop: "20vh" }}>
-      <Row>
-        <Col>
-          <NavAdmin />
-        </Col>
-        <Col>
-          <MainCaja
-            productos={productos}
-            producto={producto}
-            setProducto={setProducto}
-            handleCrear={handleCrear}
-            handleBuscar={handleBuscar}
-            handleSubmit={handleSubmit}
-            register={register}
-            errors={errors}
-          />
-        </Col>
-        {localStorage.getItem("carrito") && (
-          <Col>
-            <Carrito carrito={carrito} handleCargar={handleCargar} />
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
+        <Row className="gx-0">
+          <Col
+            md={2}
+            sm={3}
+            className="contenedor-admin-links-pc d-none d-sm-block"
+          >
+            <NavAdmin celular={false} mostrar={"caja"} />
           </Col>
-        )}
-      </Row>
+          <Col xs={12} className="d-block d-sm-none">
+            <NavAdmin celular={true} mostrar={"caja"} />
+          </Col>
+
+          <Col md={5} sm={9} className="mt-4 mt-sm-0 mt-md-0  ">
+            <h2 className="text-center">
+              CAJA{" "}
+              <FontAwesomeIcon icon={faCashRegister} className="icon-admin" />
+            </h2>
+
+            <MainCaja
+              productos={productos}
+              producto={producto}
+              setProducto={setProducto}
+              handleCrear={handleCrear}
+              handleBuscar={handleBuscar}
+              handleSubmit={handleSubmit}
+              register={register}
+              errors={errors}
+            />
+          </Col>
+          {localStorage.getItem("carrito") && (
+            <Col md={5} sm={12} className="mt-4 mt-sm-3 mt-md-0">
+              <Carrito carrito={carrito} handleCargar={handleCargar} />
+            </Col>
+          )}
+        </Row>
+      </div>
     </div>
   );
 };

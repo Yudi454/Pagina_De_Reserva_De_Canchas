@@ -1,22 +1,86 @@
-.footer {
-  padding: 8px ;
-  text-align: center;
+.footer-container {
+
   width: 100%;
+  padding: 1rem 1rem 1rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 1s ease;
+  position: relative;
+}
+
+
+.footer-content {
+  
+  text-align: center;
+  color: #ffffff;
+}
+
+.footer-logo {
+  width: 90px;
+  margin-bottom: 1rem;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.footer-text {
+  margin: 0.5rem 0;
+  font-weight: 500;
+  
 }
 
 .footer-icons {
-  margin-top: 15px;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .footer-icons a {
-    
-  margin: 0 10px;
-  font-size: 1.9rem;
-  transition: color 0.3s ease;
-  text-decoration: none;
-  color: aliceblue;
+  
+  color: #f1f1f1;
+  font-size: 1.8rem;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .footer-icons a:hover {
-  color: #08611e;
+  transform: scale(1.2);
+  color: #ffb703;
+}
+
+
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .footer-icons {
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    width: 50px;
+  }
+
+  .footer-icons a {
+    font-size: 1.5rem;
+  }
 }

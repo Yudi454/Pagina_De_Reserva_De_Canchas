@@ -1,8 +1,9 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 const MySwal = withReactContent(Swal);
+
 
 // Obtener muchos datos
 export const getDatos = async (url, setValor) => {
@@ -20,9 +21,13 @@ export const getDatos = async (url, setValor) => {
 
 // Obtener un solo dato
 export const getDato = async (url, setValor) => {
+  console.log(url);
+  
   try {
     const res = await axios.get(url);
     setValor(res.data.results);
+    console.log(res);
+    
   } catch (error) {
     MySwal.fire({
       icon: "error",
@@ -37,6 +42,8 @@ export const buscarDato = async (url, dato, setDato) => {
     const res = await axios.post(url, dato);
     setDato(res.data);
   } catch (error) {
+    console.log(error);
+    
     MySwal.fire({
       icon: "error",
       title: "¡Error!",
@@ -122,18 +129,31 @@ export const register = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
+    return true;
   } catch (error) {
-    toast.error(error);
+
+    console.log(error);
+    
+    toast.error(error.response.data.message);
+    return false;
   }
 };
+
+
 
 // Login
 export const login = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
+    console.log(res.data);
+
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
+    return true
   } catch (error) {
+
+    toast.error(error.response.data.message);
+    return false
     toast.error(error);
   }
 };

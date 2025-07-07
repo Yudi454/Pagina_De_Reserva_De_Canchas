@@ -1,5 +1,7 @@
+import { faFileSignature, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const CreateHorarios = ({
   setMostrarCrear,
@@ -11,13 +13,14 @@ const CreateHorarios = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarCrear(false)}>X</Button>
-      <h3>Crear</h3>
-
+    <div className="d-flex flex-column align-items-center text-center">
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </button>
+      <h3>Crear horario</h3>
       <Form onSubmit={handleSubmit(handleCrearHorario)}>
         <Form.Group>
-          <Form.Label>Hora de inicio</Form.Label>
+          <Form.Label>Hora de inicio:</Form.Label>
           <Form.Control
             name="hora_inicio"
             {...register("hora_inicio", {
@@ -28,9 +31,12 @@ const CreateHorarios = ({
             }
           />
           {errors.hora_inicio && <p>{errors.hora_inicio.message}</p>}
+          <small className="form-text text-center">
+            Ingrese una hora en formato horas:minutos
+          </small>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Hora de fin</Form.Label>
+          <Form.Label>Hora de fin:</Form.Label>
           <Form.Control
             name="hora_fin"
             {...register("hora_fin", {
@@ -40,10 +46,17 @@ const CreateHorarios = ({
               setHorario({ ...horario, [e.target.name]: e.target.value })
             }
           />
+          {errors.hora_fin && <p>{errors.hora_fin.message}</p>}
+          <small className="form-text text-center">
+            Ingrese una hora en formato horas:minutos
+          </small>
         </Form.Group>
-        <Button type="submit">Editar</Button>
+        <button type="submit" className="admin-button mt-3">
+          Crear Horario
+          <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
+        </button>
       </Form>
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,6 @@
-import { Button, Form } from "react-bootstrap";
+import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  Form } from "react-bootstrap";
 
 const ClientesEditar = ({
   cliente,
@@ -10,13 +12,13 @@ const ClientesEditar = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Editar</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}><FontAwesomeIcon icon={faTimes} size="lg" /></button>
+      <h3 className="mt-3">Editar cliente</h3>
       {cliente && (
         <Form onSubmit={handleSubmit(handleEditarCliente)}>
           <Form.Group>
-            <Form.Label>Usuario</Form.Label>
+            <Form.Label>Usuario:</Form.Label>
             <Form.Control
               name="usuario"
               value={cliente.usuario}
@@ -30,7 +32,7 @@ const ClientesEditar = ({
             {errors.usuario && <p>{errors.usuario.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Email:</Form.Label>
             <Form.Control
               name="email_cliente"
               value={cliente.email_cliente}
@@ -44,7 +46,7 @@ const ClientesEditar = ({
             {errors.email_cliente && <p>{errors.email_cliente.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Telefono</Form.Label>
+            <Form.Label>Telefono:</Form.Label>
             <Form.Control
               name="telefono_cliente"
               value={cliente.telefono_cliente}
@@ -61,7 +63,7 @@ const ClientesEditar = ({
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label>Contraseña:</Form.Label>
             <Form.Control
               name="contraseña_cliente"
               {...register("contraseña_cliente", {
@@ -76,10 +78,10 @@ const ClientesEditar = ({
               <p>{errors.contraseña_cliente.message}</p>
             )}
           </Form.Group>
-          <Button type="submit">Editar</Button>
+          <button type="submit" className="admin-button-editar mt-3">Editar <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></button>
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

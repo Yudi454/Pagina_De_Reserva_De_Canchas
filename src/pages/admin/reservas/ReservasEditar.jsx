@@ -1,3 +1,9 @@
+import {
+  faCartPlus,
+  faMagnifyingGlass,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 
@@ -13,15 +19,23 @@ const ReservasEditar = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Crear</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <button
+        className="admin-button-editar"
+        onClick={() => setMostrarEditar(false)}
+      >
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </button>
+      <h3>Editar reserva</h3>
       {reserva && (
-        <Form onSubmit={handleSubmit(handleEditarReserva)}>
+        <Form
+          onSubmit={handleSubmit(handleEditarReserva)}
+          className="d-flex flex-column align-items-center"
+        >
           <Form.Group>
-            <Form.Label>Email-Cliente</Form.Label>
+            <Form.Label>Email-Cliente:</Form.Label>
             <Form.Control
-            value={reserva.email_cliente}
+              value={reserva.email_cliente}
               name="email_cliente"
               onChange={(e) =>
                 setReserva({ ...reserva, [e.target.name]: e.target.value })
@@ -29,9 +43,9 @@ const ReservasEditar = ({
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Id_cancha</Form.Label>
+            <Form.Label>Id_cancha:</Form.Label>
             <Form.Control
-            value={reserva.id_cancha}
+              value={reserva.id_cancha}
               name="id_cancha"
               onChange={(e) =>
                 setReserva({ ...reserva, [e.target.name]: e.target.value })
@@ -39,9 +53,9 @@ const ReservasEditar = ({
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Total</Form.Label>
+            <Form.Label>Total:</Form.Label>
             <Form.Control
-            value={reserva.total_reserva}
+              value={reserva.total_reserva}
               name="total_reserva"
               onChange={(e) =>
                 setReserva({ ...reserva, [e.target.name]: e.target.value })
@@ -49,17 +63,20 @@ const ReservasEditar = ({
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Dia</Form.Label>
+            <Form.Label>Dia:</Form.Label>
             <Form.Control
-            value={reserva.dia_reserva}
+              value={reserva.dia_reserva}
               name="dia_reserva"
               onChange={(e) =>
                 setReserva({ ...reserva, [e.target.name]: e.target.value })
               }
             />
           </Form.Group>
+          <small className="form-text text-center">
+            Ingrese una fecha en formato dia-mes-año
+          </small>
           <Form.Group>
-            <Form.Label>Horario</Form.Label>
+            <Form.Label>Horario:</Form.Label>
             <Form.Control
               name="id_horario"
               as="select"
@@ -84,11 +101,26 @@ const ReservasEditar = ({
                 ))}
             </Form.Control>
           </Form.Group>
-          <Button onClick={buscarHorarios}>Buscar Horarios</Button>
-          <Button type="submit">Editar</Button>
+          <small className="form-text text-center">
+            Clickea primero para buscar usuarios
+            <br />Y luego selecciona un horario.
+          </small>
+          <div className="mt-4 mb-3">
+            <button className="admin-button me-4" onClick={buscarHorarios}>
+              Buscar Horarios
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                className="icon-admin"
+              />
+            </button>
+            <button className="admin-button-editar" type="submit">
+              Editar
+              <FontAwesomeIcon icon={faCartPlus} className="icon-admin" />
+            </button>
+          </div>
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,5 @@
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 
@@ -11,12 +13,33 @@ const CreateUsuarios = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarCrear(false)}>X</Button>
-      <h3>Crear</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>
+        X
+      </button>
+      <h3>Crear usuario</h3>
+      {usuario && usuario.imagen_usuario && (
+        <img src={usuario.imagen_usuario} className="img-fluid w-25 mt-3 mb-3" />
+      )}
       <Form onSubmit={handleSubmit(handleCrearUsuario)}>
         <Form.Group>
-          <Form.Label>Nombre</Form.Label>
+          <Form.Label>Imagen:</Form.Label>
+          <Form.Control
+            name="imagen_usuario"
+            {...register("imagen_usuario", {
+              required: "La imagen ese requerido",
+            })}
+            onChange={(e) =>
+              setUsuario({ ...usuario, [e.target.name]: e.target.value })
+            }
+          />
+          {errors.imagen_usuario && <p>{errors.imagen_usuario.message}</p>}
+          <small className="form-text text-center">
+            Ingrese un link de una imagen
+          </small>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Nombre:</Form.Label>
           <Form.Control
             name="nombre_usuario"
             {...register("nombre_usuario", {
@@ -30,7 +53,7 @@ const CreateUsuarios = ({
           {errors.nombre_usuario && <p>{errors.nombre_usuario.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Apellido</Form.Label>
+          <Form.Label>Apellido:</Form.Label>
           <Form.Control
             name="apellido_usuario"
             {...register("apellido_usuario", {
@@ -44,7 +67,7 @@ const CreateUsuarios = ({
           {errors.apellido_usuario && <p>{errors.apellido_usuario.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Contraseña</Form.Label>
+          <Form.Label>Contraseña:</Form.Label>
           <Form.Control
             name="contraseña_usuario"
             {...register("contraseña_usuario", {
@@ -60,7 +83,7 @@ const CreateUsuarios = ({
           )}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Rol de usuario</Form.Label>
+          <Form.Label>Rol de usuario:</Form.Label>
           <Form.Control
             as="select"
             name="rol"
@@ -81,7 +104,7 @@ const CreateUsuarios = ({
           {errors.rol && <p>{errors.rol.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>DNI</Form.Label>
+          <Form.Label>DNI:</Form.Label>
           <Form.Control
             name="dni"
             {...register("dni", {
@@ -100,7 +123,7 @@ const CreateUsuarios = ({
           {errors.dni && <p>{errors.dni.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Email</Form.Label>
+          <Form.Label>Email:</Form.Label>
           <Form.Control
             name="email_usuario"
             {...register("email_usuario", {
@@ -113,7 +136,7 @@ const CreateUsuarios = ({
           {errors.email_usuario && <p>{errors.email_usuario.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Telefono</Form.Label>
+          <Form.Label>Telefono:</Form.Label>
           <Form.Control
             name="telefono_usuario"
             {...register("telefono_usuario", {
@@ -126,9 +149,12 @@ const CreateUsuarios = ({
           />
           {errors.telefono_usuario && <p>{errors.telefono_usuario.message}</p>}
         </Form.Group>
-        <Button type="submit">Crear</Button>
+        <button type="submit" className="admin-button mt-3">
+          Crear usuario
+          <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
+        </button>
       </Form>
-    </>
+    </div>
   );
 };
 
