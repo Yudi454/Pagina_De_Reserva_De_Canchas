@@ -1,0 +1,247 @@
+
+.admin-container {
+    padding-top: 160px;
+    padding-bottom: 160px;
+}
+
+
+/*LINKS DE ADMIN*/
+.contenedor-admin-links-pc {
+    padding-left: 3vh !important;
+}
+
+.links-admin {
+    padding: 1vh 15px 1vh 15px;
+    box-shadow: 0px 0px 2px black;
+    width: 90%;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.nav-admin {
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 1px black;
+}
+
+.ul-admin {
+    list-style: none;
+    padding-left: 0 !important;
+
+}
+
+.li-admin {
+    border-radius: 5px;
+}
+
+.li-admin:hover {
+    background-color: greenyellow !important;
+}
+
+.link-admin {
+  
+    transition: transform 0.3s ease;
+    display: inline-block;
+    text-shadow: 1px 1px 3px rgb(0, 139, 7);
+    font-weight: bold;
+    color: rgb(250, 250, 250);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #6cc75a;
+}
+
+.link-admin:hover {
+    transform: scale(1.2) translate(8px, -3px);
+    background-color: #069e57;
+}
+
+.icon-admin {
+    margin-left: 9px;
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+.form-text {
+  font-size: 0.8rem;
+
+}
+
+.container-table{
+    overflow-x: auto;
+    
+}
+
+.table-admin{
+
+}
+
+
+.th-admin th {
+  background-color: #023b20 !important;
+}
+
+.tr-admin td{
+  background-color: #069e57 !important;
+}
+
+.tr-admin:hover td{
+    background-color:#6cc75a !important;
+}
+
+
+/* BOTÓN CERRAR */
+.create-clientes-container .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* FORMULARIO */
+.form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+.form-control {
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+}
+
+/* MENSAJES DE ERROR */
+.p {
+  color: #dc3545;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+}
+
+
+
+/* ÍCONO */
+.icon-admin {
+  margin-left: 8px;
+}
+
+/* botones para admin editar y eliminar */
+
+.admin-button {
+
+  background-color: #0a5733 !important; 
+  border: #0a5733 !important;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s;
+  cursor: pointer; /* Cambia el cursor a una mano */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.849);
+}
+
+.admin-button-delete {
+  background-color: #b11207; 
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem;
+  min-width: fit-content;
+  transition: background-color 0.3s;
+   cursor: pointer; /* Cambia el cursor a una mano */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.849);
+}
+
+.admin-button-editar {
+  background-color: #d2f510; 
+  border: none;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  transition: background-color 0.3s;
+  cursor: pointer; /* Cambia el cursor a una mano */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.849);
+}
+
+
+.admin-button-editar:hover,
+.admin-button:hover,
+.admin-button-delete:hover {
+  background-color: #023b20;
+  color: aliceblue;
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  
+}
+
+
+/* titulo  */
+
+.caja-nom{
+
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 3px 5px 24px rgb(0, 0, 0);
+  color: rgb(255, 244, 83);
+
+}
+
+/* contenedor   */
+
+.main-caja {
+ 
+  width: 420px;
+  background-color: #07612e;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  margin: 1rem auto;
+  transition: all 0.3s ease;
+
+}
+
+
+.main-caja form {
+  width: 100%;
+}
+
+.main-caja .form-label {
+
+  font-weight: bold;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px; 
+  
+}
+
+ .form-text {
+  font-size: 0.9rem !important;
+  color: #afaeae !important;
+}
+
+.main-caja input,
+.main-caja select,
+.main-caja button {
+  width: 100%;
+}
+
+.main-caja .icon-admin {
+  margin-left: 8px;
+}

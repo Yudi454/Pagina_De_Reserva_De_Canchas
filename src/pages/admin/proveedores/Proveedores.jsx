@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import MainProveedores from "./MainProveedores";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -14,11 +14,16 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import { useForm } from "react-hook-form";
 import ProveedoresEditar from "./ProveedoresEditar";
 import ProveedorCrear from "./ProveedorCrear";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Proveedores = () => {
+  const { color } = useStore();
+
   const [proveedores, setProveedores] = useState();
 
   const [proveedor, setProveedor] = useState();
@@ -120,56 +125,77 @@ const Proveedores = () => {
   };
 
   return (
-    <div style={{paddingTop: "20vh"}}>
-      <Row>
-        <Col>
-          <NavAdmin />
-        </Col>
-        <Col>
-          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
-          {proveedores && proveedores.length > 0 ? (
-            <MainProveedores
-              proveedores={proveedores}
-              handleVer={handleVer}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <p>No hay Proveedores</p>
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
+        <Row className="gx-0">
+          <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+            <NavAdmin celular={false} mostrar={"proveedores"} />
+          </Col>
+          <Col xs={12} className="d-bock d-md-none">
+            <NavAdmin celular={true} mostrar={"proveedores"} />
+          </Col>
+          {mostrarCrear && (
+            <Col md={10}>
+              <ProveedorCrear
+                setMostrarCrear={setMostrarCrear}
+                proveedor={proveedor}
+                setProveedor={setProveedor}
+                handleCrearProveedor={handleCrearProveedor}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
           )}
-        </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={proveedor} />
+          {mostrarVer && (
+            <Col md={10} className="d-flex justify-content-center">
+              <div className="text-center">
+                <VerDatoAdmin setMostrarVer={setMostrarVer} dato={proveedor} />
+              </div>
+            </Col>
+          )}
+          {mostrarEditar && (
+            <Col md={10}>
+              <ProveedoresEditar
+                setMostrarEditar={setMostrarEditar}
+                proveedor={proveedor}
+                setProveedor={setProveedor}
+                handleEditarProveedor={handleEditarProveedor}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
+          )}
+          <Col
+            md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+            sm={12}
+            className="text-center d-md-flex flex-column align-items-center justify-content-between"
+          >
+            {!mostrarCrear && (
+              <div className="mt-3 mb-3">
+                <button className="admin-button" onClick={handleCrear}>
+                  Crear
+                  <FontAwesomeIcon
+                    icon={faFileSignature}
+                    className="icon-admin"
+                  />
+                </button>
+              </div>
+            )}
+            {proveedores && proveedores.length > 0 ? (
+              <MainProveedores
+                proveedores={proveedores}
+                handleVer={handleVer}
+                handleEditar={handleEditar}
+                handleDelete={handleDelete}
+              />
+            ) : (
+              <p>No hay Proveedores</p>
+            )}
           </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <ProveedoresEditar
-              setMostrarEditar={setMostrarEditar}
-              proveedor={proveedor}
-              setProveedor={setProveedor}
-              handleEditarProveedor={handleEditarProveedor}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-        {mostrarCrear && (
-          <Col>
-            <ProveedorCrear
-              setMostrarCrear={setMostrarCrear}
-              proveedor={proveedor}
-              setProveedor={setProveedor}
-              handleCrearProveedor={handleCrearProveedor}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-      </Row>
+        </Row>
+      </div>
     </div>
   );
 };

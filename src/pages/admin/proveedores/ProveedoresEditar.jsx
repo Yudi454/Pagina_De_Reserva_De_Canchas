@@ -1,3 +1,5 @@
+import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 
 const ProveedoresEditar = ({
@@ -10,13 +12,25 @@ const ProveedoresEditar = ({
   errors,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarEditar(false)}>X</Button>
-      <h3>Editar</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <button
+        className="admin-button-editar"
+        onClick={() => setMostrarEditar(false)}
+      >
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </button>
+      <h3>Editar proveedor</h3>
       {proveedor && (
-        <Form onSubmit={handleSubmit(handleEditarProveedor)}>
+        <Form
+          onSubmit={handleSubmit(handleEditarProveedor)}
+          className="d-flex flex-column align-items-center"
+        >
+          <img
+            src={proveedor.imagen_proveedor}
+            className="img-fluid w-25 mt-3 mb-3"
+          />
           <Form.Group>
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label>Nombre:</Form.Label>
             <Form.Control
               value={proveedor.nombre_proveedor}
               name="nombre_proveedor"
@@ -32,7 +46,26 @@ const ProveedoresEditar = ({
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Imagen:</Form.Label>
+            <Form.Control
+              value={proveedor.imagen_proveedor}
+              name="imagen_proveedor"
+              {...register("imagen_proveedor", {
+                required: "El imagen es obligatorio",
+              })}
+              onChange={(e) =>
+                setProveedor({ ...proveedor, [e.target.name]: e.target.value })
+              }
+            />
+            {errors.imagen_proveedor && (
+              <p>{errors.imagen_proveedor.message}</p>
+            )}
+            <small className="form-text text-center">
+              Ingrese un link de una imagen
+            </small>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email:</Form.Label>
             <Form.Control
               value={proveedor.email_proveedor}
               name="email_proveedor"
@@ -46,7 +79,7 @@ const ProveedoresEditar = ({
             {errors.email_proveedor && <p>{errors.email_proveedor.message}</p>}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Telefono</Form.Label>
+            <Form.Label>Telefono:</Form.Label>
             <Form.Control
               value={proveedor.telefono_proveedor}
               name="telefono_proveedor"
@@ -61,10 +94,13 @@ const ProveedoresEditar = ({
               <p>{errors.telefono_proveedor.message}</p>
             )}
           </Form.Group>
-          <Button type="submit">Editar</Button>
+          <button className="admin-button-editar mt-3" type="submit">
+            Editar
+            <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
+          </button>
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

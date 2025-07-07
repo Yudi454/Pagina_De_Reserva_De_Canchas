@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import MainCanchas from "./MainCanchas";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -14,11 +14,17 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import CanchasEditar from "./CanchasEditar";
 import { useForm } from "react-hook-form";
 import CanchasCrear from "./CanchasCrear";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Canchas = () => {
+  const { color } = useStore();
+
   const [canchas, setCanchas] = useState();
 
   const [cancha, setCancha] = useState();
@@ -116,56 +122,79 @@ const Canchas = () => {
   };
 
   return (
-    <div style={{paddingTop: "20vh"}}>
-      <Row>
-        <Col>
-          <NavAdmin />
-        </Col>
-        <Col>
-          {!mostrarCrear && <Button onClick={handleCrear}>Crear</Button>}
-          {canchas && canchas.length > 0 ? (
-            <MainCanchas
-              canchas={canchas}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-              handleVer={handleVer}
-            />
-          ) : (
-            <p>No hay canchas</p>
+
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
+        <Row className="gx-0">
+          <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+            <NavAdmin celular={false} mostrar={"canchas"} />
+          </Col>
+          <Col xs={12} className="d-bock d-md-none">
+            <NavAdmin celular={true} mostrar={"canchas"} />
+          </Col>
+          {mostrarCrear && (
+            <Col md={10}>
+              <CanchasCrear
+                setMostrarCrear={setMostrarCrear}
+                cancha={cancha}
+                setCancha={setCancha}
+                handleCrearCancha={handleCrearCancha}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
           )}
-        </Col>
-        {mostrarVer && (
-          <Col>
-            <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cancha} />
+          {mostrarVer && (
+            <Col md={10} className="d-flex justify-content-center">
+              <div className="text-center">
+                <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cancha} />
+              </div>
+            </Col>
+          )}
+          {mostrarEditar && (
+            <Col md={10}>
+              <CanchasEditar
+                cancha={cancha}
+                setCancha={setCancha}
+                setMostrarEditar={setMostrarEditar}
+                handleEditarCancha={handleEditarCancha}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
+          )}
+          <Col
+            md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+            sm={12}
+            className="text-center d-md-flex flex-column align-items-center justify-content-between"
+          >
+            {!mostrarCrear && (
+              <div className="mt-3 mb-3">
+                <button className="admin-button" onClick={handleCrear}>
+                  Crear Cancha
+                  <FontAwesomeIcon
+                    icon={faFileSignature}
+                    className="icon-admin"
+                  />
+                </button>
+              </div>
+            )}
+            {canchas && canchas.length > 0 ? (
+              <MainCanchas
+                canchas={canchas}
+                handleEditar={handleEditar}
+                handleDelete={handleDelete}
+                handleVer={handleVer}
+              />
+            ) : (
+              <p>No hay canchas</p>
+            )}
           </Col>
-        )}
-        {mostrarEditar && (
-          <Col>
-            <CanchasEditar
-              cancha={cancha}
-              setCancha={setCancha}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarCancha={handleEditarCancha}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-        {mostrarCrear && (
-          <Col>
-            <CanchasCrear
-              setMostrarCrear={setMostrarCrear}
-              cancha={cancha}
-              setCancha={setCancha}
-              handleCrearCancha={handleCrearCancha}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-      </Row>
+
+        </Row>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,10 @@
-import { Button, Form } from "react-bootstrap";
+import { faFileCirclePlus, faFileSignature, faNoteSticky, faPenToSquare, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  Form } from "react-bootstrap";
+import "../../../css/admin/Admin.css"
+
+
+
 const CreateClientes = ({
   setMostrarCreate,
   cliente,
@@ -9,12 +15,12 @@ const CreateClientes = ({
   register,
 }) => {
   return (
-    <>
-      <Button onClick={() => setMostrarCreate(false)}>X</Button>
-      <h3>Crear</h3>
+    <div className="d-flex flex-column align-items-center text-center">
+      <button className="admin-button" onClick={() => setMostrarCreate(false)}><FontAwesomeIcon icon={faTimes} size="lg"/></button>
+      <h3>Crear cliente</h3>
       <Form onSubmit={handleSubmit(handleCreateCliente)}>
         <Form.Group>
-          <Form.Label>Usuario</Form.Label>
+          <Form.Label>Usuario:</Form.Label>
           <Form.Control
             name="usuario"
             {...register("usuario", {
@@ -27,7 +33,7 @@ const CreateClientes = ({
           {errors.usuario && <p>{errors.usuario.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Email</Form.Label>
+          <Form.Label>Email:</Form.Label>
           <Form.Control
             name="email_cliente"
             {...register("email_cliente", {
@@ -40,7 +46,7 @@ const CreateClientes = ({
           {errors.email_cliente && <p>{errors.email_cliente.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Telefono</Form.Label>
+          <Form.Label>Telefono:</Form.Label>
           <Form.Control
             name="telefono_cliente"
             {...register("telefono_cliente", {
@@ -54,7 +60,7 @@ const CreateClientes = ({
           {errors.telefono_cliente && <p>{errors.telefono_cliente.message}</p>}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Contraseña</Form.Label>
+          <Form.Label>Contraseña:</Form.Label>
           <Form.Control
             name="contraseña_cliente"
             {...register("contraseña_cliente", {
@@ -66,9 +72,9 @@ const CreateClientes = ({
             }
           />
         </Form.Group>
-        <Button type="submit">Crear</Button>
+        <button type="submit" className="admin-button mt-3">Crear cliente <FontAwesomeIcon className="icon-admin" icon={faFileSignature}/></button>
       </Form>
-    </>
+    </div>
   );
 };
 
