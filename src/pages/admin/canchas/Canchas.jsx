@@ -1,4 +1,4 @@
-import {  Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import MainCanchas from "./MainCanchas";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -19,7 +19,6 @@ import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
 
 const Canchas = () => {
-
   const { color } = useStore();
 
   const [canchas, setCanchas] = useState();
@@ -121,79 +120,75 @@ const Canchas = () => {
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
-      <Row>
-        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
-          <NavAdmin celular={false} mostrar={"canchas"} />
-        </Col>
-        <Col xs={12} className="d-bock d-md-none">
-          <NavAdmin celular={true} mostrar={"canchas"} />
-        </Col>
-        {mostrarCrear && (
-          <Col md={10}>
-            <CanchasCrear
-              setMostrarCrear={setMostrarCrear}
-              cancha={cancha}
-              setCancha={setCancha}
-              handleCrearCancha={handleCrearCancha}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
+        <Row className="gx-0">
+          <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+            <NavAdmin celular={false} mostrar={"canchas"} />
           </Col>
-        )}
-        {mostrarVer && (
-          <Col md={10} className="d-flex justify-content-center">
-            <div className="text-center">
-              <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cancha} />
-            </div>
+          <Col xs={12} className="d-bock d-md-none">
+            <NavAdmin celular={true} mostrar={"canchas"} />
           </Col>
-        )}
-        {mostrarEditar && (
-          <Col md={10}>
-            <CanchasEditar
-              cancha={cancha}
-              setCancha={setCancha}
-              setMostrarEditar={setMostrarEditar}
-              handleEditarCancha={handleEditarCancha}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-        <Col
-          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
-          sm={12}
-          className={
-            mostrarCrear || mostrarEditar || mostrarVer
-              ? "text-center d-flex justify-content-center flex-column align-items-center"
-              : "text-center"
-          }
-        >
-          {!mostrarCrear && (
-            <div className="mt-3 mb-3">
-              <button className="admin-button" onClick={handleCrear}>
-                Crear Cancha
-                <FontAwesomeIcon
-                  icon={faFileSignature}
-                  className="icon-admin"
-                />
-              </button>
-            </div>
+          {mostrarCrear && (
+            <Col md={10}>
+              <CanchasCrear
+                setMostrarCrear={setMostrarCrear}
+                cancha={cancha}
+                setCancha={setCancha}
+                handleCrearCancha={handleCrearCancha}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
           )}
-          {canchas && canchas.length > 0 ? (
-            <MainCanchas
-              canchas={canchas}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-              handleVer={handleVer}
-            />
-          ) : (
-            <p>No hay canchas</p>
+          {mostrarVer && (
+            <Col md={10} className="d-flex justify-content-center">
+              <div className="text-center">
+                <VerDatoAdmin setMostrarVer={setMostrarVer} dato={cancha} />
+              </div>
+            </Col>
           )}
-        </Col>
-      </Row>
-    </div>
+          {mostrarEditar && (
+            <Col md={10}>
+              <CanchasEditar
+                cancha={cancha}
+                setCancha={setCancha}
+                setMostrarEditar={setMostrarEditar}
+                handleEditarCancha={handleEditarCancha}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
+          )}
+          <Col
+            md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+            sm={12}
+            className="text-center d-md-flex flex-column align-items-center justify-content-between"
+          >
+            {!mostrarCrear && (
+              <div className="mt-3 mb-3">
+                <button className="admin-button" onClick={handleCrear}>
+                  Crear Cancha
+                  <FontAwesomeIcon
+                    icon={faFileSignature}
+                    className="icon-admin"
+                  />
+                </button>
+              </div>
+            )}
+            {canchas && canchas.length > 0 ? (
+              <MainCanchas
+                canchas={canchas}
+                handleEditar={handleEditar}
+                handleDelete={handleDelete}
+                handleVer={handleVer}
+              />
+            ) : (
+              <p>No hay canchas</p>
+            )}
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

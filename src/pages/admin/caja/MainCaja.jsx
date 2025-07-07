@@ -2,7 +2,6 @@ import { faCartPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
 import { useStore } from "../../../store/AuthStore";
-import "../../../css/admin/cajaadmin.css"
 
 
 

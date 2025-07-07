@@ -1,4 +1,4 @@
-import {  Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import MainProveedores from "./MainProveedores";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -19,7 +19,6 @@ import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
 
 const Proveedores = () => {
-
   const { color } = useStore();
 
   const [proveedores, setProveedores] = useState();
@@ -125,79 +124,75 @@ const Proveedores = () => {
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
-      <Row>
-        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
-          <NavAdmin celular={false} mostrar={"proveedores"} />
-        </Col>
-        <Col xs={12} className="d-bock d-md-none">
-          <NavAdmin celular={true} mostrar={"proveedores"} />
-        </Col>
-        {mostrarCrear && (
-          <Col md={10}>
-            <ProveedorCrear
-              setMostrarCrear={setMostrarCrear}
-              proveedor={proveedor}
-              setProveedor={setProveedor}
-              handleCrearProveedor={handleCrearProveedor}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
+        <Row className="gx-0">
+          <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+            <NavAdmin celular={false} mostrar={"proveedores"} />
           </Col>
-        )}
-        {mostrarVer && (
-          <Col md={10} className="d-flex justify-content-center">
-            <div className="text-center">
-              <VerDatoAdmin setMostrarVer={setMostrarVer} dato={proveedor} />
-            </div>
+          <Col xs={12} className="d-bock d-md-none">
+            <NavAdmin celular={true} mostrar={"proveedores"} />
           </Col>
-        )}
-        {mostrarEditar && (
-          <Col md={10}>
-            <ProveedoresEditar
-              setMostrarEditar={setMostrarEditar}
-              proveedor={proveedor}
-              setProveedor={setProveedor}
-              handleEditarProveedor={handleEditarProveedor}
-              handleSubmit={handleSubmit}
-              register={register}
-              errors={errors}
-            />
-          </Col>
-        )}
-        <Col
-          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
-          sm={12}
-          className={
-            mostrarCrear || mostrarEditar || mostrarVer
-              ? "text-center d-flex justify-content-center flex-column align-items-center"
-              : "text-center"
-          }
-        >
-          {!mostrarCrear && (
-            <div className="mt-3 mb-3">
-              <button className="admin-button" onClick={handleCrear}>
-                Crear
-                <FontAwesomeIcon
-                  icon={faFileSignature}
-                  className="icon-admin"
-                />
-              </button>
-            </div>
+          {mostrarCrear && (
+            <Col md={10}>
+              <ProveedorCrear
+                setMostrarCrear={setMostrarCrear}
+                proveedor={proveedor}
+                setProveedor={setProveedor}
+                handleCrearProveedor={handleCrearProveedor}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
           )}
-          {proveedores && proveedores.length > 0 ? (
-            <MainProveedores
-              proveedores={proveedores}
-              handleVer={handleVer}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <p>No hay Proveedores</p>
+          {mostrarVer && (
+            <Col md={10} className="d-flex justify-content-center">
+              <div className="text-center">
+                <VerDatoAdmin setMostrarVer={setMostrarVer} dato={proveedor} />
+              </div>
+            </Col>
           )}
-        </Col>
-      </Row>
-    </div>
+          {mostrarEditar && (
+            <Col md={10}>
+              <ProveedoresEditar
+                setMostrarEditar={setMostrarEditar}
+                proveedor={proveedor}
+                setProveedor={setProveedor}
+                handleEditarProveedor={handleEditarProveedor}
+                handleSubmit={handleSubmit}
+                register={register}
+                errors={errors}
+              />
+            </Col>
+          )}
+          <Col
+            md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+            sm={12}
+            className="text-center d-md-flex flex-column align-items-center justify-content-between"
+          >
+            {!mostrarCrear && (
+              <div className="mt-3 mb-3">
+                <button className="admin-button" onClick={handleCrear}>
+                  Crear
+                  <FontAwesomeIcon
+                    icon={faFileSignature}
+                    className="icon-admin"
+                  />
+                </button>
+              </div>
+            )}
+            {proveedores && proveedores.length > 0 ? (
+              <MainProveedores
+                proveedores={proveedores}
+                handleVer={handleVer}
+                handleEditar={handleEditar}
+                handleDelete={handleDelete}
+              />
+            ) : (
+              <p>No hay Proveedores</p>
+            )}
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

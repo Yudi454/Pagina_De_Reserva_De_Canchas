@@ -16,7 +16,7 @@ const CreateClientes = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <button onClick={() => setMostrarCreate(false)}><FontAwesomeIcon icon={faTimes} size="lg"/></button>
+      <button className="admin-button" onClick={() => setMostrarCreate(false)}><FontAwesomeIcon icon={faTimes} size="lg"/></button>
       <h3>Crear cliente</h3>
       <Form onSubmit={handleSubmit(handleCreateCliente)}>
         <Form.Group>

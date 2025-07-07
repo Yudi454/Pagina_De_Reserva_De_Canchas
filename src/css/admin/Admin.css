@@ -33,7 +33,6 @@ a {
 
 .li-admin {
     border-radius: 5px;
-    padding-left: 1vh;
 }
 
 .li-admin:hover {
@@ -80,12 +79,17 @@ a {
 
 }
 
-.tr-admin{
 
+.th-admin th {
+  background-color: #023b20 !important;
+}
+
+.tr-admin td{
+  background-color: #069e57 !important;
 }
 
 .tr-admin:hover td{
-    background-color: rgb(0, 255, 13);
+    background-color:#6cc75a !important;
 }
 
 
@@ -133,7 +137,8 @@ a {
 
 .admin-button {
 
-  background-color: #0a5733; 
+  background-color: #0a5733 !important; 
+  border: #0a5733 !important;
   border: none;
   color: white;
   font-weight: 600;
@@ -151,7 +156,8 @@ a {
   color: white;
   font-weight: 600;
   border-radius: 8px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
+  min-width: fit-content;
   transition: background-color 0.3s;
    cursor: pointer; /* Cambia el cursor a una mano */
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
@@ -164,7 +170,7 @@ a {
   color: rgb(0, 0, 0);
   font-weight: 600;
   border-radius: 8px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.8rem;
   transition: background-color 0.3s;
   cursor: pointer; /* Cambia el cursor a una mano */
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
@@ -225,9 +231,9 @@ a {
   
 }
 
-.main-caja .form-text {
-  font-size: 0.9rem;
-  color: #afaeae;
+ .form-text {
+  font-size: 0.9rem !important;
+  color: #afaeae !important;
 }
 
 .main-caja input,

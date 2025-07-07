@@ -1,11 +1,12 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form } from "react-bootstrap";
+import "../../css/admin/Admin.css"
 
 const VerDatoAdmin = ({ dato, setMostrarVer }) => {
   return (
     <div className="d-flex flex-column align-items-center">
-      <Button onClick={() => setMostrarVer(false)}>
+      <Button className="admin-button" onClick={() => setMostrarVer(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
       </Button>
       {dato && dato.imagen && (

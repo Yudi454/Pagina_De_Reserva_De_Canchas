@@ -92,8 +92,8 @@ const MainAdmin = ({ celular, mostrar }) => {
         <div>
           <Row className="gx-0 d-flex justify-content-center">
             <Col xs={6} className="d-flex justify-content-center">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/caja">
+              <div className="links-admin p-0 ">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/caja">
                   {mostrar === "caja" && <FontAwesomeIcon icon={faPlay} />} Caja
                   <FontAwesomeIcon
                     icon={faCashRegister}
@@ -103,8 +103,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={6} className="d-flex justify-content-center ">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/clientes">
+              <div className="links-admin p-0 ">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/clientes">
                   {mostrar === "clientes" && <FontAwesomeIcon icon={faPlay} />}
                   Clientes
                   <FontAwesomeIcon
@@ -115,8 +115,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={6} className="d-flex justify-content-center mt-2">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/usuarios">
+              <div className="links-admin p-0">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/usuarios">
                   {mostrar === "usuarios" && <FontAwesomeIcon icon={faPlay} />}{" "}
                   Usuarios
                   <FontAwesomeIcon icon={faUserTie} className="icon-admin" />
@@ -124,8 +124,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={6} className="d-flex justify-content-center mt-2">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/productos">
+              <div className="links-admin p-0">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/productos">
                   {mostrar === "productos" && <FontAwesomeIcon icon={faPlay} />}{" "}
                   Productos
                   <FontAwesomeIcon icon={faBoxOpen} className="icon-admin" />
@@ -133,8 +133,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={6} className="d-flex justify-content-center mt-2">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/ventas">
+              <div className="links-admin p-0">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/ventas">
                   {mostrar === "ventas" && <FontAwesomeIcon icon={faPlay} />}{" "}
                   Ventas
                   <FontAwesomeIcon icon={faReceipt} className="icon-admin" />
@@ -142,8 +142,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={6} className="d-flex justify-content-center mt-2">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/proveedores">
+              <div className="links-admin p-0">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/proveedores">
                   {mostrar === "proveedores" && (
                     <FontAwesomeIcon icon={faPlay} />
                   )}{" "}
@@ -153,8 +153,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={6} className="d-flex justify-content-center  mt-2">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/canchas">
+              <div className="links-admin p-0">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/canchas">
                   {mostrar === "canchas" && <FontAwesomeIcon icon={faPlay} />}{" "}
                   Canchas
                   <FontAwesomeIcon icon={faFutbol} className="icon-admin" />
@@ -162,8 +162,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={6} className="d-flex justify-content-center mt-2">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/horarios">
+              <div className="links-admin p-0">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/horarios">
                   {mostrar === "horarios" && <FontAwesomeIcon icon={faPlay} />}{" "}
                   Horarios
                   <FontAwesomeIcon icon={faClock} className="icon-admin" />
@@ -171,8 +171,8 @@ const MainAdmin = ({ celular, mostrar }) => {
               </div>
             </Col>
             <Col xs={12} className="d-flex justify-content-center w-50 mt-2">
-              <div className="links-admin d-flex justify-content-center">
-                <Link className="link-admin" to="/admin/reservas">
+              <div className="links-admin p-0">
+                <Link className="link-admin h-100 d-flex justify-content-center" to="/admin/reservas">
                   {mostrar === "reservas" && <FontAwesomeIcon icon={faPlay} />}{" "}
                   Reservas
                   <FontAwesomeIcon

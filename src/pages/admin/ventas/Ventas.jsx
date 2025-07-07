@@ -24,7 +24,6 @@ const MySwal = withReactContent(Swal);
 import { useStore } from "../../../store/AuthStore";
 
 const Ventas = () => {
-
   const { color } = useStore();
 
   const [ventas, setVentas] = useState();
@@ -193,97 +192,93 @@ const Ventas = () => {
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
-      <Row>
-        <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
-          <NavAdmin celular={false} mostrar={"ventas"} />
-        </Col>
-        <Col xs={12} className="d-bock d-md-none">
-          <NavAdmin celular={true} mostrar={"ventas"} />
-        </Col>
-        {mostrarCrear && (
-          <Col md={10}>
-            <VentasCrear
-              venta={venta}
-              setVenta={setVenta}
-              producto={producto}
-              productos={productos}
-              setProductos={setProductos}
-              setProducto={setProducto}
-              setMostrarCrear={setMostrarCrear}
-              añadirProducto={añadirProducto}
-              handleCrearVenta={handleCrearVenta}
-              handleBuscar={handleBuscar}
-              handleSubmitVenta={handleSubmitVenta}
-              handleSubmitProducto={handleSubmitProducto}
-              registerVenta={registerVenta}
-              registerProducto={registerProducto}
-              errorsVenta={errorsVenta}
-              errorsProducto={errorsProducto}
-            />
+        <Row className="gx-0">
+          <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
+            <NavAdmin celular={false} mostrar={"ventas"} />
           </Col>
-        )}
-        {mostrarVer && (
-          <Col md={10} className="d-flex justify-content-center">
-            <div className="text-center">
-              <VerVentas venta={venta} setMostrarVer={setMostrarVer} />
-            </div>
+          <Col xs={12} className="d-bock d-md-none">
+            <NavAdmin celular={true} mostrar={"ventas"} />
           </Col>
-        )}
-        {mostrarEditar && (
-          <Col md={10}>
-            <VentasEditar
-              venta={venta}
-              producto={producto}
-              productos={productos}
-              setVenta={setVenta}
-              setProductos={setProductos}
-              setProducto={setProducto}
-              setMostrarEditar={setMostrarEditar}
-              añadirProducto={añadirProducto}
-              handleEditarVenta={handleEditarVenta}
-              handleBuscar={handleBuscar}
-              handleSubmitVenta={handleSubmitVenta}
-              handleSubmitProducto={handleSubmitProducto}
-              registerVenta={registerVenta}
-              registerProducto={registerProducto}
-              errorsVenta={errorsVenta}
-              errorsProducto={errorsProducto}
-            />
-          </Col>
-        )}
-        <Col
-          md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
-          sm={12}
-          className={
-            mostrarCrear || mostrarEditar || mostrarVer
-              ? "text-center d-flex justify-content-center flex-column align-items-center"
-              : "text-center"
-          }
-        >
-          {!mostrarCrear && (
-            <div className="mt-3 mb-3">
-              <button className="admin-button" onClick={handleCrear}>
-                Crear
-                <FontAwesomeIcon
-                  icon={faFileSignature}
-                  className="icon-admin"
-                />
-              </button>
-            </div>
+          {mostrarCrear && (
+            <Col md={10}>
+              <VentasCrear
+                venta={venta}
+                setVenta={setVenta}
+                producto={producto}
+                productos={productos}
+                setProductos={setProductos}
+                setProducto={setProducto}
+                setMostrarCrear={setMostrarCrear}
+                añadirProducto={añadirProducto}
+                handleCrearVenta={handleCrearVenta}
+                handleBuscar={handleBuscar}
+                handleSubmitVenta={handleSubmitVenta}
+                handleSubmitProducto={handleSubmitProducto}
+                registerVenta={registerVenta}
+                registerProducto={registerProducto}
+                errorsVenta={errorsVenta}
+                errorsProducto={errorsProducto}
+              />
+            </Col>
           )}
-          {ventas && ventas.length > 0 ? (
-            <MainVentas
-              ventas={ventas}
-              handleVer={handleVer}
-              handleEditar={handleEditar}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <p>No hay Ventas</p>
+          {mostrarVer && (
+            <Col md={10} className="d-flex justify-content-center">
+              <div className="text-center">
+                <VerVentas venta={venta} setMostrarVer={setMostrarVer} />
+              </div>
+            </Col>
           )}
-        </Col>
-      </Row>
-    </div>
+          {mostrarEditar && (
+            <Col md={10}>
+              <VentasEditar
+                venta={venta}
+                producto={producto}
+                productos={productos}
+                setVenta={setVenta}
+                setProductos={setProductos}
+                setProducto={setProducto}
+                setMostrarEditar={setMostrarEditar}
+                añadirProducto={añadirProducto}
+                handleEditarVenta={handleEditarVenta}
+                handleBuscar={handleBuscar}
+                handleSubmitVenta={handleSubmitVenta}
+                handleSubmitProducto={handleSubmitProducto}
+                registerVenta={registerVenta}
+                registerProducto={registerProducto}
+                errorsVenta={errorsVenta}
+                errorsProducto={errorsProducto}
+              />
+            </Col>
+          )}
+          <Col
+            md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
+            sm={12}
+            className="text-center d-md-flex flex-column align-items-center justify-content-between"
+          >
+            {!mostrarCrear && (
+              <div className="mt-3 mb-3">
+                <button className="admin-button" onClick={handleCrear}>
+                  Crear
+                  <FontAwesomeIcon
+                    icon={faFileSignature}
+                    className="icon-admin"
+                  />
+                </button>
+              </div>
+            )}
+            {ventas && ventas.length > 0 ? (
+              <MainVentas
+                ventas={ventas}
+                handleVer={handleVer}
+                handleEditar={handleEditar}
+                handleDelete={handleDelete}
+              />
+            ) : (
+              <p>No hay Ventas</p>
+            )}
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

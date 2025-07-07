@@ -117,7 +117,7 @@ const Horarios = () => {
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
-        <Row>
+        <Row className="gx-0">
           <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
             <NavAdmin celular={false} mostrar={"horarios"} />
           </Col>
@@ -160,11 +160,7 @@ const Horarios = () => {
           <Col
             md={mostrarCrear || mostrarEditar || mostrarVer ? 12 : 10}
             sm={12}
-            className={
-              mostrarCrear || mostrarEditar || mostrarVer
-                ? "text-center d-flex justify-content-center flex-column align-items-center"
-                : "text-center"
-            }
+            className="text-center d-md-flex flex-column align-items-center justify-content-between"
           >
             {!mostrarCrear && (
               <div className="mt-3 mb-3">
