@@ -87,7 +87,7 @@ const ReservasCrear = ({
           <br />Y luego selecciona un horario.
         </small>
         <div className="mt-3 mb-3">
-          <button className="admin-button me-4" onClick={buscarHorarios}>
+          <button className="admin-button me-4" type="button" onClick={buscarHorarios}>
             Buscar Horarios
             <FontAwesomeIcon icon={faMagnifyingGlass} className="icon-admin" />
           </button>

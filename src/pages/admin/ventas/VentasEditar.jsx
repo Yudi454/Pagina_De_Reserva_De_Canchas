@@ -96,10 +96,10 @@ const VentasEditar = ({
             {venta.productos &&
               venta.productos.map((p, index) => (
                 <>
-                  <img src={p.imagen} className="img-fluid w-25" />
+                  <img src={p.imagen_producto} className="img-fluid w-25" />
                   <div key={p.id_producto}>
                     <Form.Label>
-                      {p.nombre_producto}-precio: {p.precio_producto}
+                      {p.nombre_producto}-precio: {p.precio_producto}<br/>Cantidad:
                     </Form.Label>
                     <Form.Control
                       value={p.cantidad}
@@ -145,8 +145,10 @@ const VentasEditar = ({
                   );
                   setProducto({
                     ...producto,
+                    nombre_producto: productoSeleccionado.nombre_producto,
                     id_producto: productoSeleccionado.id_producto,
                     precio_producto: productoSeleccionado.precio_producto,
+                    imagen_producto: productoSeleccionado.imagen_producto,
                   });
                 } else {
                   setProducto({

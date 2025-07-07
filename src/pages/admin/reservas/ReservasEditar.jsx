@@ -65,8 +65,8 @@ const ReservasEditar = ({
           <Form.Group>
             <Form.Label>Dia:</Form.Label>
             <Form.Control
-              value={reserva.dia_reserva}
-              name="dia_reserva"
+              value={reserva.fecha_reserva}
+              name="fecha_reserva"
               onChange={(e) =>
                 setReserva({ ...reserva, [e.target.name]: e.target.value })
               }
@@ -86,8 +86,7 @@ const ReservasEditar = ({
                 );
                 setReserva({
                   ...reserva,
-                  horario_inicio: horarioEncontrado.hora_inicio,
-                  horario_fin: horarioEncontrado.hora_fin,
+                  horario: `${horarioEncontrado.hora_inicio}-${horarioEncontrado.hora_fin}`,  
                 });
               }}
             >
@@ -106,7 +105,7 @@ const ReservasEditar = ({
             <br />Y luego selecciona un horario.
           </small>
           <div className="mt-4 mb-3">
-            <button className="admin-button me-4" onClick={buscarHorarios}>
+            <button className="admin-button me-4" type="button" onClick={buscarHorarios}>
               Buscar Horarios
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}

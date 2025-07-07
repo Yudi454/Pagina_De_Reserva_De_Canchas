@@ -100,10 +100,7 @@ const MainInfoCancha = () => {
       (t) => String(t.id_horario) === String(horarioSeleccionado)
     );
 
-
     const horario = `${horarioEncontrado[0].hora_inicio}-${horarioEncontrado[0].hora_fin}`;
-
-    
 
     const nuevaReserva = {
       fecha_reserva: fechaCargada,
@@ -231,7 +228,16 @@ const MainInfoCancha = () => {
                 >
                   Reservar
                 </Button>
-                <Button onClick={handleCarrito}>Agregar al carrito</Button>
+                <Button
+                  onClick={handleCarrito}
+                  className="mt-3"
+                  style={{
+                    backgroundColor: "#45BF55",
+                    borderColor: "#FFC04D",
+                  }}
+                >
+                  Agregar al carrito
+                </Button>
               </Card.Body>
             </Card>
           </Col>

@@ -33,6 +33,8 @@ const Caja = () => {
 
   const RUTA_PRODUCTOS = `${API_ROUTE}${rutas.productos}`;
 
+  const user = useStore((state) => state.user);
+
   const {
     register,
     handleSubmit,
@@ -114,13 +116,15 @@ const Caja = () => {
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
         <Row className="gx-0">
-          <Col
-            md={2}
-            sm={3}
-            className="contenedor-admin-links-pc d-none d-sm-block"
-          >
-            <NavAdmin celular={false} mostrar={"caja"} />
-          </Col>
+          {user && user.rol === "admin" && (
+            <Col
+              md={2}
+              sm={3}
+              className="contenedor-admin-links-pc d-none d-sm-block"
+            >
+              <NavAdmin celular={false} mostrar={"caja"} />
+            </Col>
+          )}
           <Col xs={12} className="d-block d-sm-none">
             <NavAdmin celular={true} mostrar={"caja"} />
           </Col>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../store/AuthStore";
 import "../../css/modo_claro/ModoClaro.css";
 import "../../css/modo_oscuro/ModoOscuro.css";
@@ -23,6 +23,8 @@ const NavBar = () => {
   const agregarReserva = useStore((state) => state.agregarReserva);
   const cargarCarrito = useStore((state) => state.cargarCarritoReservas);
 
+  const navigate = useNavigate();
+
   const API_RUTE = import.meta.env.VITE_API_URL;
 
   const RUTA_RESERVAS = `${API_RUTE}${rutas.reservas}`;
@@ -32,9 +34,9 @@ const NavBar = () => {
       if (JSON.parse(localStorage.getItem("carritoReservas")).length > 0) {
         cargarCarrito(JSON.parse(localStorage.getItem("carritoReservas")));
       }
-      if (localStorage.getItem("usuario")) {
-      setUser(JSON.parse(localStorage.getItem("usuario")))
-    }
+    }
+    if (localStorage.getItem("usuario")) {
+      setUser(JSON.parse(localStorage.getItem("usuario")));
     }
   }, []);
 
@@ -51,7 +53,7 @@ const NavBar = () => {
   const handleLogout = () => {
     logout();
     setUser(null);
-    Navigate("/login");
+    navigate("/");
   };
 
   const cargarReservas = async () => {
@@ -78,8 +80,6 @@ const NavBar = () => {
 
     localStorage.setItem("carritoReservas", JSON.stringify(carritoFinal));
   };
-
-  
 
   return (
     <>
@@ -111,12 +111,12 @@ const NavBar = () => {
                   <Link to="/reservar-Cancha">Reservas</Link>
                 </>
               )}
-              {user && user.rol === "empleado" && <Link to="/caja">Caja</Link>}
+              {user && user.rol === "empleado" && <Link to="/admin">Caja</Link>}
               {user && user.rol === "admin" && <Link to="/admin">Admin</Link>}
 
               {carrito && carrito.length > 0 && (
                 <>
-                  <Button onClick={handleShow}>Carrito</Button>
+                  <button onClick={handleShow} className="logout-button">Carrito - {carrito.length}</button>
 
                   <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>

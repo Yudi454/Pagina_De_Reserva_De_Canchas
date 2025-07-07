@@ -17,12 +17,10 @@ import Proveedores from "./pages/admin/proveedores/Proveedores";
 import Reservas from "./pages/admin/reservas/Reservas";
 import Usuarios from "./pages/admin/usuarios/Usuarios";
 import Ventas from "./pages/admin/ventas/Ventas";
-import Admin from "./pages/admin/Admin";
 import Canchas from "./pages/admin/canchas/Canchas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import NavBar from "./components/header/NavBar";
 import { useStore } from "./store/AuthStore";
 
 function App() {
@@ -53,12 +51,14 @@ function App() {
           )}
           {user && user.rol === "empleado" && (
             <>
-              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin" element={<Caja />} />
               <Route path="/admin/caja" element={<Caja />} />
             </>
           )}
           {user && user.rol === "admin" && (
             <>
+              <Route path="/admin" element={<Caja />} />
+              <Route path="/admin/caja" element={<Caja />} />
               <Route path="/admin/reservas" element={<Reservas />} />
               <Route path="/admin/clientes" element={<Clientes />} />
               <Route path="/admin/horarios" element={<Horarios />} />
@@ -67,8 +67,6 @@ function App() {
               <Route path="/admin/usuarios" element={<Usuarios />} />
               <Route path="/admin/ventas" element={<Ventas />} />
               <Route path="/admin/canchas" element={<Canchas />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/admin/caja" element={<Caja />} />
             </>
           )}
         </Routes>

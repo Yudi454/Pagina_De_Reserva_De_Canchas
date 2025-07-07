@@ -14,8 +14,15 @@ import {
   faUserFriends,
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../store/AuthStore";
 
 const MainAdmin = ({ celular, mostrar }) => {
+
+  const user = useStore((set) => set.user)
+
+  console.log(user);
+  
+
   return (
     <>
       {!celular ? (

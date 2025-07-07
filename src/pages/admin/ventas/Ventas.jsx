@@ -113,15 +113,6 @@ const Ventas = () => {
           total_venta: total,
         };
 
-<<<<<<< HEAD
-        await createDato(`${RUTA_VENTAS}/create`, ventaFinal, "venta");
-        await getDatos(RUTA_VENTAS, setVentas);
-        setMostrarCrear(false);
-        setVenta("");
-        resetVenta();
-      } else {
-        toast.error("Agregue un producto primero")
-=======
         const exito = await createDato(
           `${RUTA_VENTAS}/create`,
           ventaFinal,
@@ -135,16 +126,15 @@ const Ventas = () => {
         }
       } else {
         toast.error("Agregue un producto primero");
->>>>>>> c4c33db43bda39be8f0c09e3de3300e679c10412
       }
     } catch (error) {
       MySwal.fire({
         icon: "error",
         title: "¡Error!",
         text: error,
-      });
-    }
-  };
+      });
+    }
+  };
 
   console.log(productos);
 
@@ -213,11 +203,9 @@ const Ventas = () => {
         setProducto("");
       }
     } else {
-      toast.error("Selecciona primero un producto haciendo click en Nombre")
+      toast.error("Selecciona primero un producto haciendo click en Nombre");
     }
   };
-
-  console.log(venta);
 
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
