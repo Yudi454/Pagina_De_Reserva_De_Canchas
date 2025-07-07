@@ -113,6 +113,7 @@ const Ventas = () => {
           total_venta: total,
         };
 
+<<<<<<< HEAD
         await createDato(`${RUTA_VENTAS}/create`, ventaFinal, "venta");
         await getDatos(RUTA_VENTAS, setVentas);
         setMostrarCrear(false);
@@ -120,6 +121,21 @@ const Ventas = () => {
         resetVenta();
       } else {
         toast.error("Agregue un producto primero")
+=======
+        const exito = await createDato(
+          `${RUTA_VENTAS}/create`,
+          ventaFinal,
+          "venta"
+        );
+        if (exito) {
+          await getDatos(RUTA_VENTAS, setVentas);
+          setMostrarCrear(false);
+          setVenta("");
+          resetVenta();
+        }
+      } else {
+        toast.error("Agregue un producto primero");
+>>>>>>> c4c33db43bda39be8f0c09e3de3300e679c10412
       }
     } catch (error) {
       MySwal.fire({
@@ -129,6 +145,8 @@ const Ventas = () => {
       });
     }
   };
+
+  console.log(productos);
 
   const handleDelete = async (id) => {
     try {
@@ -180,18 +198,26 @@ const Ventas = () => {
   };
 
   const añadirProducto = (e) => {
-    if (venta.productos) {
-      setVenta({ ...venta, productos: [...venta.productos, producto] });
-      setProductos(null);
-      resetProducto();
-      toast.success("Producto añadido con exito");
+    if (producto && producto.precio_producto) {
+      if (venta.productos) {
+        setVenta({ ...venta, productos: [...venta.productos, producto] });
+        setProductos(null);
+        resetProducto();
+        toast.success("Producto añadido con exito");
+        setProducto("");
+      } else {
+        setVenta({ ...venta, productos: [producto] });
+        setProductos(null);
+        resetProducto();
+        toast.success("Producto añadido cone exito");
+        setProducto("");
+      }
     } else {
-      setVenta({ ...venta, productos: [producto] });
-      setProductos(null);
-      resetProducto();
-      toast.success("Producto añadido cone exito");
+      toast.error("Selecciona primero un producto haciendo click en Nombre")
     }
   };
+
+  console.log(venta);
 
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
