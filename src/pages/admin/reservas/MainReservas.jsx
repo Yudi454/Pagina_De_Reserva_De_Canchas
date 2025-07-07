@@ -30,21 +30,21 @@ const MainReservas = ({ reservas, handleDelete, handleVer, handleEditar }) => {
                     {reserva.hora_inicio}-{reserva.hora_fin}
                   </td>
                   <td>
-                    <Button onClick={() => handleVer(reserva.id_reserva)}>
+                    <button className="admin-button" onClick={() => handleVer(reserva.id_reserva)}>
                       Ver
                       <FontAwesomeIcon icon={faEye} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleEditar(reserva.id_reserva)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleEditar(reserva.id_reserva)}>
                       Editar
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         className="icon-admin"
                       />
-                    </Button>
-                    <Button onClick={() => handleDelete(reserva.id_reserva)}>
+                    </button>
+                    <button  className="admin-button-delete" onClick={() => handleDelete(reserva.id_reserva)}>
                       Eliminar
                       <FontAwesomeIcon icon={faTrash} className="icon-admin" />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}

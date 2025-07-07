@@ -1,11 +1,16 @@
 import { faEye, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
+import { useStore } from "../../../store/AuthStore";
 
 const MainCanchas = ({ canchas, handleEditar, handleVer, handleDelete }) => {
+
+  const { color } = useStore();
+
   return (
     <>
-      <h3>Canchas</h3>
+      <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+        <h3>Canchas</h3>
       <div className="container-table">
         <Table striped bordered hover className="table-admin">
           <thead>
@@ -26,26 +31,27 @@ const MainCanchas = ({ canchas, handleEditar, handleVer, handleDelete }) => {
                   <td>{cancha.tipo_cancha}</td>
                   <td>{cancha.precio_cancha}</td>
                   <td>
-                    <Button onClick={() => handleVer(cancha.id_cancha)}>
+                    <button className="admin-button" onClick={() => handleVer(cancha.id_cancha)}>
                       Ver
                       <FontAwesomeIcon icon={faEye} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleEditar(cancha.id_cancha)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleEditar(cancha.id_cancha)}>
                       Editar
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         className="icon-admin"
                       />
-                    </Button>
-                    <Button onClick={() => handleDelete(cancha.id_cancha)}>
+                    </button>
+                    <button className="admin-button-delete" onClick={() => handleDelete(cancha.id_cancha)}>
                       Eliminar
                       <FontAwesomeIcon icon={faTrash} className="icon-admin" />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}
           </tbody>
         </Table>
+      </div>
       </div>
     </>
   );

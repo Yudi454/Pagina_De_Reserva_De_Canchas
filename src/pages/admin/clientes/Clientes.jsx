@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import MainClientes from "./MainClientes";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -16,8 +16,12 @@ import CreateClientes from "./CreateClientes";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
 
 const Clientes = () => {
+
+  const { color } = useStore();
+
   const [clientes, setClientes] = useState();
 
   const [cliente, setCliente] = useState();
@@ -119,7 +123,8 @@ const Clientes = () => {
   };
 
   return (
-    <div className="admin-container">
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
       <Row>
         <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
           <NavAdmin celular={false} mostrar={"clientes"} />
@@ -167,13 +172,13 @@ const Clientes = () => {
         >
           {!mostrarCreate && (
             <div className="mt-3 mb-3">
-              <Button onClick={handleCreate}>
+              <button className="admin-button" onClick={handleCreate}>
                 Crear Cliente{" "}
                 <FontAwesomeIcon
                   icon={faFileSignature}
                   className="icon-admin"
                 />
-              </Button>
+              </button>
             </div>
           )}
           {clientes && clientes.length > 0 ? (
@@ -188,6 +193,7 @@ const Clientes = () => {
           )}
         </Col>
       </Row>
+    </div>
     </div>
   );
 };

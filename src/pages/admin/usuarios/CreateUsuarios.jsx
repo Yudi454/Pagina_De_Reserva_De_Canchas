@@ -14,7 +14,7 @@ const CreateUsuarios = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarCrear(false)}>X</Button>
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>X</button>
       <h3>Crear usuario</h3>
       <Form onSubmit={handleSubmit(handleCrearUsuario)}>
         <Form.Group>
@@ -141,10 +141,10 @@ const CreateUsuarios = ({
           />
           {errors.telefono_usuario && <p>{errors.telefono_usuario.message}</p>}
         </Form.Group>
-        <Button type="submit" className="mt-3">
+        <button type="submit" className="admin-button-editar mt-3">
           Crear{" "}
           <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
-        </Button>
+        </button>
       </Form>
     </div>
   );

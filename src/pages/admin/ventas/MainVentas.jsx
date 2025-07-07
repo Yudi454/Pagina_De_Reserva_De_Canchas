@@ -30,21 +30,21 @@ const MainVentas = ({ ventas, handleVer, handleEditar, handleDelete }) => {
                   <td>{venta.hora_venta}</td>
                   <td>${venta.total_venta}</td>
                   <td>
-                    <Button onClick={() => handleVer(venta.id_venta)}>
+                    <button className="admin-button" onClick={() => handleVer(venta.id_venta)}>
                       Ver
                       <FontAwesomeIcon icon={faEye} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleEditar(venta.id_venta)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleEditar(venta.id_venta)}>
                       Editar
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         className="icon-admin"
                       />
-                    </Button>
-                    <Button onClick={() => handleDelete(venta.id_venta)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleDelete(venta.id_venta)}>
                       Eliminar
                       <FontAwesomeIcon icon={faTrash} className="icon-admin" />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}

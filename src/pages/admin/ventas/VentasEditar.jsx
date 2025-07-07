@@ -27,9 +27,9 @@ const VentasEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarEditar(false)}>
+      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </Button>
+      </button>
       <h3>Editar venta</h3>
       {venta && (
         <Form
@@ -109,10 +109,10 @@ const VentasEditar = ({
               ))}
           </Form.Group>
 
-          <Button type="submit" className="mt-3 mb-4">
+          <button className="admin-button-editar mt-3 mb-4" type="submit" >
             Editar venta
             <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
-          </Button>
+          </button>
         </Form>
       )}
       {venta && (
@@ -176,17 +176,17 @@ const VentasEditar = ({
             )}
           </Form.Group>
           <div className="mt-3 mb-2">
-            <Button onClick={handleBuscar} className="me-4">
+            <button className="admin-button me-4" onClick={handleBuscar} >
               Buscar producto
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 className="icon-admin"
               />
-            </Button>
-            <Button type="submit">
+            </button>
+            <button className="admin-button"  type="submit">
               Añadir Producto
               <FontAwesomeIcon icon={faCartPlus} className="icon-admin" />
-            </Button>
+            </button>
           </div>
         </Form>
       )}

@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "react-bootstrap";
+import {  Col, Row } from "react-bootstrap";
 import MainProveedores from "./MainProveedores";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -16,8 +16,12 @@ import ProveedoresEditar from "./ProveedoresEditar";
 import ProveedorCrear from "./ProveedorCrear";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
 
 const Proveedores = () => {
+
+  const { color } = useStore();
+
   const [proveedores, setProveedores] = useState();
 
   const [proveedor, setProveedor] = useState();
@@ -119,7 +123,8 @@ const Proveedores = () => {
   };
 
   return (
-    <div className="admin-container">
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
       <Row>
         <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
           <NavAdmin celular={false} mostrar={"proveedores"} />
@@ -171,13 +176,13 @@ const Proveedores = () => {
         >
           {!mostrarCrear && (
             <div className="mt-3 mb-3">
-              <Button onClick={handleCrear}>
+              <button className="admin-button" onClick={handleCrear}>
                 Crear
                 <FontAwesomeIcon
                   icon={faFileSignature}
                   className="icon-admin"
                 />
-              </Button>
+              </button>
             </div>
           )}
           {proveedores && proveedores.length > 0 ? (
@@ -192,6 +197,7 @@ const Proveedores = () => {
           )}
         </Col>
       </Row>
+    </div>
     </div>
   );
 };

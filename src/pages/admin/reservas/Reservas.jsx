@@ -21,8 +21,12 @@ import withReactContent from "sweetalert2-react-content";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const MySwal = withReactContent(Swal);
+import { useStore } from "../../../store/AuthStore";
 
 const Reservas = () => {
+
+  const { color } = useStore();
+
   const [reservas, setReservas] = useState();
 
   const [reserva, setReserva] = useState();
@@ -153,7 +157,8 @@ const Reservas = () => {
   };
 
   return (
-    <div className="admin-container">
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
       <Row>
         <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
           <NavAdmin celular={false} mostrar={"reservas"} />
@@ -209,13 +214,13 @@ const Reservas = () => {
         >
           {!mostrarCrear && (
             <div className="mt-3 mb-3">
-              <Button onClick={handleCrear}>
+              <button className="admin-button" onClick={handleCrear}>
                 Crear reserva{" "}
                 <FontAwesomeIcon
                   icon={faFileSignature}
                   className="icon-admin"
                 />
-              </Button>
+              </button>
             </div>
           )}
           {reservas && reservas.length > 0 ? (
@@ -230,6 +235,7 @@ const Reservas = () => {
           )}
         </Col>
       </Row>
+    </div>
     </div>
   );
 };

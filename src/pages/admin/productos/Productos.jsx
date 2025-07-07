@@ -1,4 +1,4 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
+import {  Col, Form, Row } from "react-bootstrap";
 import MainProductos from "./MainProductos";
 import NavAdmin from "../NavAdmin";
 import { useEffect, useState } from "react";
@@ -18,8 +18,12 @@ import ProductosCrear from "./ProductosCrear";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
 
 const Productos = () => {
+
+  const { color } = useStore();
+
   const [mostrarVer, setMostrarVer] = useState(false);
 
   const [mostrarEditar, setMostrarEditar] = useState(false);
@@ -151,7 +155,8 @@ const Productos = () => {
   };
 
   return (
-    <div className="admin-container">
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
       <Row>
         <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
           <NavAdmin celular={false} mostrar={"productos"} />
@@ -203,13 +208,13 @@ const Productos = () => {
         >
           {!mostrarCrear && (
             <div className="mt-3 mb-3">
-              <Button onClick={handleCrear}>
+              <button className="admin-button" onClick={handleCrear}>
                 Crear productos
                 <FontAwesomeIcon
                   icon={faFileSignature}
                   className="icon-admin"
                 />
-              </Button>
+              </button>
             </div>
           )}
           <Form
@@ -229,12 +234,12 @@ const Productos = () => {
                 Clickea reiniciar para traer todos los productos
               </small>
               <div className="mt-3 mb-4">
-                <Button type="submit" className="me-4">
+                <button className="admin-button m-4" type="submit" >
                   Buscar
-                </Button>
-                <Button type="button" onClick={traerDatos}>
+                </button>
+                <button className="admin-button" type="button" onClick={traerDatos}>
                   Reiniciar
-                </Button>
+                </button>
               </div>
             </Form.Group>
           </Form>
@@ -250,6 +255,7 @@ const Productos = () => {
           )}
         </Col>
       </Row>
+    </div>
     </div>
   );
 };

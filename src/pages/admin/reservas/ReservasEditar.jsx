@@ -16,9 +16,9 @@ const ReservasEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarEditar(false)}>
+      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </Button>
+      </button>
       <h3>Editar reserva</h3>
       {reserva && (
         <Form onSubmit={handleSubmit(handleEditarReserva)} className="d-flex flex-column align-items-center">
@@ -89,17 +89,17 @@ const ReservasEditar = ({
             </Form.Control>
           </Form.Group>
           <div className="mt-4 mb-3">
-            <Button onClick={buscarHorarios} className="me-4">
+            <button className="admin-button me-4" onClick={buscarHorarios} >
               Buscar Horarios
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 className="icon-admin"
               />
-            </Button>
-            <Button type="submit">
+            </button>
+            <button className="admin-button-editar" type="submit">
               Editar
               <FontAwesomeIcon icon={faCartPlus} className="icon-admin" />
-            </Button>
+            </button>
           </div>
         </Form>
       )}

@@ -1,6 +1,6 @@
 import { faEye, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
 
 const MainHorarios = ({ horarios, handleDelete, handleEditar, handleVer }) => {
   return (
@@ -24,21 +24,21 @@ const MainHorarios = ({ horarios, handleDelete, handleEditar, handleVer }) => {
                   <td>{horario.hora_inicio}</td>
                   <td>{horario.hora_fin}</td>
                   <td>
-                    <Button onClick={() => handleVer(horario.id_horario)}>
+                    <button className="admin-button" onClick={() => handleVer(horario.id_horario)}>
                       Ver
                       <FontAwesomeIcon icon={faEye} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleEditar(horario.id_horario)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleEditar(horario.id_horario)}>
                       Editar
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         className="icon-admin"
                       />
-                    </Button>
-                    <Button onClick={() => handleDelete(horario.id_horario)}>
+                    </button>
+                    <button className="admin-button-delete" onClick={() => handleDelete(horario.id_horario)}>
                       Eliminar
                       <FontAwesomeIcon icon={faTrash} className="icon-admin" />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}

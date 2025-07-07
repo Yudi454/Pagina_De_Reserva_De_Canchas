@@ -1,6 +1,6 @@
 import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Form } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
 
 const ClientesEditar = ({
   cliente,
@@ -13,7 +13,7 @@ const ClientesEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarEditar(false)}><FontAwesomeIcon icon={faTimes} size="lg" /></Button>
+      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}><FontAwesomeIcon icon={faTimes} size="lg" /></button>
       <h3 className="mt-3">Editar cliente</h3>
       {cliente && (
         <Form onSubmit={handleSubmit(handleEditarCliente)}>
@@ -78,7 +78,7 @@ const ClientesEditar = ({
               <p>{errors.contraseña_cliente.message}</p>
             )}
           </Form.Group>
-          <Button type="submit" className="mt-3">Editar cliente<FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></Button>
+          <button type="submit" className="admin-button-editar mt-3">Editar cliente<FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></button>
         </Form>
       )}
     </div>

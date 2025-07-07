@@ -1,7 +1,7 @@
 import { faFileSignature, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
 
 const CanchasCrear = ({
   setMostrarCrear,
@@ -14,9 +14,9 @@ const CanchasCrear = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarCrear(false)}>
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </Button>
+      </button>
       <h3>Crear</h3>
       <Form onSubmit={handleSubmit(handleCrearCancha)}>
         <Form.Group>
@@ -57,10 +57,10 @@ const CanchasCrear = ({
           />
           {errors.precio_cancha && <p>{errors.precio_cancha.message}</p>}
         </Form.Group>
-        <Button type="submit" className="mt-3">
+        <button type="submit" className="admin-button mt-3">
           Crear cliente{" "}
           <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
-        </Button>
+        </button>
       </Form>
     </div>
   );

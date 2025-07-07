@@ -1,6 +1,6 @@
 import { faEye, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
 
 const MainClientes = ({ clientes, handleVer, handleEditar, handleDelete }) => {
   return (
@@ -26,15 +26,15 @@ const MainClientes = ({ clientes, handleVer, handleEditar, handleDelete }) => {
                   <td>{cliente.email_cliente}</td>
                   <td>{cliente.telefono_cliente}</td>
                   <td>
-                    <Button onClick={() => handleVer(cliente.id_cliente)}>
+                    <button className="admin-button" onClick={() => handleVer(cliente.id_cliente)}>
                       Ver <FontAwesomeIcon icon={faEye} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleEditar(cliente.id_cliente)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleEditar(cliente.id_cliente)}>
                       Editar <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleDelete(cliente.id_cliente)}>
+                    </button>
+                    <button className="admin-button-delete" onClick={() => handleDelete(cliente.id_cliente)}>
                       Eliminar <FontAwesomeIcon icon={faTrash} className="icon-admin" />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}

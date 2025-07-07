@@ -1,6 +1,10 @@
 import { faFileCirclePlus, faFileSignature, faNoteSticky, faPenToSquare, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Form } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
+import "../../../css/admin/Admin.css"
+
+
+
 const CreateClientes = ({
   setMostrarCreate,
   cliente,
@@ -12,7 +16,7 @@ const CreateClientes = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarCreate(false)}><FontAwesomeIcon icon={faTimes} size="lg"/></Button>
+      <button onClick={() => setMostrarCreate(false)}><FontAwesomeIcon icon={faTimes} size="lg"/></button>
       <h3>Crear cliente</h3>
       <Form onSubmit={handleSubmit(handleCreateCliente)}>
         <Form.Group>
@@ -68,7 +72,7 @@ const CreateClientes = ({
             }
           />
         </Form.Group>
-        <Button type="submit" className="mt-3">Crear cliente <FontAwesomeIcon className="icon-admin" icon={faFileSignature}/></Button>
+        <button type="submit" className="admin-button mt-3">Crear cliente <FontAwesomeIcon className="icon-admin" icon={faFileSignature}/></button>
       </Form>
     </div>
   );

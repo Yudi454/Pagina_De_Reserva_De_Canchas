@@ -1,7 +1,7 @@
 import { faFileSignature, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
 
 const ProveedorCrear = ({
   setMostrarCrear,
@@ -14,9 +14,9 @@ const ProveedorCrear = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center mb-5">
-      <Button onClick={() => setMostrarCrear(false)}>
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </Button>
+      </button>
       <h3>Crear proveedor</h3>
       <Form onSubmit={handleSubmit(handleCrearProveedor)}>
         <Form.Group>
@@ -60,10 +60,10 @@ const ProveedorCrear = ({
             <p>{errors.telefono_proveedor.message}</p>
           )}
         </Form.Group>
-        <Button type="submit" className="mt-3">
+        <button className="admin-button-editar mt-3" type="submit" >
           Editar proveedor{" "}
           <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
-        </Button>
+        </button>
       </Form>
     </div>
   );

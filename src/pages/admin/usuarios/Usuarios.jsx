@@ -19,8 +19,12 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 const MySwal = withReactContent(Swal);
+import { useStore } from "../../../store/AuthStore";
 
 const Usuarios = () => {
+
+  const { color } = useStore();
+
   const [usuarios, setUsuarios] = useState();
 
   const [usuario, setUsuario] = useState();
@@ -126,7 +130,8 @@ const Usuarios = () => {
   };
 
   return (
-    <div className="admin-container">
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
       <Row>
         <Col md={2} className="contenedor-admin-links-pc d-none d-md-block">
           <NavAdmin celular={false} mostrar={"usuarios"} />
@@ -178,13 +183,13 @@ const Usuarios = () => {
         >
           {!mostrarCrear && (
             <div className="mt-3 mb-3">
-              <Button onClick={handleCrear}>
+              <button className="admin-button" onClick={handleCrear}>
                 Crear usuario{" "}
                 <FontAwesomeIcon
                   icon={faFileSignature}
                   className="icon-admin"
                 />
-              </Button>
+              </button>
             </div>
           )}
           {usuarios && usuarios.length > 0 ? (
@@ -199,6 +204,7 @@ const Usuarios = () => {
           )}
         </Col>
       </Row>
+    </div>
     </div>
   );
 };

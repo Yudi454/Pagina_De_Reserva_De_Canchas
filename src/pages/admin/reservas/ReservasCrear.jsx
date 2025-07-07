@@ -20,9 +20,9 @@ const ReservasCrear = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarCrear(false)}>
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </Button>
+      </button>
       <h3>Crear reserva</h3>
       <Form onSubmit={handleSubmit(handleCrearReserva)} className="d-flex flex-column align-items-center">
         <Form.Group>
@@ -81,14 +81,14 @@ const ReservasCrear = ({
           <br />Y luego selecciona un horario.
         </small>
         <div className="mt-3 mb-3">
-          <Button onClick={buscarHorarios} className="me-4">
+          <button className="admin-button me-4" onClick={buscarHorarios} >
             Buscar Horarios
             <FontAwesomeIcon icon={faMagnifyingGlass} className="icon-admin" />
-          </Button>
-          <Button type="submit">
+          </button>
+          <button className="admin-button" type="submit">
             Crear reserva
             <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
-          </Button>
+          </button>
         </div>
       </Form>
     </div>

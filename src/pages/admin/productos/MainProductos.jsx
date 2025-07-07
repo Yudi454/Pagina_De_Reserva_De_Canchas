@@ -1,6 +1,6 @@
 import { faEye, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
 
 const MainProductos = ({
   productos,
@@ -31,21 +31,21 @@ const MainProductos = ({
                   <td>{producto.precio_producto}</td>
                   <td>{producto.stock}</td>
                   <td>
-                    <Button onClick={() => handleVer(producto.id_producto)}>
+                    <button className="admin-button" onClick={() => handleVer(producto.id_producto)}>
                       Ver
                       <FontAwesomeIcon icon={faEye} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleEditar(producto.id_producto)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleEditar(producto.id_producto)}>
                       Editar
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         className="icon-admin"
                       />
-                    </Button>
-                    <Button onClick={() => handleDelete(producto.id_producto)}>
+                    </button>
+                    <button className="admin-button-delete" onClick={() => handleDelete(producto.id_producto)}>
                       Eliminar
                       <FontAwesomeIcon icon={faTrash} className="icon-admin" />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}

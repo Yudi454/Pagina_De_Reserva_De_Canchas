@@ -13,9 +13,9 @@ const ProveedoresEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarEditar(false)}>
+      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </Button>
+      </button>
       <h3>Editar proveedor</h3>
       {proveedor && (
         <Form onSubmit={handleSubmit(handleEditarProveedor)}>
@@ -65,10 +65,10 @@ const ProveedoresEditar = ({
               <p>{errors.telefono_proveedor.message}</p>
             )}
           </Form.Group>
-          <Button type="submit" className="mt-3">
+          <button className="admin-button-editar mt-3" type="submit" >
             Editar
             <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
-          </Button>
+          </button>
         </Form>
       )}
     </div>

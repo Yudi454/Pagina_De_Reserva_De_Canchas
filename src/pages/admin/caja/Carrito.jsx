@@ -4,7 +4,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Button } from "react-bootstrap";
+
 
 const Carrito = ({ carrito, handleCargar }) => {
   console.log(carrito);
@@ -28,10 +28,10 @@ const Carrito = ({ carrito, handleCargar }) => {
             </ul>
           ))}
       </>
-      <Button onClick={handleCargar}>
+      <button className="admin-button" onClick={handleCargar}>
         Cargar Carrito{" "}
         <FontAwesomeIcon icon={faCheckCircle} className="icon-admin" />{" "}
-      </Button>
+      </button>
     </div>
   );
 };

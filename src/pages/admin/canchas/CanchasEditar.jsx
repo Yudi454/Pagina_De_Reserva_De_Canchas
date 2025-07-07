@@ -1,6 +1,6 @@
 import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Form } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
 
 const CanchasEditar = ({
   cancha,
@@ -15,9 +15,9 @@ const CanchasEditar = ({
 
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <Button onClick={() => setMostrarEditar(false)}>
+      <button className="admin-button" onClick={() => setMostrarEditar(false)}>
         <FontAwesomeIcon icon={faTimes} size="lg" />
-      </Button>
+      </button>
       <h3>Editar cancha</h3>
       {cancha && (
         <>
@@ -64,10 +64,10 @@ const CanchasEditar = ({
               />
               {errors.precio_cancha && <p>{errors.precio_cancha.message}</p>}
             </Form.Group>
-            <Button type="submit" className="mt-3">
+            <button type="submit" className="admin-button-editar mt-3">
               Editar cancha
               <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
-            </Button>
+            </button>
           </Form>
         </>
       )}

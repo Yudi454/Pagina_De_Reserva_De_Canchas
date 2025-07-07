@@ -28,21 +28,21 @@ const MainUsuarios = ({ usuarios, handleVer, handleEditar, handleDelete }) => {
                   <td>{usuario.dni}</td>
                   <td>{usuario.telefono_usuario}</td>
                   <td>
-                    <Button onClick={() => handleVer(usuario.id_usuario)}>
+                    <button className="admin-button" onClick={() => handleVer(usuario.id_usuario)}>
                       Ver
                       <FontAwesomeIcon icon={faEye} className="icon-admin" />
-                    </Button>
-                    <Button onClick={() => handleEditar(usuario.id_usuario)}>
+                    </button>
+                    <button className="admin-button-editar" onClick={() => handleEditar(usuario.id_usuario)}>
                       Editar
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         className="icon-admin"
                       />
-                    </Button>
-                    <Button onClick={() => handleDelete(usuario.id_usuario)}>
+                    </button>
+                    <button className="admin-button-delete" onClick={() => handleDelete(usuario.id_usuario)}>
                       Eliminar
                       <FontAwesomeIcon icon={faTrash} className="icon-admin" />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}

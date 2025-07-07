@@ -10,8 +10,13 @@ import Carrito from "./Carrito";
 import "../../../css/admin/Admin.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCashRegister } from "@fortawesome/free-solid-svg-icons";
+import { useStore } from "../../../store/AuthStore";
+
 
 const Caja = () => {
+
+  const { color } = useStore()
+
   const [venta, setVenta] = useState();
 
   const [carrito, setCarrito] = useState();
@@ -102,7 +107,8 @@ const Caja = () => {
   };
 
   return (
-    <div className="admin-container">
+    <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
+      <div className="admin-container">
       <Row className="gx-0">
         <Col
           md={2}
@@ -137,6 +143,7 @@ const Caja = () => {
           </Col>
         )}
       </Row>
+    </div>
     </div>
   );
 };

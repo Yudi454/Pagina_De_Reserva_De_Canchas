@@ -130,16 +130,6 @@ export const register = async (url, usuario) => {
   }
 };
 
-// Eliminar dato
-export const deleteDato = async (url) => {
-  try {
-    const res = await axios.delete(url);
-    alert("Objeto eliminado");
-  } catch (error) {
-    console.log(error);
-    alert("Error al eliminar");
-  }
-};
 
 // Login
 export const login = async (url, usuario) => {

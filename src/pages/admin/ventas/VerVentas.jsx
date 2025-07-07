@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 const VerVentas = ({ venta, setMostrarVer }) => {
   return (
     <>
-      <Button onClick={() => setMostrarVer(false)}>X</Button>
+      <button className="admin-button" onClick={() => setMostrarVer(false)}>X</button>
       {venta && (
         <Form className="d-flex flex-column align-items-center">
           <Form.Group className="mb-3">
