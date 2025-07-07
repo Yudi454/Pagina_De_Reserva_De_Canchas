@@ -23,9 +23,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/header/NavBar";
-
+import { useStore } from "./store/AuthStore";
 
 function App() {
+  const user = useStore((state) => state.user);
   return (
     <>
       <BrowserRouter>
@@ -33,25 +34,43 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/reservar-Cancha" element={<Reservar />} />
           <Route
             path="/reservar-Cancha/InfoCancha/:id"
             element={<InfoCancha />}
           />
-          <Route path="/mis-reservas" element={<MisReservas />} />
-          <Route path="/admin/reservas" element={<Reservas />} />
-          <Route path="/info-usuario" element={<InfoUsuario />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/caja" element={<Caja />} />
-          <Route path="/admin/clientes" element={<Clientes />} />
-          <Route path="/admin/horarios" element={<Horarios />} />
-          <Route path="/admin/productos" element={<Productos />} />
-          <Route path="/admin/proveedores" element={<Proveedores />} />
-          <Route path="/admin/usuarios" element={<Usuarios />} />
-          <Route path="/admin/ventas" element={<Ventas />} />
-          <Route path="/admin/canchas" element={<Canchas />} />
+          {user === null && (
+            <>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </>
+          )}
+          {user && user.rol === undefined && (
+            <>
+              <Route path="/reservar-Cancha" element={<Reservar />} />
+
+              <Route path="/mis-reservas" element={<MisReservas />} />
+            </>
+          )}
+          {user && user.rol === "empleado" && (
+            <>
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/caja" element={<Caja />} />
+            </>
+          )}
+          {user && user.rol === "admin" && (
+            <>
+              <Route path="/admin/reservas" element={<Reservas />} />
+              <Route path="/admin/clientes" element={<Clientes />} />
+              <Route path="/admin/horarios" element={<Horarios />} />
+              <Route path="/admin/productos" element={<Productos />} />
+              <Route path="/admin/proveedores" element={<Proveedores />} />
+              <Route path="/admin/usuarios" element={<Usuarios />} />
+              <Route path="/admin/ventas" element={<Ventas />} />
+              <Route path="/admin/canchas" element={<Canchas />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/caja" element={<Caja />} />
+            </>
+          )}
         </Routes>
         <Footer />
       </BrowserRouter>

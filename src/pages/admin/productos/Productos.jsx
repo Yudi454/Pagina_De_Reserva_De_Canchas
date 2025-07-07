@@ -141,7 +141,7 @@ const Productos = () => {
     try {
       const productoFinal = {
         ...data,
-        imagen_producto: data.imagen,
+        imagen_producto: data.imagen_producto,
       };
       await updateDato(
         `${RUTA_PRODUCTOS}/update/${producto.id_producto}`,
