@@ -101,30 +101,34 @@ const Ventas = () => {
 
   const handleCrearVenta = async (data) => {
     try {
-      let total = 0;
+      if (venta.productos) {
+        let total = 0;
 
-      venta.productos.forEach((producto) => {
-        total += producto.precio_producto * producto.cantidad;
-      });
+        venta.productos.forEach((producto) => {
+          total += producto.precio_producto * producto.cantidad;
+        });
 
-      const ventaFinal = {
-        ...venta,
-        total_venta: total,
-      };
+        const ventaFinal = {
+          ...venta,
+          total_venta: total,
+        };
 
-      await createDato(`${RUTA_VENTAS}/create`, ventaFinal, "venta");
-      await getDato(RUTA_VENTAS, setVentas);
-      setMostrarCrear(false);
-      setVenta("");
-      resetVenta();
+        await createDato(`${RUTA_VENTAS}/create`, ventaFinal, "venta");
+        await getDatos(RUTA_VENTAS, setVentas);
+        setMostrarCrear(false);
+        setVenta("");
+        resetVenta();
+      } else {
+        toast.error("Agregue un producto primero")
+      }
     } catch (error) {
       MySwal.fire({
         icon: "error",
         title: "¡Error!",
         text: error,
-      });
-    }
-  };
+      });
+    }
+  };
 
   const handleDelete = async (id) => {
     try {

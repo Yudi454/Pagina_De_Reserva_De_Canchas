@@ -32,6 +32,9 @@ const NavBar = () => {
       if (JSON.parse(localStorage.getItem("carritoReservas")).length > 0) {
         cargarCarrito(JSON.parse(localStorage.getItem("carritoReservas")));
       }
+      if (localStorage.getItem("usuario")) {
+      setUser(JSON.parse(localStorage.getItem("usuario")))
+    }
     }
   }, []);
 
