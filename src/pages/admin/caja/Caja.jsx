@@ -115,17 +115,19 @@ const Caja = () => {
       <div className="admin-container">
         <Row className="gx-0">
           {user && user.rol === "admin" && (
-            <Col
-              md={2}
-              sm={3}
-              className="contenedor-admin-links-pc d-none d-sm-block"
-            >
-              <NavAdmin celular={false} mostrar={"caja"} />
-            </Col>
+            <>
+              <Col
+                md={2}
+                sm={3}
+                className="contenedor-admin-links-pc d-none d-sm-block"
+              >
+                <NavAdmin celular={false} mostrar={"caja"} />
+              </Col>
+              <Col xs={12} className="d-block d-sm-none">
+                <NavAdmin celular={true} mostrar={"caja"} />
+              </Col>
+            </>
           )}
-          <Col xs={12} className="d-block d-sm-none">
-            <NavAdmin celular={true} mostrar={"caja"} />
-          </Col>
 
           <Col md={5} sm={9} className="mt-4 mt-sm-0 mt-md-0  ">
             <h2 className="text-center">

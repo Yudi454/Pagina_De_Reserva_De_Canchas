@@ -34,7 +34,7 @@ const MainVentas = ({ ventas, handleVer, handleEditar, handleDelete }) => {
                   <td>{venta.hora_venta}</td>
                   <td>${venta.total_venta}</td>
                   <td>
-                    <Row>
+                    <Row gx-0>
                       <Col
                         md={4}
                         sm={12}

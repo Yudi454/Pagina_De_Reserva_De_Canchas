@@ -35,7 +35,7 @@ const MainProveedores = ({
                   <td>{proveedor.email_proveedor}</td>
                   <td>{proveedor.telefono_proveedor}</td>
                   <td>
-                    <Row>
+                    <Row className="gx-0">
                       <Col
                         md={4}
                         sm={12}

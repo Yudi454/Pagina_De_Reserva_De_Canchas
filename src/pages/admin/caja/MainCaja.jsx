@@ -18,7 +18,7 @@ const MainCaja = ({
 
   return (
     <div >
-      <div className="main-caja d-flex justify-content-center align-items-center">
+      <div className="main-caja w-100 w-md-25 d-flex justify-content-center align-items-center">
         <Form
           onSubmit={handleSubmit(handleCrear)}
           className=" flex-column align-items-center"

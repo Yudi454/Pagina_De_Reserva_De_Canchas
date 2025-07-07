@@ -114,7 +114,7 @@ const Canchas = () => {
 
   return (
     <div style={{paddingTop: "20vh"}}>
-      <Row>
+      <Row className="gx-0">
         <Col>
           <NavAdmin />
         </Col>

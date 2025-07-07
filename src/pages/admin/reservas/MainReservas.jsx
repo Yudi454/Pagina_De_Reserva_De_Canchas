@@ -34,7 +34,7 @@ const MainReservas = ({ reservas, handleDelete, handleVer, handleEditar }) => {
                     {reserva.hora_inicio}-{reserva.hora_fin}
                   </td>
                   <td>
-                    <Row>
+                    <Row className="gx-0">
                       <Col
                         md={4}
                         sm={12}

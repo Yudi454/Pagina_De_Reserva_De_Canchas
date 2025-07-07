@@ -171,7 +171,7 @@ const MainInfoCancha = () => {
       </Navbar>
 
       <Container>
-        <Row className="align-items-center">
+        <Row className="align-items-center gx-0">
           <Col md={4} className="d-flex justify-content-center">
             <Image
               src={cancha.imagen}

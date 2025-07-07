@@ -28,7 +28,7 @@ const MainHorarios = ({ horarios, handleDelete, handleEditar, handleVer }) => {
                   <td>{horario.hora_inicio}</td>
                   <td>{horario.hora_fin}</td>
                   <td>
-                    <Row>
+                    <Row className="gx-0">
                       <Col
                         md={4}
                         sm={12}
