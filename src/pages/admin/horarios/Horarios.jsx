@@ -18,6 +18,9 @@ import CreateHorarios from "./CreateHorarios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Horarios = () => {
   const { color } = useStore();

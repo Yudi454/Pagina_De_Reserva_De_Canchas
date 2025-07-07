@@ -14,9 +14,13 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import CanchasEditar from "./CanchasEditar";
 import { useForm } from "react-hook-form";
 import CanchasCrear from "./CanchasCrear";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Canchas = () => {
   const { color } = useStore();
@@ -118,6 +122,7 @@ const Canchas = () => {
   };
 
   return (
+
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
         <Row className="gx-0">
@@ -187,6 +192,7 @@ const Canchas = () => {
               <p>No hay canchas</p>
             )}
           </Col>
+
         </Row>
       </div>
     </div>

@@ -79,12 +79,12 @@ const Reservas = () => {
   };
 
   const buscarHorarios = async () => {
-    if (reserva && reserva.dia_reserva) {
+    if (reserva && reserva.fecha_reserva) {
       try {
         await buscarDato(
           `${RUTA_HORARIOS}/horarios-disponibles`,
           {
-            dia: reserva.dia_reserva,
+            dia: reserva.fecha_reserva,
           },
           setHorarios
         );
@@ -100,6 +100,9 @@ const Reservas = () => {
       toast.error("Ingrese una fecha antes de buscar una reserva");
     }
   };
+
+  console.log(reserva);
+  
 
   const handleCrearReserva = async () => {
     try {

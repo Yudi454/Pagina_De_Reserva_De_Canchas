@@ -4,6 +4,7 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 const MySwal = withReactContent(Swal);
 
+
 // Obtener muchos datos
 export const getDatos = async (url, setValor) => {
   try {
@@ -130,10 +131,14 @@ export const register = async (url, usuario) => {
     toast.success(`${res.data.message}`);
     return true;
   } catch (error) {
+
     console.log(error);
-    toast.error("Error al registrarse");
+    
+    toast.error(error.response.data.message);
+    return false;
   }
 };
+
 
 
 // Login
@@ -146,8 +151,10 @@ export const login = async (url, usuario) => {
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
     return true
   } catch (error) {
-    toast.error("Error en login");
-    console.log(error);
+
+    toast.error(error.response.data.message);
+    return false
+    toast.error(error);
   }
 };
 

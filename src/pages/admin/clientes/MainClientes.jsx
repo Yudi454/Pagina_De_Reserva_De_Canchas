@@ -85,6 +85,7 @@ const MainClientes = ({ clientes, handleVer, handleEditar, handleDelete }) => {
         </Table>
       </div>
     </div>
+
   );
 };
 

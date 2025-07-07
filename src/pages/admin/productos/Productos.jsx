@@ -21,6 +21,9 @@ import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
 import { faEdgeLegacy } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Productos = () => {
   const { color } = useStore();
@@ -40,6 +43,7 @@ const Productos = () => {
   const [proveedores, setProveedores] = useState();
 
   const [buscar, setBuscar] = useState();
+
 
   const API_ROUTE = import.meta.env.VITE_API_URL;
 
@@ -85,6 +89,7 @@ const Productos = () => {
 
   const handleBuscar = async (e) => {
     e.preventDefault();
+
     try {
       buscarDato(
         `${RUTA_PRODUCTOS}/buscar`,
@@ -128,7 +133,7 @@ const Productos = () => {
         icon: "error",
         title: "¡Error!",
         text: error,
-      });
+      });7
     }
   };
 
@@ -178,6 +183,7 @@ const Productos = () => {
   
 
   return (
+
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
         <Row className="gx-0">

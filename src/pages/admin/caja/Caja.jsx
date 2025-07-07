@@ -13,6 +13,10 @@ import { faCashRegister } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
 
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const Caja = () => {
 
   const { color } = useStore()
@@ -89,7 +93,10 @@ const Caja = () => {
 
       const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-      const id_usuario = usuario[0].id_usuario;
+      console.log(usuario);
+      
+
+      const id_usuario = usuario.id_usuario;
 
       await createDato(
         `${RUTA_VENTAS}/cargarVentas/${id_usuario}`,
@@ -116,6 +123,7 @@ const Caja = () => {
           className="contenedor-admin-links-pc d-none d-sm-block"
         >
           <NavAdmin celular={false} mostrar={"caja"} />
+
         </Col>
         <Col xs={12} className="d-bock d-sm-none">
           <NavAdmin celular={true} mostrar={"caja"} />
@@ -143,7 +151,6 @@ const Caja = () => {
           </Col>
         )}
       </Row>
-    </div>
     </div>
   );
 };

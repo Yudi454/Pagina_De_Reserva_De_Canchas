@@ -14,9 +14,14 @@ import VerDatoAdmin from "../../../components/verDatoAdmin/VerDatoAdmin";
 import ClientesEditar from "./ClientesEditar";
 import CreateClientes from "./CreateClientes";
 import { useForm } from "react-hook-form";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
+import Usuarios from "../usuarios/Usuarios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Clientes = () => {
   const { color } = useStore();
@@ -122,6 +127,7 @@ const Clientes = () => {
   };
 
   return (
+
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
         <Row className="gx-0">
@@ -191,6 +197,7 @@ const Clientes = () => {
               <p>No hay Clientes</p>
             )}
           </Col>
+
         </Row>
       </div>
     </div>
