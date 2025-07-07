@@ -170,9 +170,6 @@ const MainInfoCancha = () => {
             <FaArrowLeft style={{ marginRight: "5px" }} />
             Volver
           </Navbar.Brand>
-          <Nav>
-            <Nav.Link href="/info-usuario">Usuario</Nav.Link>
-          </Nav>
         </Container>
       </Navbar>
 
@@ -180,7 +177,7 @@ const MainInfoCancha = () => {
         <Row className="align-items-center">
           <Col md={4} className="d-flex justify-content-center">
             <Image
-              src={cancha.imagen_cancha}
+              src={cancha.imagen}
               fluid
               rounded
               className="w-100"
