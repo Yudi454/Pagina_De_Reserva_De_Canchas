@@ -116,7 +116,6 @@ const ProductosEditar = ({
                   });
 
                   if (proveedores) {
-                    console.log("entro");
                     const proveedorSeleccionado = proveedores.find(
                       (p) => p.nombre_proveedor === e.target.value
                     );

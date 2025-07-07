@@ -4,7 +4,6 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 const MySwal = withReactContent(Swal);
 
-
 // Obtener muchos datos
 export const getDatos = async (url, setValor) => {
   try {
@@ -21,12 +20,9 @@ export const getDatos = async (url, setValor) => {
 
 // Obtener un solo dato
 export const getDato = async (url, setValor) => {
-  
   try {
     const res = await axios.get(url);
     setValor(res.data.results);
-    console.log(res);
-    
   } catch (error) {
     MySwal.fire({
       icon: "error",
@@ -41,8 +37,6 @@ export const buscarDato = async (url, dato, setDato) => {
     const res = await axios.post(url, dato);
     setDato(res.data);
   } catch (error) {
-    console.log(error);
-    
     MySwal.fire({
       icon: "error",
       title: "¡Error!",
@@ -73,23 +67,22 @@ export const updateDato = async (url, dato, tipo) => {
 
 // Crear dato
 export const createDato = async (url, dato, tipo) => {
-  console.log(dato);
   try {
     const res = await axios.post(url, dato);
-    
+
     MySwal.fire({
       icon: "success",
       title: "¡Creado!",
       text: `El ${tipo} ha sido creado con éxito`,
     });
-    return true
+    return true;
   } catch (error) {
     MySwal.fire({
       icon: "error",
       title: "¡Error!",
       text: error.response.data.message,
     });
-    return false
+    return false;
   }
 };
 
@@ -118,7 +111,7 @@ export const deleteDato = (url, tipo) => {
         MySwal.fire({
           icon: "error",
           title: "¡Error!",
-          text: error,
+          text: error.response.data.message,
         });
       }
     }
@@ -132,35 +125,26 @@ export const register = async (url, usuario) => {
     toast.success(`${res.data.message}`);
     return true;
   } catch (error) {
-
-    console.log(error);
-    
     toast.error(error.response.data.message);
     return false;
   }
 };
-
-
 
 // Login
 export const login = async (url, usuario) => {
   try {
     const res = await axios.post(url, usuario);
     toast.success(`${res.data.message}`);
-    console.log(res.data);
-
     localStorage.setItem("usuario", JSON.stringify(res.data.results));
-    return true
+    return true;
   } catch (error) {
-
     toast.error(error.response.data.message);
-    return false
     toast.error(error);
+    return false;
   }
 };
 
 // desloguear
-
 export const logout = () => {
   localStorage.removeItem("usuario");
   toast.success("Sesión cerrada correctamente");

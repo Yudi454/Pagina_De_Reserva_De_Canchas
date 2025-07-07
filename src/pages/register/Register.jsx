@@ -20,7 +20,6 @@ const Register = () => {
   const onRegisterSubmit = async (data) => {
     try {
       const exito = await register(`${API_URL}${rutas.register}`, data);
-      await console.log(exito);
 
       if (exito) {
         navigate("/Login");

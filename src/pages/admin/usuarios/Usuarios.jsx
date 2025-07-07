@@ -128,9 +128,6 @@ const Usuarios = () => {
     }
   };
 
-console.log(usuario);
-
-
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">

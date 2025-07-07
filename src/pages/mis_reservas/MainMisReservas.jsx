@@ -2,7 +2,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ReservaItem from "./ReservaItem"
+import ReservaItem from "./ReservaItem";
 
 const MainMisReservas = ({ show, onHide, setValorModal }) => {
   const stored = localStorage.getItem("usuario");
@@ -17,7 +17,6 @@ const MainMisReservas = ({ show, onHide, setValorModal }) => {
         .then((response) => {
           setReservas(response.data);
           setValorModal(response.data.length);
-          console.log("Data que llega:", response.data);
           setReservas(response.data);
         })
         .catch((error) => {

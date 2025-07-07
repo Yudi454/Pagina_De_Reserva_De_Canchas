@@ -115,14 +115,13 @@ const VentasCrear = ({
                       const productoSeleccionado = productos.find(
                         (p) => p.nombre_producto === e.target.value
                       );
-                      console.log(productoSeleccionado);
-                      
+
                       setProducto({
                         ...producto,
                         nombre_producto: productoSeleccionado.nombre_producto,
                         id_producto: productoSeleccionado.id_producto,
                         precio_producto: productoSeleccionado.precio_producto,
-                        imagen_producto: productoSeleccionado.imagen_producto
+                        imagen_producto: productoSeleccionado.imagen_producto,
                       });
                     } else {
                       setProducto({
@@ -170,7 +169,11 @@ const VentasCrear = ({
                 Selecciona producto, carga cantdad y clickea "Añadir Producto"
               </small>
               <div className="mt-3 mb-3">
-                <button className="admin-button me-4" type="button" onClick={handleBuscar}>
+                <button
+                  className="admin-button me-4"
+                  type="button"
+                  onClick={handleBuscar}
+                >
                   Buscar producto
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}

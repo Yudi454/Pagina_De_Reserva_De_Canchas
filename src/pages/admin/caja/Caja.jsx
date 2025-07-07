@@ -93,8 +93,6 @@ const Caja = () => {
 
       const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-      console.log(usuario);
-
       const id_usuario = usuario.id_usuario;
 
       await createDato(

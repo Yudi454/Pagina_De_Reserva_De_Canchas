@@ -136,8 +136,6 @@ const Ventas = () => {
     }
   };
 
-  console.log(productos);
-
   const handleDelete = async (id) => {
     try {
       const eliminado = await deleteDato(

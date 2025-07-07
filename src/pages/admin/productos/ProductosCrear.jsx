@@ -27,7 +27,10 @@ const ProductosCrear = ({
       </button>
       <h3>Crear</h3>
       {producto && producto.imagen_producto && (
-        <img src={producto.imagen_producto} className="img-fluid w-25 mt-3 mb-3" />
+        <img
+          src={producto.imagen_producto}
+          className="img-fluid w-25 mt-3 mb-3"
+        />
       )}
       <Form
         onSubmit={handleSubmit(handleCrearProducto)}
@@ -98,7 +101,6 @@ const ProductosCrear = ({
             })}
             onChange={(e) => {
               if (proveedores) {
-                console.log("entro");
                 const proveedorSeleccionado = proveedores.find(
                   (p) => p.nombre_proveedor === e.target.value
                 );

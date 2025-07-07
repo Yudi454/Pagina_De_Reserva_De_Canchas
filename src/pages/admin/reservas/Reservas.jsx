@@ -101,9 +101,6 @@ const Reservas = () => {
     }
   };
 
-  console.log(reserva);
-  
-
   const handleCrearReserva = async () => {
     try {
       await createDato(`${RUTA_RESERVAS}/create`, reserva, "reserva");
@@ -157,7 +154,6 @@ const Reservas = () => {
       });
     }
   };
-  
 
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>

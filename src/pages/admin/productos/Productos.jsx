@@ -44,7 +44,6 @@ const Productos = () => {
 
   const [buscar, setBuscar] = useState();
 
-
   const API_ROUTE = import.meta.env.VITE_API_URL;
 
   const RUTA_PRODUCTOS = `${API_ROUTE}${rutas.productos}`;
@@ -133,7 +132,8 @@ const Productos = () => {
         icon: "error",
         title: "¡Error!",
         text: error,
-      });7
+      });
+      7;
     }
   };
 
@@ -179,11 +179,7 @@ const Productos = () => {
     }
   };
 
-  console.log(producto);
-  
-
   return (
-
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
         <Row className="gx-0">

@@ -11,8 +11,6 @@ const CanchasEditar = ({
   register,
   errors,
 }) => {
-  console.log(cancha);
-
   return (
     <div className="d-flex flex-column align-items-center text-center">
       <button className="admin-button" onClick={() => setMostrarEditar(false)}>
