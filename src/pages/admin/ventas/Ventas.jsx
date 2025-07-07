@@ -101,22 +101,32 @@ const Ventas = () => {
 
   const handleCrearVenta = async (data) => {
     try {
-      let total = 0;
+      if (venta.productos) {
+        let total = 0;
 
-      venta.productos.forEach((producto) => {
-        total += producto.precio_producto * producto.cantidad;
-      });
+        venta.productos.forEach((producto) => {
+          total += producto.precio_producto * producto.cantidad;
+        });
 
-      const ventaFinal = {
-        ...venta,
-        total_venta: total,
-      };
+        const ventaFinal = {
+          ...venta,
+          total_venta: total,
+        };
 
-      await createDato(`${RUTA_VENTAS}/create`, ventaFinal, "venta");
-      await getDato(RUTA_VENTAS, setVentas);
-      setMostrarCrear(false);
-      setVenta("");
-      resetVenta();
+        const exito = await createDato(
+          `${RUTA_VENTAS}/create`,
+          ventaFinal,
+          "venta"
+        );
+        if (exito) {
+          await getDatos(RUTA_VENTAS, setVentas);
+          setMostrarCrear(false);
+          setVenta("");
+          resetVenta();
+        }
+      } else {
+        toast.error("Agregue un producto primero");
+      }
     } catch (error) {
       MySwal.fire({
         icon: "error",
@@ -125,6 +135,8 @@ const Ventas = () => {
       });
     }
   };
+
+  console.log(productos);
 
   const handleDelete = async (id) => {
     try {
@@ -176,18 +188,26 @@ const Ventas = () => {
   };
 
   const añadirProducto = (e) => {
-    if (venta.productos) {
-      setVenta({ ...venta, productos: [...venta.productos, producto] });
-      setProductos(null);
-      resetProducto();
-      toast.success("Producto añadido con exito");
+    if (producto && producto.precio_producto) {
+      if (venta.productos) {
+        setVenta({ ...venta, productos: [...venta.productos, producto] });
+        setProductos(null);
+        resetProducto();
+        toast.success("Producto añadido con exito");
+        setProducto("");
+      } else {
+        setVenta({ ...venta, productos: [producto] });
+        setProductos(null);
+        resetProducto();
+        toast.success("Producto añadido cone exito");
+        setProducto("");
+      }
     } else {
-      setVenta({ ...venta, productos: [producto] });
-      setProductos(null);
-      resetProducto();
-      toast.success("Producto añadido cone exito");
+      toast.error("Selecciona primero un producto haciendo click en Nombre")
     }
   };
+
+  console.log(venta);
 
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>

@@ -21,7 +21,6 @@ export const getDatos = async (url, setValor) => {
 
 // Obtener un solo dato
 export const getDato = async (url, setValor) => {
-  console.log(url);
   
   try {
     const res = await axios.get(url);
@@ -83,12 +82,14 @@ export const createDato = async (url, dato, tipo) => {
       title: "¡Creado!",
       text: `El ${tipo} ha sido creado con éxito`,
     });
+    return true
   } catch (error) {
     MySwal.fire({
       icon: "error",
       title: "¡Error!",
       text: error.response.data.message,
     });
+    return false
   }
 };
 
