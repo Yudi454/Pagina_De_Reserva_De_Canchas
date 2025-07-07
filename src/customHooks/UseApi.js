@@ -1,5 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+const MySwal = withReactContent(Swal);
 
 // Obtener muchos datos
 export const getDatos = async (url, setValor) => {
@@ -38,6 +41,8 @@ export const buscarDato = async (url, dato, setDato) => {
     const res = await axios.post(url, dato);
     setDato(res.data);
   } catch (error) {
+    console.log(error);
+    
     MySwal.fire({
       icon: "error",
       title: "¡Error!",

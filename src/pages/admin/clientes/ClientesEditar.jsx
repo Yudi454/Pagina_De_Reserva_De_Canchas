@@ -78,7 +78,7 @@ const ClientesEditar = ({
               <p>{errors.contraseña_cliente.message}</p>
             )}
           </Form.Group>
-          <button type="submit" className="admin-button-editar mt-3">Editar cliente<FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></button>
+          <button type="submit" className="admin-button-editar mt-3">Editar <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></button>
         </Form>
       )}
     </div>

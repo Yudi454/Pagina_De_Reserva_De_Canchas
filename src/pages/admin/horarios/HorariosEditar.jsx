@@ -1,7 +1,7 @@
 import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import {  Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const HorariosEditar = ({
   horario,
@@ -14,7 +14,12 @@ const HorariosEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}><FontAwesomeIcon icon={faTimes} size="lg" /></button>
+      <button
+        className="admin-button-editar"
+        onClick={() => setMostrarEditar(false)}
+      >
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </button>
       <h3 className="mt-3">Editar horario</h3>
       {horario && (
         <Form onSubmit={handleSubmit(handleEditarHorario)}>
@@ -31,6 +36,9 @@ const HorariosEditar = ({
               }
             />
             {errors.hora_inicio && <p>{errors.hora_inicio.message}</p>}
+            <small className="form-text text-center">
+              Ingrese una hora en formato horas:minutos
+            </small>
           </Form.Group>
           <Form.Group>
             <Form.Label>Hora de fin:</Form.Label>
@@ -44,8 +52,15 @@ const HorariosEditar = ({
                 setHorario({ ...horario, [e.target.name]: e.target.value })
               }
             />
+            {errors.hora_fin && <p>{errors.hora_fin.message}</p>}
+            <small className="form-text text-center">
+              Ingrese una hora en formato horas:minutos
+            </small>
           </Form.Group>
-          <button type="submit" className="admin-button-editar mt-3">Editar <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" /></button>
+          <button type="submit" className="admin-button-editar mt-3">
+            Editar{" "}
+            <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
+          </button>
         </Form>
       )}
     </div>

@@ -13,7 +13,12 @@ const UsuariosEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}>X</button>
+      <button
+        className="admin-button-editar"
+        onClick={() => setMostrarEditar(false)}
+      >
+        X
+      </button>
       <h3 className="mt-3">Editar usuario</h3>
       {usuario && usuario.imagen && (
         <img src={usuario.imagen} className="img-fluid w-25 mt-3 mb-3" />
@@ -33,6 +38,9 @@ const UsuariosEditar = ({
               }
             />
             {errors.imagen_usuario && <p>{errors.imagen_usuario.message}</p>}
+            <small className="form-text text-center">
+              Ingrese un link de una imagen
+            </small>
           </Form.Group>
           <Form.Group>
             <Form.Label>Nombre:</Form.Label>
@@ -151,8 +159,8 @@ const UsuariosEditar = ({
               <p>{errors.telefono_usuario.message}</p>
             )}
           </Form.Group>
-          <button className="admin-button-editar mt-3" type="submit" >
-            Editar usuario{" "}
+          <button className="admin-button-editar mt-3" type="submit">
+            Editar{" "}
             <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
           </button>
         </Form>

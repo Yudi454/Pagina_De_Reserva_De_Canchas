@@ -14,7 +14,9 @@ const CreateHorarios = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <button className="admin-button" onClick={() => setMostrarCrear(false)}><FontAwesomeIcon icon={faTimes} size="lg"/></button>
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>
+        <FontAwesomeIcon icon={faTimes} size="lg" />
+      </button>
       <h3>Crear horario</h3>
       <Form onSubmit={handleSubmit(handleCrearHorario)}>
         <Form.Group>
@@ -29,6 +31,9 @@ const CreateHorarios = ({
             }
           />
           {errors.hora_inicio && <p>{errors.hora_inicio.message}</p>}
+          <small className="form-text text-center">
+            Ingrese una hora en formato horas:minutos
+          </small>
         </Form.Group>
         <Form.Group>
           <Form.Label>Hora de fin:</Form.Label>
@@ -41,8 +46,15 @@ const CreateHorarios = ({
               setHorario({ ...horario, [e.target.name]: e.target.value })
             }
           />
+          {errors.hora_fin && <p>{errors.hora_fin.message}</p>}
+          <small className="form-text text-center">
+            Ingrese una hora en formato horas:minutos
+          </small>
         </Form.Group>
-        <button type="submit" className="admin-button-editar mt-3">Editar horario<FontAwesomeIcon className="icon-admin" icon={faFileSignature}/></button>
+        <button type="submit" className="admin-button mt-3">
+          Crear Horario
+          <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
+        </button>
       </Form>
     </div>
   );

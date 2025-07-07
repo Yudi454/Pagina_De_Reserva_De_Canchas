@@ -1,4 +1,8 @@
-import { faCartPlus, faMagnifyingGlass, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartPlus,
+  faMagnifyingGlass,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
@@ -16,12 +20,18 @@ const ReservasEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}>
+      <button
+        className="admin-button-editar"
+        onClick={() => setMostrarEditar(false)}
+      >
         <FontAwesomeIcon icon={faTimes} size="lg" />
       </button>
       <h3>Editar reserva</h3>
       {reserva && (
-        <Form onSubmit={handleSubmit(handleEditarReserva)} className="d-flex flex-column align-items-center">
+        <Form
+          onSubmit={handleSubmit(handleEditarReserva)}
+          className="d-flex flex-column align-items-center"
+        >
           <Form.Group>
             <Form.Label>Email-Cliente:</Form.Label>
             <Form.Control
@@ -62,6 +72,9 @@ const ReservasEditar = ({
               }
             />
           </Form.Group>
+          <small className="form-text text-center">
+            Ingrese una fecha en formato dia-mes-año
+          </small>
           <Form.Group>
             <Form.Label>Horario:</Form.Label>
             <Form.Control
@@ -88,8 +101,12 @@ const ReservasEditar = ({
                 ))}
             </Form.Control>
           </Form.Group>
+          <small className="form-text text-center">
+            Clickea primero para buscar usuarios
+            <br />Y luego selecciona un horario.
+          </small>
           <div className="mt-4 mb-3">
-            <button className="admin-button me-4" onClick={buscarHorarios} >
+            <button className="admin-button me-4" onClick={buscarHorarios}>
               Buscar Horarios
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}

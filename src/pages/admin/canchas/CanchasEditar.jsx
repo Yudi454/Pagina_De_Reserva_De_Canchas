@@ -1,6 +1,6 @@
 import { faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const CanchasEditar = ({
   cancha,
@@ -36,6 +36,9 @@ const CanchasEditar = ({
                 }
               />
               {errors.imagen && <p>{errors.imagen.message}</p>}
+              <small className="form-text text-center">
+                Ingrese un link de una imagen
+              </small>
             </Form.Group>
             <Form.Group>
               <Form.Label>Tipo:</Form.Label>

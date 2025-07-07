@@ -14,8 +14,13 @@ const CreateUsuarios = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <button className="admin-button" onClick={() => setMostrarCrear(false)}>X</button>
+      <button className="admin-button" onClick={() => setMostrarCrear(false)}>
+        X
+      </button>
       <h3>Crear usuario</h3>
+      {usuario && usuario.imagen_usuario && (
+        <img src={usuario.imagen_usuario} className="img-fluid w-25 mt-3 mb-3" />
+      )}
       <Form onSubmit={handleSubmit(handleCrearUsuario)}>
         <Form.Group>
           <Form.Label>Imagen:</Form.Label>
@@ -29,6 +34,9 @@ const CreateUsuarios = ({
             }
           />
           {errors.imagen_usuario && <p>{errors.imagen_usuario.message}</p>}
+          <small className="form-text text-center">
+            Ingrese un link de una imagen
+          </small>
         </Form.Group>
         <Form.Group>
           <Form.Label>Nombre:</Form.Label>
@@ -141,8 +149,8 @@ const CreateUsuarios = ({
           />
           {errors.telefono_usuario && <p>{errors.telefono_usuario.message}</p>}
         </Form.Group>
-        <button type="submit" className="admin-button-editar mt-3">
-          Crear{" "}
+        <button type="submit" className="admin-button mt-3">
+          Crear usuario
           <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
         </button>
       </Form>

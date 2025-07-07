@@ -32,7 +32,7 @@ const VentasCrear = ({
         <FontAwesomeIcon icon={faTimes} size="lg" />
       </button>
       <h3>Crear venta</h3>
-      <Form onSubmit={handleSubmitVenta(handleCrearVenta)}>
+      <Form onSubmit={handleSubmitVenta(handleCrearVenta)} className="d-flex flex-column align-items-center">
         <Form.Group>
           <Form.Label>Fecha:</Form.Label>
           <Form.Control
@@ -45,6 +45,9 @@ const VentasCrear = ({
             }
           />
           {errorsVenta.fecha_venta && <p>{errorsVenta.fecha_venta.message}</p>}
+          <small className="form-text text-center">
+            Ingrese una fecha en formato dia-mes-año
+          </small>
         </Form.Group>
         <Form.Group>
           <Form.Label>Hora:</Form.Label>
@@ -58,6 +61,9 @@ const VentasCrear = ({
             }
           />
           {errorsVenta.hora_venta && <p>{errorsVenta.hora_venta.message}</p>}
+          <small className="form-text text-center">
+            Ingrese un horario en formato horas:minutos
+          </small>
         </Form.Group>
         <Form.Group>
           <Form.Label>Email-Usuario:</Form.Label>
@@ -75,7 +81,7 @@ const VentasCrear = ({
           )}
         </Form.Group>
 
-        <button type="submit" className="admin-button-editar mt-3 mb-3">
+        <button type="submit" className="admin-button mt-3 mb-3">
           Crear venta{" "}
           <FontAwesomeIcon className="icon-admin" icon={faFileSignature} />
         </button>
@@ -140,15 +146,19 @@ const VentasCrear = ({
               <p>{errorsProducto.cantidad.message}</p>
             )}
           </Form.Group>
+          <small className="form-text text-center">
+            Escribe el nombre del Producto y luego clickea en "Buscar
+            Producto".<br/>Selecciona producto, carga cantdad y clickea "Añadir Producto"
+          </small>
           <div className="mt-3 mb-3">
-            <button className="admin-button me-4" onClick={handleBuscar} >
+            <button className="admin-button me-4" onClick={handleBuscar}>
               Buscar producto
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 className="icon-admin"
               />
             </button>
-            <button className="admin-button-editar" type="submit">
+            <button className="admin-button" type="submit">
               Añadir Producto
               <FontAwesomeIcon icon={faCartPlus} className="icon-admin" />
             </button>

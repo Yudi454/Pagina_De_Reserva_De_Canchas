@@ -16,12 +16,12 @@ import ReservasEditar from "./ReservasEditar";
 import { useForm } from "react-hook-form";
 import ReservasCrear from "./ReservasCrear";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const MySwal = withReactContent(Swal);
 import { useStore } from "../../../store/AuthStore";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+const MySwal = withReactContent(Swal);
 
 const Reservas = () => {
   const { color } = useStore();
@@ -154,6 +154,7 @@ const Reservas = () => {
       });
     }
   };
+  
 
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>

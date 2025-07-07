@@ -24,7 +24,10 @@ const ReservasCrear = ({
         <FontAwesomeIcon icon={faTimes} size="lg" />
       </button>
       <h3>Crear reserva</h3>
-      <Form onSubmit={handleSubmit(handleCrearReserva)} className="d-flex flex-column align-items-center">
+      <Form
+        onSubmit={handleSubmit(handleCrearReserva)}
+        className="d-flex flex-column align-items-center"
+      >
         <Form.Group>
           <Form.Label>Email-Cliente:</Form.Label>
           <Form.Control
@@ -52,6 +55,9 @@ const ReservasCrear = ({
             }
           />
         </Form.Group>
+          <small className="form-text text-center">
+            Ingrese una fecha en formato dia-mes-año
+          </small>
         <Form.Group>
           <Form.Label>Horario:</Form.Label>
           <Form.Control
@@ -81,7 +87,7 @@ const ReservasCrear = ({
           <br />Y luego selecciona un horario.
         </small>
         <div className="mt-3 mb-3">
-          <button className="admin-button me-4" onClick={buscarHorarios} >
+          <button className="admin-button me-4" onClick={buscarHorarios}>
             Buscar Horarios
             <FontAwesomeIcon icon={faMagnifyingGlass} className="icon-admin" />
           </button>

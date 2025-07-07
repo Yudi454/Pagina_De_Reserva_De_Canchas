@@ -19,6 +19,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../../../store/AuthStore";
+import { faEdgeLegacy } from "@fortawesome/free-brands-svg-icons";
+import { toast } from "react-toastify";
 
 const Productos = () => {
   const { color } = useStore();
@@ -33,11 +35,17 @@ const Productos = () => {
 
   const [productos, setProductos] = useState();
 
+  const [proveedor, setProveedor] = useState();
+
+  const [proveedores, setProveedores] = useState();
+
   const [buscar, setBuscar] = useState();
 
   const API_ROUTE = import.meta.env.VITE_API_URL;
 
   const RUTA_PRODUCTOS = `${API_ROUTE}${rutas.productos}`;
+
+  const RUTA_PROVEEDORES = `${API_ROUTE}${rutas.proveedores}`;
 
   const {
     register,
@@ -92,6 +100,19 @@ const Productos = () => {
         title: "¡Error!",
         text: error.response.data.message,
       });
+    }
+  };
+
+  const handleBuscarProveedor = () => {
+    if (proveedor) {
+      buscarDato(
+        `${RUTA_PROVEEDORES}/buscar`,
+        { nombre_proveedor: proveedor.nombre_proveedor },
+        setProveedores
+      );
+      toast.success("Proveedores similares encontrados");
+    } else {
+      toast.error("Ingrese un valor antes de buscar");
     }
   };
 
@@ -153,6 +174,9 @@ const Productos = () => {
     }
   };
 
+  console.log(producto);
+  
+
   return (
     <div className={color === "Claro" ? "modo-claro" : "modo-oscuro"}>
       <div className="admin-container">
@@ -168,7 +192,12 @@ const Productos = () => {
               <ProductosCrear
                 setMostrarCrear={setMostrarCrear}
                 producto={producto}
+                proveedor={proveedor}
+                proveedores={proveedores}
                 setProducto={setProducto}
+                setProveedor={setProveedor}
+                setProveedores={setProveedores}
+                handleBuscarProveedor={handleBuscarProveedor}
                 handleCrearProducto={handleCrearProducto}
                 handleSubmit={handleSubmit}
                 register={register}
@@ -187,8 +216,12 @@ const Productos = () => {
             <Col md={10}>
               <ProductosEditar
                 producto={producto}
+                proveedor={proveedor}
+                proveedores={proveedores}
+                setProveedor={setProveedor}
                 setProducto={setProducto}
                 setMostrarEditar={setMostrarEditar}
+                handleBuscarProveedor={handleBuscarProveedor}
                 handleEditarProducto={handleEditarProducto}
                 handleSubmit={handleSubmit}
                 register={register}

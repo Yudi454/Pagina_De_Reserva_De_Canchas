@@ -27,7 +27,10 @@ const VentasEditar = ({
 }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center">
-      <button className="admin-button-editar" onClick={() => setMostrarEditar(false)}>
+      <button
+        className="admin-button-editar"
+        onClick={() => setMostrarEditar(false)}
+      >
         <FontAwesomeIcon icon={faTimes} size="lg" />
       </button>
       <h3>Editar venta</h3>
@@ -51,6 +54,9 @@ const VentasEditar = ({
             {errorsVenta.fecha_venta && (
               <p>{errorsVenta.fecha_venta.message}</p>
             )}
+            <small className="form-text text-center">
+              Ingrese una fecha en formato dia-mes-año
+            </small>
           </Form.Group>
           <Form.Group>
             <Form.Label>Hora:</Form.Label>
@@ -65,6 +71,9 @@ const VentasEditar = ({
               }
             />
             {errorsVenta.hora_venta && <p>{errorsVenta.hora_venta.message}</p>}
+            <small className="form-text text-center">
+              Ingrese un horario en formato horas:minutos
+            </small>
           </Form.Group>
           <Form.Group>
             <Form.Label>Email-Usuario:</Form.Label>
@@ -109,7 +118,7 @@ const VentasEditar = ({
               ))}
           </Form.Group>
 
-          <button className="admin-button-editar mt-3 mb-4" type="submit" >
+          <button className="admin-button-editar mt-3 mb-4" type="submit">
             Editar venta
             <FontAwesomeIcon icon={faPenToSquare} className="icon-admin" />
           </button>
@@ -175,15 +184,20 @@ const VentasEditar = ({
               <p>{errorsProducto.cantidad.message}</p>
             )}
           </Form.Group>
+          <small className="form-text text-center">
+            Escribe el nombre del Producto y luego clickea en "Buscar Producto".
+            <br />
+            Selecciona producto, carga cantdad y clickea "Añadir Producto"
+          </small>
           <div className="mt-3 mb-2">
-            <button className="admin-button me-4" onClick={handleBuscar} >
+            <button className="admin-button-editar me-4" onClick={handleBuscar}>
               Buscar producto
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 className="icon-admin"
               />
             </button>
-            <button className="admin-button"  type="submit">
+            <button className="admin-button-editar" type="submit">
               Añadir Producto
               <FontAwesomeIcon icon={faCartPlus} className="icon-admin" />
             </button>
